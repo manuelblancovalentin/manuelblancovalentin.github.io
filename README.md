@@ -254,6 +254,11 @@ style transfer [[2]].
 **Test2**
 Still going on. 
 
+![hell2_evolution](res/LastSpectra.gif)
+
+![hell2_evolution](res/Lastema.gif)
+
+
 ## Technical details
 
 [[go back to the top]](#Table-of-Contents)
