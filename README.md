@@ -190,7 +190,7 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 
 |  |  |
 |:----:|:----:|
-| <img src="res/stylegan.png" alt="styleganv1" style="height:500px;"/> | <img src="res/stylegan2.png" alt="drawing" style="height:500px;"/> |
+| <img src="res/stylegan.png" alt="styleganv1" height="500px" /> | <img src="res/stylegan2.png" alt="drawing" height="500px" /> |
 
 **Figure 14.** (a) StyleGANv1 (b) Revised version on v2.
 
