@@ -109,14 +109,17 @@ problem and trained so that **e** and **k** maps can be obtained from sourced **
 ### UResNet (2018-2019) - J. Caldeira (FNAL/UChicago)
 The following image shows the schematic of the methodology proposed by J. Caldeira et al.:
 ![Previous work methodology URESNET](res/previous_work_qu_ek_uresnet.png)
+
 **Figure 5.** Visualization of the task performed by J. Caldeira et al in their previous work [[1]].
 
 ![Previous work net](res/uresnet.jpg)
+
 **Figure 6.** Architecture proposed by J. Caldeira et al in their previous work [[1]].
 
 The following images display the average spectra for e and kappa modes for both original and predicted samples.
 ![Previous work e map recovery](res/e_previous.png)
 ![Previous work kappa map recovery](res/k_previous.png)
+
 **Figure 7.** Results for e, k predictions presented by J. Caldeira et al in their previous work [[1]].
 
 | Pros | Cons |
