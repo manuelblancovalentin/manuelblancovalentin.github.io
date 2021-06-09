@@ -185,9 +185,7 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 
 ## Proposed methodology-StyleGAN2-CMB
 [[go back to the top]](#Table-of-Contents)
-```
-Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actual data cannot be posted on github. If you want, you can use this code for a different application/dataset.
-```
+>  Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actual data cannot be posted on github. If you want, you can use this code for a different application/dataset.
 [[2]]
 
 |  |  |
