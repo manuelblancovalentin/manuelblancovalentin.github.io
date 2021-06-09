@@ -10,12 +10,9 @@
 2. [CMB decomposition](#CMB-decomposition)
 3. [Previous Work](#Previous-work)
 4. [Proposed Methodology - StyleGAN2-CMB](#Proposed-methodology-stylegan2-cmb)
-5. [Requirements](#Requirements)
-6. [astroDGAN building blocks](#astroDGAN-building-blocks)
-7. [How to use astroDGAN](#How-to-use-astroDGAN)
-8. [Experiments](#Experiments)
-9. [Further tests and discussion](#Further-tests-and-discussion)
-10. [Future work](#Future-work)
+5. [Experiments](#Experiments)
+6. [Requirements](#Requirements)
+7. [Future work](#Future-work)
 
 
 ## Introduction to CMB
@@ -204,6 +201,14 @@ different application/dataset.
 ```
 
 [2]: <https://www.tensorflow.org/tutorials/generative/pix2pix> "Pix2Pix"
+
+
+
+## Experiments
+[[go back to the top]](#Table-of-Contents)
+
+asdasdas
+
 
 
 ## Requirements
