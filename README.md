@@ -290,6 +290,9 @@ You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTa
 [[go back to the top]](#Table-of-Contents)
 
 - Be able to predict B modes with as much accuracy as other modes.
+- Assert overfitting on the results obtained
+- Experiment with different losses for the transformation net
+- ...?
 
 ## Ackwnoledgements
 
