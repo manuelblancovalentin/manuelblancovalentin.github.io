@@ -1,12 +1,12 @@
 # CMB decomposition using StyleGAN2
 **Author**: Manuel Blanco Valentin ([manuel.blanco.valentin@gmail.com](mailto://manuel.blanco.valentin@gmail.com))
-<br/> **Based on**: :octocat: [StyleGAN2-Tensorflow-2.0](https://github.com/manicman1999/StyleGAN2-Tensorflow-2.0) <br/>
+<br/> **Based on**: [StyleGAN2-Tensorflow-2.0](https://github.com/manicman1999/StyleGAN2-Tensorflow-2.0) <br/>
 **Collaborators**: João Caldeira, Brian Nord, Kimmy Wu, Clécio R. Bom
-**Affiliation**: Computer & Electrical Eng. Department - Northwestern University
+<br/>**Affiliation**: Computer & Electrical Eng. Department - Northwestern University
 ---
 
 ## Table of Contents
-
+1. [Introduction to CMB](#Introduction-to-CMB)
 1. [Previous Work](#Previous-work)
 2. [Proposed Methodology](#Proposed-methodology)
 3. [Requirements](#Requirements)
@@ -16,6 +16,10 @@
 7. [Further tests and discussion](#Further-tests-and-discussion)
 8. [Future work](#Future-work)
 
+
+## Introduction to CMB
+
+![CMB_bigbang](res/cmb2.jpeg)
 
 
 
