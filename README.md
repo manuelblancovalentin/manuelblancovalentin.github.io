@@ -64,6 +64,8 @@ structure.
 **Figure 2.** Real image of the CMB captured by the satellite Planck.
 
 ## CMB decomposition
+[[go back to the top]](#Table-of-Contents)
+
 Although CMB contains a great amount of information regarding a great range of physical phenomena, the data in the raw maps as 
 shown in **Figure 2** (in µK) is not directly useful. In order to extract useful information from these maps, it is necessary to
 decompose them into different submaps, each one of them related to a certain property or phenomenon. 
@@ -133,10 +135,12 @@ network was being trained using the actual samples (not noise).
 
 ![Pix2Pix Train1](res/pix2pix_train1.png)
 ![Pix2Pix Train2](res/pix2pix_train2.png)
+
 **Figure 8.** Example of quek -> b decomposition (training smaple) using Pix2Pix approach.
 
 ![Pix2Pix Val1](res/pix2pix_val1.png)
 ![Pix2Pix Val2](res/pix2pix_val2.png)
+
 **Figure 9.** Example of quek -> b decomposition (validation smaple) using Pix2Pix approach.
 
 | Pros | Cons |
@@ -156,19 +160,23 @@ Apparently going from q,u space to b space is just too complicated (specially wi
   - Decomposition (q,u,Q,U,k -> b) 
 
 ![astroDGAN](res/astroDGAN.jpeg)
+
 **Figure 10.** astroDGAN architecture proposed.
 
 
 ![Pix2Pix Train1](res/pix2pix_train1.png)
 ![Pix2Pix Train2](res/pix2pix_train2.png)
+
 **Figure 11.** Example of quek -> b decomposition (training sample) using astroDGAN approach.
 
 ![Pix2Pix Val1](res/pix2pix_val1.png)
 ![Pix2Pix Val2](res/pix2pix_val2.png)
+
 **Figure 12.** Example of quek -> b decomposition (validation sample) using astroDGAN approach.
 
 ![astrodgan e](res/astrodgan_e.png)
 ![astrodgan k](res/astrodgan_k.png)
+
 **Figure 13.** Improvement on e,k decomposition using astroDGAN.
 
 | Pros | Cons |
@@ -214,6 +222,7 @@ You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTa
 
 
 ## Results
+[[go back to the top]](#Table-of-Contents)
 
 ![quekb_spectra](res/quekb_spectra.gif)
 
