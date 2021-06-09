@@ -9,7 +9,7 @@
 1. [Introduction to CMB](#Introduction-to-CMB)
 2. [CMB decomposition](#CMB-decomposition)
 3. [Previous Work](#Previous-work)
-4. [Proposed Methodology](#Proposed-methodology)
+4. [Proposed Methodology: StyleGAN2-CMB](#Proposed-methodology:-stylegan2-cmb)
 5. [Requirements](#Requirements)
 6. [astroDGAN building blocks](#astroDGAN-building-blocks)
 7. [How to use astroDGAN](#How-to-use-astroDGAN)
@@ -71,16 +71,21 @@ decompose them into different submaps, each one of them related to a certain pro
 ![eqs](res/eqs.png)
 
 **Figure 3.** Analytical equations used to decompose maps.
-
 <br/>
 
-| map | img |
-|:---:|:---:|
-| q | ![q](res/q.png) | 
-| u | ![u](res/u.png) | 
+#### - Why is CMB decomposition a hard task?
+- Small size tiles
+- Edge bleeding due to finite-size images
+- Lensing effects (k)
+- Flat-sky approximations
+- Non-linear relationships
+- b-modes are extremely faint (normalization required)
+
+|  |  |  |
+|:---:|:---:|:---:|
+| q,u | ![q](res/q.png) | ![u](res/u.png) | 
 | k | ![k](res/k.png) | 
-| e | ![e](res/e.png) | 
-| b | ![b](res/b.png) |
+| e,b | ![e](res/e.png) | ![b](res/b.png) |
 
 **Figure 4.** Example of decomposition of CMB.
 
@@ -95,18 +100,85 @@ The workflow that we are required to implement consists on:
 ## Previous work
 [[go back to the top]](#Table-of-Contents)
 
-Previous work on lensing reconstruction of CMB with machine learning showed competitive results even for different levels of noise (see [DeepCMB][1]). On J. Caldeira's et al. work a UResNet is used in a image transformation problem and trained so that **e** and **k** maps can be obtained from sourced **q** and **u** lensed maps.  
+Previous work on lensing reconstruction of CMB with machine learning showed competitive results even for 
+different levels of noise (see [DeepCMB][1]). On J. Caldeira's et al. work a UResNet is used in a image transformation 
+problem and trained so that **e** and **k** maps can be obtained from sourced **q** and **u** lensed maps.  
 
-The following image shows the schematic of the methodology proposed:
-![Previous work methodology URESNET](images/previous_work_qu_ek_uresnet.png)
+### UResNet (2018-2019) - J. Caldeira (FNAL/UChicago)
+The following image shows the schematic of the methodology proposed by J. Caldeira et al.:
+![Previous work methodology URESNET](res/previous_work_qu_ek_uresnet.png)
+**Figure 5.** Visualization of the task performed by J. Caldeira et al in their previous work [[1]].
+
+![Previous work net](res/uresnet.jpg)
+**Figure 6.** Architecture proposed by J. Caldeira et al in their previous work [[1]].
+
 The following images display the average spectra for e and kappa modes for both original and predicted samples.
-![Previous work e map recovery](images/e_previous.png)
-![Previous work kappa map recovery](images/k_previous.png)
+![Previous work e map recovery](res/e_previous.png)
+![Previous work kappa map recovery](res/k_previous.png)
+**Figure 7.** Results for e, k predictions presented by J. Caldeira et al in their previous work [[1]].
+
+| Pros | Cons |
+|:----:|:----:|
+| Able to decompose e,k | Uncapable of decomp. into B modes|
+| Fair retrieval of maps at low-freq | Requires apodization mask |
+| Sample coherence (q,u -> e,k) | Outdated architecture |
+| Fast to train | UNet forces connections input -> output |
 
 [1]: <https://www.sciencedirect.com/science/article/pii/S221313371830132X> "DeepCMB: Lensing reconstruction of the cosmic microwave background with deep neural networks"
 
+### Pix2Pix GAN (2019) - Manu B. Valentin (FNAL)
+Use of an architecture similar to **Figure 6** but adding a discriminator.
+The main problem with this approach is that overfitting was observed, because the
+network was being trained using the actual samples (not noise).
 
-## Proposed methodology
+![Pix2Pix Train1](res/pix2pix_train1.png)
+![Pix2Pix Train2](res/pix2pix_train2.png)
+**Figure 8.** Example of quek -> b decomposition (training smaple) using Pix2Pix approach.
+
+![Pix2Pix Val1](res/pix2pix_val1.png)
+![Pix2Pix Val2](res/pix2pix_val2.png)
+**Figure 9.** Example of quek -> b decomposition (validation smaple) using Pix2Pix approach.
+
+| Pros | Cons |
+|:----:|:----:|
+| Better resolution at e,k | Overfitting observed |
+| Sample coherence for training set (q,u -> e,k) | Requires apodization mask |
+|  | Outdated architecture |
+| | UNet forces connections input -> output |
+| | Takes long time to converge |
+
+### astroDGAN (2019) - Manu B. Valentin (FNAL)
+Apparently going from q,u space to b space is just too complicated (specially with a UResNet), thus:
+- Remove U connections
+- Make architecture deeper
+- Divide problem into 2 stages:
+  - Delensing (q,u -> Q,U,k)
+  - Decomposition (q,u,Q,U,k -> b) 
+
+![astroDGAN](res/astroDGAN.jpeg)
+**Figure 10.** astroDGAN architecture proposed.
+
+
+![Pix2Pix Train1](res/pix2pix_train1.png)
+![Pix2Pix Train2](res/pix2pix_train2.png)
+**Figure 11.** Example of quek -> b decomposition (training sample) using astroDGAN approach.
+
+![Pix2Pix Val1](res/pix2pix_val1.png)
+![Pix2Pix Val2](res/pix2pix_val2.png)
+**Figure 12.** Example of quek -> b decomposition (validation sample) using astroDGAN approach.
+
+![astrodgan e](res/astrodgan_e.png)
+![astrodgan k](res/astrodgan_k.png)
+**Figure 13.** Improvement on e,k decomposition using astroDGAN.
+
+| Pros | Cons |
+|:----:|:----:|
+| Improved resolution at e,k | Absurd overfitting |
+| Retrieval of B modes for the first time | Requires apodization mask |
+| Sample coherence for training set (q,u -> e,k,b) | Outdated architecture |
+
+
+## Proposed methodology: StyleGAN2-CMB
 [[go back to the top]](#Table-of-Contents)
 
 We propose to use adversarial networks (GANs) to improve the map retrieving accuracy. Adversarial networks are based on the combination of two different networks that compete with each other during the training procedure: a generator network (designed to generate fake images from true sources) and a discriminator network (designed to be able to distinguish between true and fake/generated images). 
