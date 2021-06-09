@@ -30,7 +30,7 @@ batch_size = 16
 output_dir = os.path.join(os.getcwd(),'results',''.join(maps))
 
 """ Build model """
-input_shape = dataset.get_batch(1).shape[1:]
+input_shape = dataset.get_batch(1)[0].shape[1:]
 model = sgcmb.StyleGAN(input_shape, channel_names = maps, lr = 0.0001, output_dir = output_dir)
 
 """ Print summary (and png with architectures) """
@@ -51,15 +51,54 @@ PART 2: Image transformation / Fine tuning (q,u,k,e [DISC*] -> Z/W -> [GEN] -> b
         - DISC* is trained to optimize its outputs (Z/W) to mimic the structure of latent space/noise to create the right b maps
         - The output must be compared for match with the original true maps ||b-^b||
 """
-output_shape = dataset.get_batch(1)[:,:,:,0:1].shape[1:]
+output_shape = dataset.get_batch(1)[0][:,:,:,0:1].shape[1:]
 output_T_dir = os.path.join(os.getcwd(),'results',''.join(maps),'translation')
-T_model = sgcmb.AdvTranslationNet(input_shape[:,:,:,:-1],
+T_model = sgcmb.AdvTranslationNet(input_shape[:-1] + (input_shape[-1]-1,),
                                   output_shape,
                                   channel_names = {'in': [m for m in maps if m != 'b'], 'out': ['b']}, lr = 0.0001,
                                   output_dir = output_T_dir)
 
+""" Initialize with previous weights from sgan """
+import tensorflow as tf
+#T_model.G = tf.keras.models.clone_model(model.G)
+
+for ii,(lyg,lyt) in enumerate(zip(model.G.layers,T_model.G.layers)):
+
+    wg = lyg.weights
+    wt = lyt.weights
+
+    if (wg == []) or (wt == []):
+        T_model.G.layers[ii].trainable = False
+    else:
+
+        try:
+
+            ww = []
+            tr = False
+            for wwg,wwt in zip(wg,wt):
+
+                if len(wwg) == 0 or len(wwt) == 0 or wwg != wwt:
+                    """ Keep new """
+                    ww.append(wwt)
+                    tr = True
+                else:
+                    print(f'[INFO] - Setting up pre-trained weight on layer {T_model.G.layers[ii]}')
+                    ww.append(wwg)
+
+            T_model.G.layers[ii].set_weights(ww)
+            T_model.G.layers[ii].trainable = tr
+        except:
+            T_model.G.layers[ii].trainable = True
+
+
+
 """ Print summary (and png with architectures) """
 T_model.summary()
+
+""" Try to load the previously trained model or train (if not found) """
+if not T_model.load(-1):
+    """ Train """
+    T_model.train(dataset, epochs, batch_size = batch_size, silent = False)
 
 
 

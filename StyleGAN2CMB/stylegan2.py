@@ -277,7 +277,7 @@ class StyleGAN(GAN):
             apply_path_penalty = e % 16 == 0
 
             """ Get batch from dataset """
-            imgs = dataset.get_batch(batch_size).astype('float32')
+            imgs, _ = dataset.get_batch(batch_size).astype('float32')
 
             """ Apply training step """
             a, b, c, d = self.train_step(imgs, style,
@@ -791,10 +791,12 @@ class AdvTranslationNet(object):
 
         """ Flatten act map to vector """
         x = tf.keras.layers.Flatten()(x)
-        x = tf.keras.layers.Dense(self.latent_size, kernel_initializer='he_uniform')(x)
+        y = []
+        for _ in range(self.num_layers):
+            y.append(tf.keras.layers.Dense(self.latent_size, kernel_initializer='he_uniform')(x))
 
         """ Create model """
-        self.E = tf.keras.Model(inputs=ip, outputs=x, name='encoder')
+        self.E = tf.keras.Model(inputs=ip, outputs=y, name='encoder')
 
         """ Style Mapping network """
         self.S = tf.keras.models.Sequential(name='StyleMappingNet')
@@ -925,7 +927,7 @@ class AdvTranslationNet(object):
         """ Init losses log """
         losses_log_file = os.path.join(self.output_dir, 'losses')
         with open(losses_log_file, 'w') as fh:
-            fh.write('epoch,D,G,PL')
+            fh.write('epoch,D,T_D,T_MAE,PL')
 
         """ 
             Setup DynamicTable 
@@ -949,10 +951,14 @@ class AdvTranslationNet(object):
             apply_path_penalty = e % 16 == 0
 
             """ Get batch from dataset """
-            imgs = dataset.get_batch(batch_size).astype('float32')
+            imgs_in, idx = dataset.get_batch(batch_size, maps = self.channel_names['in'])
+            imgs_in = imgs_in.astype('float32')
+            imgs_out, _ = dataset.get_batch(batch_size, idx=idx, maps = self.channel_names['out'])
+            imgs_out = imgs_out.astype('float32')
+
 
             """ Apply training step """
-            a, b, c, d = self.train_step(imgs, style,
+            a, b, c, d = self.train_step(imgs_out, imgs_in,
                                          utils.noise_image(batch_size, self.input_shape),
                                          apply_gradient_penalty,
                                          apply_path_penalty)
@@ -980,30 +986,6 @@ class AdvTranslationNet(object):
             self.loss['PL'].append(self.pl_mean)
 
             if (e % 100 == 0) and not silent:
-
-                # print("\n\nRound " + str(e) + ":")
-                # print("D:", np.array(a))
-                # print("G:", np.array(b))
-                # print("PL:", self.pl_mean)
-
-                # s = round((time.time() - self.lastblip), 4)
-                # self.lastblip = time.time()
-
-                # steps_per_second = 100 / s
-                # steps_per_minute = steps_per_second * 60
-                # steps_per_hour = steps_per_minute * 60
-                # print("Steps/Second: " + str(round(steps_per_second, 2)))
-                # print("Steps/Hour: " + str(round(steps_per_hour)))
-
-                # min1k = floor(1000/steps_per_minute)
-                # sec1k = floor(1000/steps_per_second) % 60
-                # print("1k Steps: " + str(min1k) + ":" + str(sec1k))
-                # steps_left = epochs - 1 - e + 1e-7
-                # hours_left = steps_left // steps_per_hour
-                # minutes_left = (steps_left // steps_per_minute) % 60
-
-                # print("Til Completion: " + str(int(hours_left)) + "h" + str(int(minutes_left)) + "m")
-                # print()
 
                 """ Save model """
                 if e % 500 == 0:
@@ -1044,15 +1026,16 @@ class AdvTranslationNet(object):
         """ As we exit the loop, print the bottom of the table """
         progress_table.print_bottom()
 
-    @tf.function
+    #@tf.function
     def train_step(self, images, style, noise, perform_gp=True, perform_pl=False):
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             # Get style information
             w_space = []
+            z_space = self.E(style)
             pl_lengths = self.pl_mean
-            for i in range(len(style)):
-                w_space.append(self.S(style[i]))
+            for i in range(len(z_space)):
+                w_space.append(self.S(z_space[i]))
 
             # Generate images
             generated_images = self.G(w_space + [noise])
@@ -1073,7 +1056,7 @@ class AdvTranslationNet(object):
             if perform_pl:
                 # Slightly adjust W space
                 w_space_2 = []
-                for i in range(len(style)):
+                for i in range(len(z_space)):
                     std = 0.1 / (K.std(w_space[i], axis=0, keepdims=True) + 1e-8)
                     w_space_2.append(w_space[i] + K.random_normal(tf.shape(w_space[i])) / (std + 1e-8))
 
@@ -1081,7 +1064,8 @@ class AdvTranslationNet(object):
                 pl_images = self.G(w_space_2 + [noise])
 
                 # Get distance after adjustment (path length)
-                delta_g = K.mean(K.square(pl_images - generated_images), axis=[1, 2, 3])
+                delta_g = .1*K.mean(K.square(pl_images - generated_images), axis=[1, 2, 3])
+                delta_g += .9*K.mean(K.square(images - generated_images), axis=[1, 2, 3])
                 pl_lengths = delta_g
 
                 if self.pl_mean > 0:
@@ -1284,7 +1268,14 @@ class AdvTranslationNet(object):
             nums = {wn: np.array(weights_file[wn], dtype='int') for wn in weights_file}
 
             """ Get minimum """
-            num = np.min([np.max(nums[xn]) for xn in nums])
+            if len(nums) == 0:
+                return False
+            num = [np.max(nums[xn]) for xn in nums if len(nums[xn]) > 0]
+            if len(num) == 0:
+                return False
+            num = np.min(num)
+            if len(num) == 0:
+                return False
             print(f'Found! Loading model number {num}')
 
         """ Assert this index exists for all models """

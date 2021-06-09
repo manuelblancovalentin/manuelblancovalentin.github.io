@@ -92,15 +92,16 @@ class CMBDataset(object):
     def __len__(self):
         return len(self.maps[list(self.maps.keys())[0]])
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx, maps = None):
+        maps = self.maps if maps is None else maps
         if tf.is_tensor(idx):
             idx = idx.tolist()
-        return np.concatenate([self.maps[m][idx] for m in self.maps],axis=-1)
+        return np.concatenate([self.maps[m][idx] for m in maps],axis=-1)
 
-    def get_batch(self, num):
-
-        idx = np.random.randint(0, len(self) - 1, num)
-        return np.concatenate([self.maps[m][idx] for m in self.maps],axis=-1).astype('float32')
+    def get_batch(self, num, idx = None, maps = None):
+        maps = self.maps if maps is None else maps
+        idx = idx if idx is not None else np.random.randint(0, len(self) - 1, num)
+        return np.concatenate([self.maps[m][idx] for m in maps],axis=-1).astype('float32'), idx
 
         """ Ignore this for now """
         out = []
