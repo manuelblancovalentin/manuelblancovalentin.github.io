@@ -12,7 +12,7 @@ if len(gpus) > 0:
 
 """ Local refs """
 from .dataset import CMBDataset
-from .stylegan2 import StyleGAN
+from .stylegan2 import StyleGAN, AdvTranslationNet
 
 
 

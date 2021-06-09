@@ -53,7 +53,10 @@ PART 2: Image transformation / Fine tuning (q,u,k,e [DISC*] -> Z/W -> [GEN] -> b
 """
 output_shape = dataset.get_batch(1)[:,:,:,0:1].shape[1:]
 output_T_dir = os.path.join(os.getcwd(),'results',''.join(maps),'translation')
-T_model = sgcmb.AdvTranslationNet(input_shape, output_shape, channel_names = maps, lr = 0.0001, output_dir = output_T_dir)
+T_model = sgcmb.AdvTranslationNet(input_shape[:,:,:,:-1],
+                                  output_shape,
+                                  channel_names = {'in': [m for m in maps if m != 'b'], 'out': ['b']}, lr = 0.0001,
+                                  output_dir = output_T_dir)
 
 """ Print summary (and png with architectures) """
 T_model.summary()

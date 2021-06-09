@@ -682,8 +682,10 @@ class StyleGAN(GAN):
 
 """ Im2Im network """
 class AdvTranslationNet(object):
-    def __init__(self, input_shape, output_shape, latent_size = 512, lr = 0.0001, decay = 0.00001, output_dir = None):
+    def __init__(self, input_shape, output_shape, channel_names = None, latent_size = 512, lr = 0.0001, decay = 0.00001, output_dir = None, **kwargs):
         """."""
+        super().__init__()
+
         """ Setup dirs """
         self.output_dir = output_dir if output_dir is not None else os.getcwd()
         self.models_dir = os.path.join(self.output_dir, 'Models')
@@ -707,6 +709,12 @@ class AdvTranslationNet(object):
         assert (self.output_shape[0] == self.output_shape[1])
         self.num_layers = int(np.log2(self.input_shape[0]) - 1)
         self.latent_size = latent_size
+
+        """ Define channel names """
+        self.channel_names = {'in': channel_names['in'] if channel_names is not None else [f'channel{i}' for i in
+                                                                              range(input_shape[-1])],
+                              'out': channel_names['out'] if channel_names is not None else [f'channel{i}' for i in
+                                                                                     range(output_shape[-1])]                              }
 
         """ Init models """
         self.__init_models__()
@@ -1097,13 +1105,13 @@ class AdvTranslationNet(object):
         """
             PRINT GENERATOR
         """
-        with open(os.path.join(self.output_dir, 'generator'), 'w') as fh:
+        with open(os.path.join(self.output_dir, 'encoder'), 'w') as fh:
             # Pass the file handle in as a lambda function to make it callable
-            self.G.summary(print_fn=lambda x: fh.write(x + '\n'))
+            self.E.summary(print_fn=lambda x: fh.write(x + '\n'))
 
         """ Print model structure (png) """
-        tf.keras.utils.plot_model(self.G,
-                                  to_file=os.path.join(self.output_dir, 'generator.png'),
+        tf.keras.utils.plot_model(self.E,
+                                  to_file=os.path.join(self.output_dir, 'encoder.png'),
                                   show_shapes=show_shapes,
                                   show_layer_names=show_layer_names,
                                   **kwargs)
