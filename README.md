@@ -55,10 +55,12 @@ can be seen absolutely everywhere in the universe, no matter where we point our 
 structure. 
 
 ![CMB_bigbang](res/cmb2.jpeg)
+
 **Figure 1.** Depiction of the evolution of the early universe right after the big bang.
 
 
 ![CMBplank](res/cmbplank.jpeg)
+
 **Figure 2.** Real image of the CMB captured by the satellite Planck.
 
 ## CMB decomposition
@@ -67,6 +69,7 @@ shown in **Figure 2** (in µK) is not directly useful. In order to extract usefu
 decompose them into different submaps, each one of them related to a certain property or phenomenon. 
 
 ![eqs](res/eqs.png)
+
 **Figure 3.** Analytical equations used to decompose maps.
 
 <br/>
@@ -74,6 +77,7 @@ decompose them into different submaps, each one of them related to a certain pro
 | q | u | k | e | b |
 |:---:|:---:|:---:|:---:|:---:|
 | ![q](res/q.png) | ![u](res/u.png) | ![k](res/k.png) | ![e](res/e.png) | ![b](res/b.png) |
+
 **Figure 4.** Example of decomposition of CMB.
 
 
