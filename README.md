@@ -133,16 +133,6 @@ Use of an architecture similar to **Figure 6** but adding a discriminator.
 The main problem with this approach is that overfitting was observed, because the
 network was being trained using the actual samples (not noise).
 
-![Pix2Pix Train1](res/pix2pix_train1.png)
-![Pix2Pix Train2](res/pix2pix_train2.png)
-
-**Figure 8.** Example of quek -> b decomposition (training smaple) using Pix2Pix approach.
-
-![Pix2Pix Val1](res/pix2pix_val1.png)
-![Pix2Pix Val2](res/pix2pix_val2.png)
-
-**Figure 9.** Example of quek -> b decomposition (validation smaple) using Pix2Pix approach.
-
 | Pros | Cons |
 |:----:|:----:|
 | Better resolution at e,k | Overfitting observed |
@@ -157,7 +147,14 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 - Make architecture deeper
 - Divide problem into 2 stages:
   - Delensing (q,u -> Q,U,k)
-  - Decomposition (q,u,Q,U,k -> b) 
+  - Decomposition (q,u,Q,U,k -> b)
+- Usage of advanced losses (along with MAE):
+  - ang. spectra loss MAE
+  - 2d fft spectra MAE 
+  - cross spectra minimization 
+  - Power conservation (Q<sup>2</sup> + U<sup>2</sup> = e<sup>2</sup> + b<sup>2</sup>)
+    
+    
 
 ![astroDGAN](res/astroDGAN.jpeg)
 
@@ -194,10 +191,7 @@ We propose to use adversarial networks (GANs) to improve the map retrieving accu
 It was found that each one of the maps to be predicted behaves differently to the type of generator used for optimization. Two different generators were tested: João Caldeira's Uresnet used in the astroencoder project and a Unet based on google's implementation of Pix2Pix algorithm (see [Pix2Pix][2]). Results are shown in the following sections.
 
 ```
-Disclaimer: Due to confidentiality agreements between 
-Fermilab and NU, the actual data cannot be posted on 
-github. If you want, you can use this code for a 
-different application/dataset.
+Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actual data cannot be posted on github. If you want, you can use this code for a different application/dataset.
 ```
 
 [2]: <https://www.tensorflow.org/tutorials/generative/pix2pix> "Pix2Pix"
@@ -207,9 +201,21 @@ different application/dataset.
 ## Experiments
 [[go back to the top]](#Table-of-Contents)
 
+
 asdasdas
 
+![quekb_spectra](res/quekb_spectra.gif)
 
+**Figure XX.** Evolution of angular spectra while training sgancmb on step 1.
+
+![k_evolution](res/k_evolution.gif)
+
+**Figure XX.** Evolution of k maps generation while training sgancmb on step 1.
+
+
+![k_evolution](res/b_evolution.gif)
+
+**Figure XX.** Evolution of b maps generation while training sgancmb on step 1.
 
 ## Requirements
 [[go back to the top]](#Table-of-Contents)
@@ -229,9 +235,9 @@ You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTa
 `pip install DynamicTable`
 
 
-## Results
+## Future work
 [[go back to the top]](#Table-of-Contents)
 
-![quekb_spectra](res/quekb_spectra.gif)
+
 
 
