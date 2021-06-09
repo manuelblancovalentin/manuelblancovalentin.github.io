@@ -194,13 +194,18 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 
 StyleGAN has proven to be great at generating high-resolution high-fidelity images while 
 still preserving control over the latent space at different scales, which is very useful for 
-style transfer [[2]]. 
-
+style transfer [[2]].
 
 | <img src="res/stylegan.png" alt="styleganv1" height="500px" /> | <img src="res/stylegan2.png" alt="drawing" height="500px" /> |
 |:----:|:----:|
 | (a) StyleGANv1 | (b) Revised version on v2 |
 **Figure 14.**  Overview of the archs for StyleGAN and StyleGAN2.
+
+#### Step 1: Train a StyleGAN2 to produce coherent quekb maps from scratch (noise)
+<img src="res/Net1.png" alt="styleganv1" height="500px" />
+
+#### Step 2: Train transformation network to predict b modes from quek
+<img src="res/Net2.png" alt="styleganv1" height="500px" />
 
 [2]: <https://arxiv.org/abs/1912.04958> "NVIDIA StyleGAN2"
 
@@ -210,8 +215,7 @@ style transfer [[2]].
 
 [[go back to the top]](#Table-of-Contents)
 
-
-asdasdas
+#### Step 1 - Results
 
 |  |  |  |
 |:---:|:---:|:---:|
@@ -222,20 +226,29 @@ asdasdas
 
 ![k_evolution](res/k_evolution.gif)
 
-**Figure XX.** Evolution of k maps generation while training sgancmb on step 1.
+**Figure 15.** Evolution of k maps generation while training sgancmb on step 1.
 
 ![e_evolution](res/e_evolution.gif)
 
-**Figure XX.** Evolution of e maps generation while training sgancmb on step 1.
+**Figure 16.** Evolution of e maps generation while training sgancmb on step 1.
 
 ![b_evolution](res/b_evolution.gif)
 
-**Figure XX.** Evolution of b maps generation while training sgancmb on step 1.
+**Figure 17.** Evolution of b maps generation while training sgancmb on step 1.
 
 ![quekb_spectra](res/quekb_spectra.gif)
 
-**Figure XX.** Evolution of angular spectra while training sgancmb on step 1.
+**Figure 18.** Evolution of angular spectra while training sgancmb on step 1.
 
+> Conclusions: 
+>   This result by itself is already relevant. We created a network able to create CMB maps with preserve
+>   coherence of structures between components. 
+>   This allows us to create databases and perform data augmentation.
+
+
+#### Step 2 - Results
+
+Still going on. 
 
 ## Technical details
 
@@ -278,6 +291,8 @@ You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTa
 ## Future work
 
 [[go back to the top]](#Table-of-Contents)
+
+- Be able to predict B modes with as much accuracy as other modes.
 
 ## Ackwnoledgements
 
