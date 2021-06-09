@@ -196,26 +196,20 @@ StyleGAN has proven to be great at generating high-resolution high-fidelity imag
 still preserving control over the latent space at different scales, which is very useful for 
 style transfer [[2]].
 
-| <img src="res/stylegan.png" alt="styleganv1" height="500px" /> | <img src="res/stylegan2.png" alt="drawing" height="500px" /> |
-|:----:|:----:|
-| (a) StyleGANv1 | (b) Revised version on v2 |
-**Figure 14.**  Overview of the archs for StyleGAN and StyleGAN2.
-
-#### Step 1: Train a StyleGAN2 to produce coherent quekb maps from scratch (noise)
-<img src="res/Net1.png" alt="styleganv1" height="500px" />
-
-#### Step 2: Train transformation network to predict b modes from quek
-<img src="res/Net2.png" alt="styleganv1" height="500px" />
-
 [2]: <https://arxiv.org/abs/1912.04958> "NVIDIA StyleGAN2"
 
 
+| <img src="res/stylegan.png" alt="styleganv1" height="500px" /> | <img src="res/stylegan2.png" alt="drawing" height="500px" /> |
+|:----:|:----:|
+| (a) StyleGANv1 | (b) Revised version on v2 |
 
-## Experiments
+**Figure 14.**  Overview of the archs for StyleGAN and StyleGAN2.
 
-[[go back to the top]](#Table-of-Contents)
+### Step 1: Train a StyleGAN2 to produce coherent quekb maps from scratch (noise)
+<img src="res/Net1.png" alt="styleganv1" height="500px" />
 
-#### Step 1 - Results
+
+#### Results
 
 |  |  |  |
 |:---:|:---:|:---:|
@@ -246,7 +240,10 @@ style transfer [[2]].
 >   This allows us to create databases and perform data augmentation.
 
 
-#### Step 2 - Results
+### Step 2: Train transformation network to predict b modes from quek
+<img src="res/Net2.png" alt="styleganv1" height="500px" />
+
+#### Results
 
 Still going on. 
 
