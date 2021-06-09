@@ -898,9 +898,9 @@ class AdvTranslationNet(object):
         """ 
             Setup DynamicTable 
         """
-        header = ['Epoch', 'Progress', 'D_loss', 'T_D_loss', 'T_MAE_loss', 'PL']
+        header = ['Epoch', 'Progress', 'D_loss', 'G_loss', 'PL']
         formatters = {'Epoch': '{:05d}', 'Progress': '%$',
-                      'D_loss': '{:.8f}', 'T_D_loss': '{:.8f}', 'T_MAE_loss': '{:.8f}', 'PL': '{:1.8e}'}
+                      'D_loss': '{:.8f}', 'G_loss': '{:.8f}', 'PL': '{:1.8e}'}
         progress_table = DynamicTable(header, formatters)
 
         """ Loop thru epochs """
