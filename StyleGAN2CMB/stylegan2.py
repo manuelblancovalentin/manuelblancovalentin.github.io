@@ -806,6 +806,7 @@ class AdvTranslationNet(object):
         """ First of all encoder """
         """ Input layer """
         ip = tf.keras.layers.Input(shape=self.input_shape, name='eval_encoder_input')
+        ip_styles = [tf.keras.layers.Input([512], name = f'eval_input_style{i}') for i in range(self.num_layers)]
 
         """ Create model """
         ee = self.E(ip)
@@ -814,7 +815,7 @@ class AdvTranslationNet(object):
         Create inputs and styles 
         """
         """ Input styles """
-        styles = [self.S(e) for e in ee]
+        styles = [self.S(e+iip) for e,iip in zip(ee,ip_styles)]
         """ Input noise """
         ip_noise = tf.keras.layers.Input(self.input_shape, name=f'eva_input_noise')
 
@@ -822,7 +823,7 @@ class AdvTranslationNet(object):
         gf = self.G(styles + [ip_noise])
 
         """ Build actual eva network """
-        self.GM = tf.keras.models.Model(inputs=[ip, ip_noise], outputs=gf, name='eva_generator')
+        self.GM = tf.keras.models.Model(inputs=[ip, ip_styles, ip_noise], outputs=gf, name='eva_generator')
 
     """ Parameter averaged Generator model """
     def __build_param_avg_G__(self):
@@ -924,7 +925,7 @@ class AdvTranslationNet(object):
 
 
             """ Apply training step """
-            a, b, c, d = self.train_step(imgs_out, imgs_in,
+            a, b, c, d = self.train_step(imgs_out, imgs_in, style,
                                          utils.noise_image(batch_size, self.input_shape),
                                          apply_gradient_penalty,
                                          apply_path_penalty)
@@ -993,15 +994,15 @@ class AdvTranslationNet(object):
         progress_table.print_bottom()
 
     @tf.function
-    def train_step(self, images, style, noise, perform_gp=True, perform_pl=False):
+    def train_step(self, images, style, w_noise, noise, perform_gp=True, perform_pl=False):
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             # Get style information
             w_space = []
-            z_space = self.E(style)
+            z_space = self.E(style + noise)
             pl_lengths = self.pl_mean
             for i in range(len(z_space)):
-                w_space.append(self.S(z_space[i]))
+                w_space.append(self.S(z_space[i] + w_noise[i]))
 
             # Generate images
             generated_images = self.G(w_space + [noise])
@@ -1092,7 +1093,7 @@ class AdvTranslationNet(object):
         imgs_in, idx = dataset.get_batch(64, maps = self.channel_names['in'])
         imgs_out, _ = dataset.get_batch(64, idx = idx, maps = self.channel_names['out'])
 
-        generated_images = self.GM.predict([imgs_in, n2], batch_size=batch_size)
+        generated_images = self.GM.predict([imgs_in, n1, n2], batch_size=batch_size)
 
         """ Spectra """
         if dataset is not None:
