@@ -185,16 +185,20 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 
 ## Proposed methodology-StyleGAN2-CMB
 [[go back to the top]](#Table-of-Contents)
-
-We propose to use adversarial networks (GANs) to improve the map retrieving accuracy. Adversarial networks are based on the combination of two different networks that compete with each other during the training procedure: a generator network (designed to generate fake images from true sources) and a discriminator network (designed to be able to distinguish between true and fake/generated images). 
-
-It was found that each one of the maps to be predicted behaves differently to the type of generator used for optimization. Two different generators were tested: João Caldeira's Uresnet used in the astroencoder project and a Unet based on google's implementation of Pix2Pix algorithm (see [Pix2Pix][2]). Results are shown in the following sections.
-
 ```
 Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actual data cannot be posted on github. If you want, you can use this code for a different application/dataset.
 ```
+[[2]]
 
-[2]: <https://www.tensorflow.org/tutorials/generative/pix2pix> "Pix2Pix"
+|  |  |
+|:----:|:----:|
+| ![styleganv1](res/stylegan.png) | <img src="res/stylegan2.png" alt="drawing" style="width:200px;"/> |
+
+<img src="./res/stylegan2.png" alt="drawing" style="width:200px;"/>
+**Figure 14.** StyleGAN (v1).
+
+
+[2]: <https://arxiv.org/abs/1912.04958> "NVIDIA StyleGAN2"
 
 
 
@@ -204,15 +208,22 @@ Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actua
 
 asdasdas
 
+|  |  |  |
+|:---:|:---:|:---:|
+| k | ![k](res/k.png) | ![last_k](res/mr_k01010.png) | 
+| e | ![e](res/e.png) | ![last_e](res/mr_e01010.png) |
+| b | ![b](res/b.png) | ![last_b](res/mr_b01010.png) |
+
+
 ![k_evolution](res/k_evolution.gif)
 
 **Figure XX.** Evolution of k maps generation while training sgancmb on step 1.
 
-![k_evolution](res/e_evolution.gif)
+![e_evolution](res/e_evolution.gif)
 
 **Figure XX.** Evolution of e maps generation while training sgancmb on step 1.
 
-![k_evolution](res/b_evolution.gif)
+![b_evolution](res/b_evolution.gif)
 
 **Figure XX.** Evolution of b maps generation while training sgancmb on step 1.
 
