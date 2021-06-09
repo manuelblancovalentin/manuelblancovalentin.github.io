@@ -1,6 +1,5 @@
 ---
 theme: jekyll-theme-cayman
 layout: default
-title: Home
+title: sgancmb - CMB decomposition using StyleGAN2
 ---
-<h1>{{ "Hello World!" | downcase }}</h1>
