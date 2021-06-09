@@ -245,6 +245,13 @@ style transfer [[2]].
 
 #### Results
 
+**Test1**
+
+![hell1_evolution](res/Hell1.gif)
+
+![hell2_evolution](res/Hell2.gif)
+
+**Test2**
 Still going on. 
 
 ## Technical details
