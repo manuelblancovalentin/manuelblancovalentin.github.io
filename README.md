@@ -204,18 +204,22 @@ Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actua
 
 asdasdas
 
-![quekb_spectra](res/quekb_spectra.gif)
-
-**Figure XX.** Evolution of angular spectra while training sgancmb on step 1.
-
 ![k_evolution](res/k_evolution.gif)
 
 **Figure XX.** Evolution of k maps generation while training sgancmb on step 1.
 
+![k_evolution](res/e_evolution.gif)
+
+**Figure XX.** Evolution of e maps generation while training sgancmb on step 1.
 
 ![k_evolution](res/b_evolution.gif)
 
 **Figure XX.** Evolution of b maps generation while training sgancmb on step 1.
+
+![quekb_spectra](res/quekb_spectra.gif)
+
+**Figure XX.** Evolution of angular spectra while training sgancmb on step 1.
+
 
 ## Requirements
 [[go back to the top]](#Table-of-Contents)
