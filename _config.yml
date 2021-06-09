@@ -3,3 +3,6 @@ theme: jekyll-theme-cayman
 layout: default
 title: sgancmb - CMB decomposition using StyleGAN2
 ---
+header:
+  image: res/cmbplank.jpeg
+---

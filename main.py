@@ -7,6 +7,10 @@ import os
 """ Import main module"""
 import StyleGAN2CMB as sgcmb
 
+
+"""--------------------------------------------------------------------------
+PART 0: Preparing the data
+--------------------------------------------------------------------------"""
 """ Define maps to be used """
 maps = ['q','u','k','b','e']
 
@@ -14,12 +18,10 @@ maps = ['q','u','k','b','e']
 CMB_dir = "/home/dados4T/DeepCMB/deepskies-cmb/r=0.1_simulations/"
 dataset = sgcmb.CMBDataset(CMB_dir, maps = maps, reload=False)
 
-for i,m in enumerate(maps):
-    fig = plt.figure()
-    plt.imshow(y[0,:,:,i],cmap='bwr')
-    fig.savefig(m + '.png')
-    plt.close(fig)
 
+"""--------------------------------------------------------------------------
+PART 1: Training generator (Z/W -> q,u,k,e,b)
+--------------------------------------------------------------------------"""
 """ Init params """
 epochs = 1e6
 batch_size = 16
@@ -34,13 +36,29 @@ model = sgcmb.StyleGAN(input_shape, channel_names = maps, lr = 0.0001, output_di
 """ Print summary (and png with architectures) """
 model.summary()
 
-""" Train """
-model.train(dataset, epochs, batch_size = batch_size, silent = False)
-#model.evaluate(0)
+""" Try to load the previously trained model or train (if not found) """
+if not model.load(-1):
+    """ Train """
+    model.train(dataset, epochs, batch_size = batch_size, silent = False)
 
 
-""" Part II: q,u,k,e -> b """
-model.load(1)
+"""--------------------------------------------------------------------------
+PART 2: Image transformation / Fine tuning (q,u,k,e [DISC*] -> Z/W -> [GEN] -> b)
+--------------------------------------------------------------------------"""
+""" First of all we must create the transformation network:
+        - DISC* is a modified styleGAN2 discriminator which we will use to extract features from input maps
+        - The output of DISC* is connected to a GEN model (non-trainable/freezed weights)
+        - DISC* is trained to optimize its outputs (Z/W) to mimic the structure of latent space/noise to create the right b maps
+        - The output must be compared for match with the original true maps ||b-^b||
+"""
+output_shape = dataset.get_batch(1)[:,:,:,0:1].shape[1:]
+output_T_dir = os.path.join(os.getcwd(),'results',''.join(maps),'translation')
+T_model = sgcmb.AdvTranslationNet(input_shape, output_shape, channel_names = maps, lr = 0.0001, output_dir = output_T_dir)
+
+""" Print summary (and png with architectures) """
+T_model.summary()
+
+
 
 n1 = model.create_noise(64, list=True)
 n2 = sgcmb.stylegan2.utils.noise_image(64, input_shape)

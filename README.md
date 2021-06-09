@@ -3,6 +3,7 @@
 <br/> **Based on**: [StyleGAN2-Tensorflow-2.0](https://github.com/manicman1999/StyleGAN2-Tensorflow-2.0) <br/>
 **Collaborators**: João Caldeira, Brian Nord, Kimmy Wu, Clécio R. Bom
 <br/>**Affiliation**: Computer & Electrical Eng. Department - Northwestern University
+
 ---
 
 ## Table of Contents
@@ -186,13 +187,16 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 ## Proposed methodology-StyleGAN2-CMB
 [[go back to the top]](#Table-of-Contents)
 >  Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actual data cannot be posted on github. If you want, you can use this code for a different application/dataset.
-[[2]]
 
-|  |  |
-|:----:|:----:|
+StyleGAN has proven to be great at generating high-resolution high-fidelity images while 
+still preserving control over the latent space at different scales, which is very useful for 
+style transfer [[2]]. 
+
+
 | <img src="res/stylegan.png" alt="styleganv1" height="500px" /> | <img src="res/stylegan2.png" alt="drawing" height="500px" /> |
-
-**Figure 14.** (a) StyleGANv1 (b) Revised version on v2.
+|:----:|:----:|
+| (a) StyleGANv1 | (b) Revised version on v2 |
+**Figure 14.**  Overview of the archs for StyleGAN and StyleGAN2.
 
 [2]: <https://arxiv.org/abs/1912.04958> "NVIDIA StyleGAN2"
 
@@ -228,6 +232,25 @@ asdasdas
 **Figure XX.** Evolution of angular spectra while training sgancmb on step 1.
 
 
+## Technical details
+
+[[go back to the top]](#Table-of-Contents)
+
+**About the data**
+- Images size (per map): 128x128x1 
+- Number of samples: 12,000
+  
+**Hardware**
+- Server: Brunelleschi@CBPF (Rio de Janeiro/Brazil)
+- 8xNVIDIA GeForce RTX 3090 (24GB)
+- (24)xIntel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz
+
+**Step 1: Training**
+- Train time: ~10h
+- Epochs/Steps: ~100k
+- GPUs used: 2
+
+
 ## Requirements
 [[go back to the top]](#Table-of-Contents)
 
@@ -247,7 +270,17 @@ You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTa
 
 
 ## Future work
+
 [[go back to the top]](#Table-of-Contents)
+
+## Ackwnoledgements
+
+[[go back to the top]](#Table-of-Contents)
+
+> Thanks to João Caldeira, Brian Nord and Kimmy Wu for all the help and dedication to the project; thanks to Fermilab 
+> for the support and the data. Thanks to Clécio de Bom, Marcelo P. Albuquerque, Márcio P. Albuquerque and the whole 
+> team at CBPF/COTEC for lending the infrastructure for this project. Special mention to Matthew (author of the source 
+> repo) for sharing the code.
 
 
 
