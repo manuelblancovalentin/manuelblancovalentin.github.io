@@ -90,7 +90,8 @@ for ii,(lyg,lyt) in enumerate(zip(model.G.layers,T_model.G.layers)):
         except:
             T_model.G.layers[ii].trainable = True
 
-
+T_model.D = tf.keras.models.clone_model(model.D)
+T_model.D.set_weights(model.D.get_weights())
 
 """ Print summary (and png with architectures) """
 T_model.summary()
@@ -102,7 +103,7 @@ if not T_model.load(-1) or True:
 else:
     exit()
 
-
+print('2')
 
 """
 model.load(31)

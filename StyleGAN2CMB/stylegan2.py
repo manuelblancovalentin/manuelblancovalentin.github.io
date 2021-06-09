@@ -709,7 +709,8 @@ class AdvTranslationNet(object):
     def __build_discriminator__(self):
         """."""
         """ Input layer """
-        ip = tf.keras.layers.Input(shape = self.output_shape, name='disc_input')
+        ip = tf.keras.layers.Input(shape = self.output_shape[:-1] + (self.input_shape[-1] + self.output_shape[-1], ),
+                                   name='disc_input')
 
         """ Series of discriminator blocks """
         x = ip
@@ -815,7 +816,7 @@ class AdvTranslationNet(object):
         Create inputs and styles 
         """
         """ Input styles """
-        styles = [self.S(e+iip) for e,iip in zip(ee,ip_styles)]
+        styles = [self.S(.5*e+.5*iip) for e,iip in zip(ee,ip_styles)]
         """ Input noise """
         ip_noise = tf.keras.layers.Input(self.input_shape, name=f'eva_input_noise')
 
@@ -1002,14 +1003,14 @@ class AdvTranslationNet(object):
             z_space = self.E(style + noise)
             pl_lengths = self.pl_mean
             for i in range(len(z_space)):
-                w_space.append(self.S(z_space[i] + w_noise[i]))
+                w_space.append(self.S(.5*z_space[i] + .5*w_noise[i]))
 
             # Generate images
             generated_images = self.G(w_space + [noise])
 
             # Discriminate
-            real_output = self.D(images, training=True)
-            fake_output = self.D(generated_images, training=True)
+            real_output = self.D(tf.concat((style,images),axis=-1), training=True)
+            fake_output = self.D(tf.concat((style,generated_images),axis=-1), training=True)
 
             # Hinge loss function
             gen_loss = K.mean(fake_output)
@@ -1031,8 +1032,8 @@ class AdvTranslationNet(object):
                 pl_images = self.G(w_space_2 + [noise])
 
                 # Get distance after adjustment (path length)
-                delta_g = .1*K.mean(K.square(pl_images - generated_images), axis=[1, 2, 3])
-                delta_g += .9*K.mean(K.square(images - generated_images), axis=[1, 2, 3])
+                delta_g = .5*K.mean(K.square(pl_images - generated_images), axis=[1, 2, 3])
+                delta_g += .5*K.mean(K.square(images - generated_images), axis=[1, 2, 3])
                 pl_lengths = delta_g
 
                 if self.pl_mean > 0:
