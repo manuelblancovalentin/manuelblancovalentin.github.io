@@ -523,8 +523,6 @@ class StyleGAN(GAN):
 
         """ Moving Average """
         generated_images = self.GMA.predict(n1 + [n2], batch_size=batch_size)
-        #generated_images = self.GAN.GMA.predict(n1 + [n2, trunc], batch_size = BATCH_SIZE)
-        #generated_images = self.generateTruncated(n1, trunc = trunc)
 
         r = [np.concatenate(generated_images[i:i+8], axis = 1) for i in range(0, 64, 8)]
         c1 = np.concatenate(r, axis = 0)
@@ -552,8 +550,6 @@ class StyleGAN(GAN):
         latent = p1 + [] + p2
 
         generated_images = self.GMA.predict(latent + [utils.noise_image(64, self.input_shape)], batch_size = batch_size)
-        #generated_images = self.GAN.GMA.predict(latent + [nImage(64), trunc], batch_size = BATCH_SIZE)
-        #generated_images = self.generateTruncated(latent, trunc = trunc)
 
         r = [np.concatenate(generated_images[i:i+8], axis = 0) for i in range(0,64,8)]
         c1 = np.concatenate(r, axis = 1)
@@ -569,50 +565,6 @@ class StyleGAN(GAN):
             x = Image.fromarray(np.uint8(utils.colmap(c1) * 255))
             x.save(filename.replace('$', 'mr_'))
 
-
-    def generateTruncated(self, style, noi = np.zeros([44]), batch_size = 16, trunc = 0.5, outImage = False, num = 0):
-
-        #Get W's center of mass
-        if self.av.shape[0] == 44: #44 is an arbitrary value
-            print("Approximating W center of mass")
-            self.av = np.mean(self.S.predict(self.create_noise(2000), batch_size = 64), axis = 0)
-            self.av = np.expand_dims(self.av, axis = 0)
-
-        if noi.shape[0] == 44:
-            noi = utils.noise_image(64, self.input_shape)
-
-        w_space = []
-        pl_lengths = self.pl_mean
-        for i in range(len(style)):
-            tempStyle = self.S.predict(style[i])
-            tempStyle = trunc * (tempStyle - self.av) + self.av
-            w_space.append(tempStyle)
-
-        generated_images = self.GE.predict(w_space + [noi], batch_size = batch_size)
-
-        if outImage:
-            filename = os.path.join(self.results_dir, f't{int(np.floor(num)):05d}$.png')
-
-            r = []
-
-            for i in range(0, 64, 8):
-                r.append(np.concatenate(generated_images[i:i+8], axis = 0))
-
-            c1 = np.concatenate(r, axis = 1)
-            c1 = np.clip(c1, 0.0, 1.0)
-
-            """ Apply colormap if single channel"""
-            if c1.ndim == 3 and c1.shape[-1] > 1:
-                """ Split """
-                for c in range(c1.shape[2]):
-                    x = Image.fromarray(np.uint8(utils.colmap(c1[:, :, c:c + 1]) * 255))
-                    x.save(filename.replace('$', f'_{self.channel_names[c]}'))
-            else:
-                x = Image.fromarray(np.uint8(utils.colmap(c1) * 255))
-                x.save(filename.replace('$', ''))
-
-
-        return generated_images
 
     """ Save model method """
     def saveModel(self, model, name, num):
@@ -851,12 +803,18 @@ class AdvTranslationNet(object):
     """ Model for evaluation """
     def __build_eval_G__(self):
         """."""
+        """ First of all encoder """
+        """ Input layer """
+        ip = tf.keras.layers.Input(shape=self.input_shape, name='eval_encoder_input')
+
+        """ Create model """
+        ee = self.E(ip)
+
         """ 
         Create inputs and styles 
         """
         """ Input styles """
-        ip_styles = [tf.keras.layers.Input([self.latent_size], name=f'eva_input_style{i}') for i in range(self.num_layers)]
-        styles = [self.S(ip) for ip in ip_styles]
+        styles = [self.S(e) for e in ee]
         """ Input noise """
         ip_noise = tf.keras.layers.Input(self.input_shape, name=f'eva_input_noise')
 
@@ -864,7 +822,7 @@ class AdvTranslationNet(object):
         gf = self.G(styles + [ip_noise])
 
         """ Build actual eva network """
-        self.GM = tf.keras.models.Model(inputs=ip_styles + [ip_noise], outputs=gf, name='eva_generator')
+        self.GM = tf.keras.models.Model(inputs=[ip, ip_noise], outputs=gf, name='eva_generator')
 
     """ Parameter averaged Generator model """
     def __build_param_avg_G__(self):
@@ -872,10 +830,18 @@ class AdvTranslationNet(object):
         """ 
         Create inputs and styles 
         """
+        """ Input layer """
+        ip = tf.keras.layers.Input(shape=self.input_shape, name='ema_encoder_input')
+
+        """ Create model """
+        ee = self.E(ip)
+
+        """ 
+        Create inputs and styles 
+        """
         """ Input styles """
-        ip_styles = [tf.keras.layers.Input([self.latent_size], name=f'ema_input_style{i}') for i in
-                     range(self.num_layers)]
-        styles = [self.SE(ip) for ip in ip_styles]
+        styles = [self.S(e) for e in ee]
+
         """ Input noise """
         ip_noise = tf.keras.layers.Input(self.input_shape, name=f'ema_input_noise')
 
@@ -883,7 +849,7 @@ class AdvTranslationNet(object):
         gf = self.GE(styles + [ip_noise])
 
         """ Build actual eva network """
-        self.GMA = tf.keras.models.Model(inputs=ip_styles + [ip_noise], outputs=gf, name='ema_generator')
+        self.GMA = tf.keras.models.Model(inputs=[ip,ip_noise], outputs=gf, name='ema_generator')
 
     """ Parameter averaging method """
     def EMA(self):
@@ -1026,7 +992,7 @@ class AdvTranslationNet(object):
         """ As we exit the loop, print the bottom of the table """
         progress_table.print_bottom()
 
-    #@tf.function
+    @tf.function
     def train_step(self, images, style, noise, perform_gp=True, perform_pl=False):
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
@@ -1123,7 +1089,10 @@ class AdvTranslationNet(object):
         # trunc = np.ones([64, 1]) * trunc
 
         """ Generate images """
-        generated_images = self.GM.predict(n1 + [n2], batch_size=batch_size)
+        imgs_in, idx = dataset.get_batch(64, maps = self.channel_names['in'])
+        imgs_out, _ = dataset.get_batch(64, idx = idx, maps = self.channel_names['out'])
+
+        generated_images = self.GM.predict([imgs_in, n2], batch_size=batch_size)
 
         """ Spectra """
         if dataset is not None:
@@ -1132,9 +1101,13 @@ class AdvTranslationNet(object):
 
             """ get spectra """
             sp = {zn: dataset.scopes[zn].get_spectra(generated_images[:, :, :, izn:izn + 1]) \
-                  for izn, zn in enumerate(self.channel_names) if zn in dataset.scopes}
+                  for izn, zn in enumerate(self.channel_names['out']) if zn in dataset.scopes}
 
-            fig, axs = plt.subplots(len(spectra), 1, figsize=(6, 3 * len(spectra)))
+            fig, axs = plt.subplots(len(sp), 1, figsize=(6, 3 * len(sp)))
+            try:
+                axs[0]
+            except:
+                axs = [axs]
             for ik, k in enumerate(sp):
                 color = next(axs[ik]._get_lines.prop_cycler)['color']
 
@@ -1162,7 +1135,8 @@ class AdvTranslationNet(object):
             plt.close(fig)
 
         """ Split images into 8x8 grid """
-        r = [np.concatenate(generated_images[i:i + 8], axis=1) for i in range(0, 64, 8)]
+        r = [np.concatenate([np.concatenate((imgs_out[ii],generated_images[ii]), axis=1) for ii in range(i,i+8)],axis=1) for i in range(0,64,8)]
+        #r = [np.concatenate(generated_images[i:i + 8], axis=1) for i in range(0, 64, 8)]
         c1 = np.concatenate(r, axis=0)
         c1 = np.clip(c1, 0.0, 1.0)
 
@@ -1177,11 +1151,16 @@ class AdvTranslationNet(object):
             x.save(filename.replace('$', 'i_'))
 
         """ Moving Average """
-        generated_images = self.GMA.predict(n1 + [n2], batch_size=batch_size)
+        generated_images = self.GMA.predict([imgs_in, n2], batch_size=batch_size)
         # generated_images = self.GAN.GMA.predict(n1 + [n2, trunc], batch_size = BATCH_SIZE)
         # generated_images = self.generateTruncated(n1, trunc = trunc)
 
         r = [np.concatenate(generated_images[i:i + 8], axis=1) for i in range(0, 64, 8)]
+        c1 = np.concatenate(r, axis=0)
+        c1 = np.clip(c1, 0.0, 1.0)
+        r = [np.concatenate([np.concatenate((imgs_out[ii], generated_images[ii]), axis=1) for ii in range(i, i + 8)],
+                            axis=1) for i in range(0, 64, 8)]
+        # r = [np.concatenate(generated_images[i:i + 8], axis=1) for i in range(0, 64, 8)]
         c1 = np.concatenate(r, axis=0)
         c1 = np.clip(c1, 0.0, 1.0)
 
@@ -1195,6 +1174,8 @@ class AdvTranslationNet(object):
             x = Image.fromarray(np.uint8(utils.colmap(c1) * 255))
             x.save(filename.replace('$', 'ema_'))
 
+        return
+
         """ Mixing regularities """
         nn = self.create_noise(8)
         n1 = np.tile(nn, (8, 1))
@@ -1206,7 +1187,7 @@ class AdvTranslationNet(object):
 
         latent = p1 + [] + p2
 
-        generated_images = self.GMA.predict(latent + [utils.noise_image(64, self.input_shape)], batch_size=batch_size)
+        #generated_images = self.GMA.predict(latent + [utils.noise_image(64, self.input_shape)], batch_size=batch_size)
         # generated_images = self.GAN.GMA.predict(latent + [nImage(64), trunc], batch_size = BATCH_SIZE)
         # generated_images = self.generateTruncated(latent, trunc = trunc)
 
@@ -1274,8 +1255,6 @@ class AdvTranslationNet(object):
             if len(num) == 0:
                 return False
             num = np.min(num)
-            if len(num) == 0:
-                return False
             print(f'Found! Loading model number {num}')
 
         """ Assert this index exists for all models """

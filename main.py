@@ -96,55 +96,11 @@ for ii,(lyg,lyt) in enumerate(zip(model.G.layers,T_model.G.layers)):
 T_model.summary()
 
 """ Try to load the previously trained model or train (if not found) """
-if not T_model.load(-1):
+if not T_model.load(-1) or True:
     """ Train """
     T_model.train(dataset, epochs, batch_size = batch_size, silent = False)
-
-
-
-n1 = model.create_noise(64, list=True)
-n2 = sgcmb.stylegan2.utils.noise_image(64, input_shape)
-#trunc = np.ones([64, 1]) * trunc
-
-for i in range(50):
-    print(i, end = '\r')
-    model.generateTruncated(n1, noi = n2, trunc = i / 50, outImage = True, num = i)
-
-""" Generate images """
-generated_images = model.GM.predict(n1 + [n2], batch_size = batch_size)
-
-""" Split images into 8x8 grid """
-r = [np.concatenate(generated_images[i:i+8], axis = 1) for i in range(0, 64, 8)]
-c1 = np.concatenate(r, axis = 0)
-c1 = np.clip(c1, 0.0, 1.0)
-
-#for c in range(c1.shape[2]):
-#x = Image.fromarray(np.uint8(utils.colmap(c1[:, :, c:c + 1]) * 255))
-plt.imshow(c1[:,:,0],cmap='bwr'); plt.show()
-
-
-
-
-""" Now use style """
-#n1 = model.create_noise(64, list=True)
-#n2 = sgcmb.stylegan2.utils.noise_image(64, input_shape)
-#trunc = np.ones([64, 1]) * trunc
-import numpy as np
-
-n1 = model.create_noise(64, list=True)
-n2 = np.random.random((64,) + input_shape)
-
-""" Generate images """
-generated_images = model.GM.predict(n1 + [n2], batch_size = batch_size)
-
-""" Split images into 8x8 grid """
-r = [np.concatenate(generated_images[i:i+8], axis = 1) for i in range(0, 64, 8)]
-c1 = np.concatenate(r, axis = 0)
-c1 = np.clip(c1, 0.0, 1.0)
-
-import matplotlib.pyplot as plt
-plt.imshow(c1[:,:,0],cmap='bwr'); plt.show()
-
+else:
+    exit()
 
 
 
