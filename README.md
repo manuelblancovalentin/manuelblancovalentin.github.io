@@ -9,7 +9,7 @@
 1. [Introduction to CMB](#Introduction-to-CMB)
 2. [CMB decomposition](#CMB-decomposition)
 3. [Previous Work](#Previous-work)
-4. [Proposed Methodology: StyleGAN2-CMB](#Proposed-methodology:-stylegan2-cmb)
+4. [Proposed Methodology - StyleGAN2-CMB](#Proposed-methodology-stylegan2-cmb)
 5. [Requirements](#Requirements)
 6. [astroDGAN building blocks](#astroDGAN-building-blocks)
 7. [How to use astroDGAN](#How-to-use-astroDGAN)
@@ -178,7 +178,7 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 | Sample coherence for training set (q,u -> e,k,b) | Outdated architecture |
 
 
-## Proposed methodology: StyleGAN2-CMB
+## Proposed methodology-StyleGAN2-CMB
 [[go back to the top]](#Table-of-Contents)
 
 We propose to use adversarial networks (GANs) to improve the map retrieving accuracy. Adversarial networks are based on the combination of two different networks that compete with each other during the training procedure: a generator network (designed to generate fake images from true sources) and a discriminator network (designed to be able to distinguish between true and fake/generated images). 
