@@ -74,9 +74,13 @@ decompose them into different submaps, each one of them related to a certain pro
 
 <br/>
 
-| q | u | k | e | b |
-|:---:|:---:|:---:|:---:|:---:|
-| ![q](res/q.png) | ![u](res/u.png) | ![k](res/k.png) | ![e](res/e.png) | ![b](res/b.png) |
+| map | img |
+|:---:|:---:|
+| q | ![q](res/q.png) | 
+| u | ![u](res/u.png) | 
+| k | ![k](res/k.png) | 
+| e | ![e](res/e.png) | 
+| b | ![b](res/b.png) |
 
 **Figure 4.** Example of decomposition of CMB.
 
@@ -102,18 +106,19 @@ The following images display the average spectra for e and kappa modes for both 
 [1]: <https://www.sciencedirect.com/science/article/pii/S221313371830132X> "DeepCMB: Lensing reconstruction of the cosmic microwave background with deep neural networks"
 
 
-![quekb_spectra](res/quekb_spectra.gif)
-
-
-
-
-
 ## Proposed methodology
 [[go back to the top]](#Table-of-Contents)
 
 We propose to use adversarial networks (GANs) to improve the map retrieving accuracy. Adversarial networks are based on the combination of two different networks that compete with each other during the training procedure: a generator network (designed to generate fake images from true sources) and a discriminator network (designed to be able to distinguish between true and fake/generated images). 
 
 It was found that each one of the maps to be predicted behaves differently to the type of generator used for optimization. Two different generators were tested: João Caldeira's Uresnet used in the astroencoder project and a Unet based on google's implementation of Pix2Pix algorithm (see [Pix2Pix][2]). Results are shown in the following sections.
+
+```
+Disclaimer: Due to confidentiality agreements between 
+Fermilab and NU, the actual data cannot be posted on 
+github. If you want, you can use this code for a 
+different application/dataset.
+```
 
 [2]: <https://www.tensorflow.org/tutorials/generative/pix2pix> "Pix2Pix"
 
@@ -136,5 +141,8 @@ You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTa
 `pip install DynamicTable`
 
 
+## Results
+
+![quekb_spectra](res/quekb_spectra.gif)
 
 
