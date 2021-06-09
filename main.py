@@ -14,6 +14,12 @@ maps = ['q','u','k','b','e']
 CMB_dir = "/home/dados4T/DeepCMB/deepskies-cmb/r=0.1_simulations/"
 dataset = sgcmb.CMBDataset(CMB_dir, maps = maps, reload=False)
 
+for i,m in enumerate(maps):
+    fig = plt.figure()
+    plt.imshow(y[0,:,:,i],cmap='bwr')
+    fig.savefig(m + '.png')
+    plt.close(fig)
+
 """ Init params """
 epochs = 1e6
 batch_size = 16

@@ -7,21 +7,81 @@
 
 ## Table of Contents
 1. [Introduction to CMB](#Introduction-to-CMB)
-1. [Previous Work](#Previous-work)
-2. [Proposed Methodology](#Proposed-methodology)
-3. [Requirements](#Requirements)
-4. [astroDGAN building blocks](#astroDGAN-building-blocks)
-5. [How to use astroDGAN](#How-to-use-astroDGAN)
-6. [Experiments](#Experiments)
-7. [Further tests and discussion](#Further-tests-and-discussion)
-8. [Future work](#Future-work)
+2. [CMB decomposition](#CMB-decomposition)
+3. [Previous Work](#Previous-work)
+4. [Proposed Methodology](#Proposed-methodology)
+5. [Requirements](#Requirements)
+6. [astroDGAN building blocks](#astroDGAN-building-blocks)
+7. [How to use astroDGAN](#How-to-use-astroDGAN)
+8. [Experiments](#Experiments)
+9. [Further tests and discussion](#Further-tests-and-discussion)
+10. [Future work](#Future-work)
 
 
 ## Introduction to CMB
+[[go back to the top]](#Table-of-Contents)
+The evidences that Hubble found about the apparent redshift of galaxies relative to each other (and us), as well as the 
+recently proposed (at the time) theory of general relativity seem to indicate
+that the fabric of space-time in our universe is constantly expanding at an accelerated rate.
+
+These discoveries made Lemaître conclude that in order for the universe to be expanding 
+its fabric, it must had begun in an extremely small and dense state. In fact, stretching this contraction back
+until the limit, our current mathematical formulations and physical laws guide us to the contradiction of the singularity:
+ the whole matter of the universe, condensed in an infinitessimal amount of space, with an extreme local density.
+
+There is a point at which applying such equations and laws does not make any real sense, and most physicists even have trouble 
+accepting the concept of the singularity itself. Instead they prefer to conclude that our current understanding of the 
+universe is somehow limited, and thus the singularity itself is simply a consequence of our flawed science. 
+
+Despite this, our current understanding of most part of the history of the universe is pretty extense. We might not be able
+to apply our techniques to understand how the universe was before a certain point in time (when the universe was only nanoseconds
+old), but we still can apply them to know how it was after that moment; in the part of the history of our universe that where
+our science still holds. 
+
+Right after the big bang, in a period known as **inflation**, the universe was so hot and condensed that atoms could not form.
+Subatomic particles existed in a sort of quantic soup in form of plasma, due to the immense pressure and temperature. 
+At this stage, the photons that were emitted during the interaction of the particles were immediately reabsorbed by other
+particles, thus preventing them (and thus, light) to escape and to propagate outside of the plasma object. This phenomenon occurs, e.g.,
+inside of our sun, where light might take up to 100,000 years to escape (see [here](https://www.abc.net.au/science/articles/2012/04/24/3483573.htm#:~:text=A%20photon%20of%20light%20takes,at%20the%20speed%20of%20light.)).
+
+Once the universe was able to expand enough and cool down, the pressure was reduced, which allowed atoms to be formed. The
+reduced density of the universe allowed the photons to escape and propagate along with the expanding universe for the very first time.
+This last emission of light precisely describes how the structure of the universe was right after the big bang, how matter
+was organized and distributed, which holds the key to understanding, for example, why there exist clusters of matter,
+why there is an imbalance in the proportion of matter/antimatter, or even what is the origin of dark matter. 
+
+This __snapshot__ of the early universe is precisely what we call **Cosmic microwave background radiation** or CMB. This radiation
+can be seen absolutely everywhere in the universe, no matter where we point our telescopes to, and it always has the same
+structure. 
 
 ![CMB_bigbang](res/cmb2.jpeg)
+**Figure 1.** Depiction of the evolution of the early universe right after the big bang.
 
 
+![CMBplank](res/cmbplank.jpeg)
+**Figure 2.** Real image of the CMB captured by the satellite Planck.
+
+## CMB decomposition
+Although CMB contains a great amount of information regarding a great range of physical phenomena, the data in the raw maps as 
+shown in **Figure 2** (in µK) is not directly useful. In order to extract useful information from these maps, it is necessary to
+decompose them into different submaps, each one of them related to a certain property or phenomenon. 
+
+![eqs](res/eqs.png)
+**Figure 3.** Analytical equations used to decompose maps.
+
+<br/>
+
+| q | u | k | e | b |
+|:---:|:---:|:---:|:---:|:---:|
+| ![q](res/q.png) | ![u](res/u.png) | ![k](res/k.png) | ![e](res/e.png) | ![b](res/b.png) |
+**Figure 4.** Example of decomposition of CMB.
+
+
+The workflow that we are required to implement consists on:
+```bash
+- Convert maps q,u -> k,e,b
+- Image2Image transformation
+```
 
 
 ## Previous work
@@ -38,6 +98,11 @@ The following images display the average spectra for e and kappa modes for both 
 [1]: <https://www.sciencedirect.com/science/article/pii/S221313371830132X> "DeepCMB: Lensing reconstruction of the cosmic microwave background with deep neural networks"
 
 
+![quekb_spectra](res/quekb_spectra.gif)
+
+
+
+
 
 ## Proposed methodology
 [[go back to the top]](#Table-of-Contents)
@@ -52,163 +117,19 @@ It was found that each one of the maps to be predicted behaves differently to th
 ## Requirements
 [[go back to the top]](#Table-of-Contents)
 
-Take a look at the requirements to run astroDGAN:
+Take a look at the requirements to run this code:
 
 ```python
-python >= 3.
-tensorflow-gpu >= 2.1.0
-DynamicTable >= 0.0.4
-numpy ~= 1.18.1
-matplotlib ~= 3.1.3
-pickle ~= 4.0
+numpy~=1.19.5
+matplotlib~=3.4.2
+tensorflow~=2.5.0
+Pillow~=8.2.0
+DynamicTable~=0.0.4
 ```
 
 You can install [DynamicTable](https://github.com/manuelblancovalentin/DynamicTable) via pip:
 
 `pip install DynamicTable`
-
-
-## astroDGAN building blocks
-[[go back to the top]](#Table-of-Contents)
-
-A COMPLETE DETAILED EXPLANATION ON HOW THIS MODULE WORKS AND ON EACH SINGLE FUNCTION, CLASS AND METHOD THAT BUILDS THE MODULE AND HOW IT IS ALL INTEGRATED CAN BE FOUND
-
- ===================> [here](./Docs/module_blocks.md) <===================
-
-The following tree shows the overall structure of the module blocks (which are explained in detail in the link above).
-
-```sh
-astroDGAN
-├── experiments.sh
-├── main.py
-└── utils
-    ├── analytics.py
-    ├── blocks.py
-    ├── common.py
-    ├── cs_nets.py
-    ├── data_loader.py
-    ├── history.py
-    ├── losses.py
-    └── models.py
-```
-
-## How to use astroDGAN
-[[go back to the top]](#Table-of-Contents)
-
-Using astroDGAN is as easy as it gets. Make sure you meet the package requirements as shown in [here](#Requirements). Then, all you need is to call the `main.py` file with the desired parameters and let the process running. 
-
-You can get the message help with all available input arguments and flags using :
-
-```console
-python main.py -h
-```
-
-This will generate an output such as the one in the following image:
-
-![Help console](images/help_console.png)
-
-All the available flags and their meaning are shown below:
-
-
-| Short flag | Long.                         |  Required| Default  | Comments           | e.g. |
-|------------|:------------------------------|:--------:|:--------:|:-------------------|:-----|
-| -h         | --help                        |          |          | Show help message  |      |
-| -i         | --inputs                      |    ✅    |          | Input channels to model                | qu  |
-| -o         | --outputs                     |    ✅    |          | Output channels to model                  | e   |
-|            | --gpus                        |          |  None    | Gpus to be used for computation | 0123 |
-|            | --seed                        |          |  483     | Random seed for reproducibility | 
-|            | --data-dir                    |          |  ./data/ | Directory where data is located | ./DATA_DIR/... |
-|            | --noise                       |          |  0.0     | Level of noise to be applied to maps | 0.1 |
-|            | --noise-channels              |          |  qu      | Channels to which noise will be applied  | quek |
-|            | --ndeg                        |          |  5.0     | Angular resolution of maps | 3.2 |
-|            | --no-normalize-maps           |          |  False   | If present, maps are not normalized     | |
-|            | --no-apodize-maps             |          |  False   | If present, maps are not apodized    | |
-| -vs        | --validation-split            |          |  0.2     | Ratio of data to be used for validation | 0.1 |
-| -a         | --architecture                |          |  pix2pix | Either pix2pix or astroencoder. Architecture to be used for the generator | |
-|            | --no-adversarial              |          |  False   | If present, model is not adversarial (discriminator is ignored) | |
-|            | --no-skip-connections         |          |  False   | If present, no skip connections are used | |
-|            | --no-residuals                |          |  False   | If present, no residual connections are used | |
-|            | --output-dir                  |          | ./results| Directory where results will be stored | ./OUTPUT_DIR|
-|-gdrop      | --generator-dropout-ratio     |          | 0.5      | Dropout ratio for dropout layers in the generator | 0.7 |
-|-ddrop      | --discriminator-dropout-ratio |          | 0.5      | Dropout ratio for dropout layers in the discriminator | 0.7 |
-|            | --no-generator-use-bias       |          |  False   | If present, biases are not used in the generator | |
-|            | --no-discriminator-use-bias   |          |  False   | If present, biases are not used in the discriminator | |
-|            | --high-res-len                |          |  2       | Integer specifying the length of the high resolution output stem | 3 |
-| -e         | --epochs                      |          |  100     | Integer specifying the number of epochs used to train the model |
-|            | --lambda                      |          |  100.0   | Float specifying the weight of the l1-divergence loss when computing the global generator loss (see explanation on lambda in [here](./Docs/module_blocks.md#Generator)) | 10.0 |
-|            | --discriminator-interval      |          |  20      | Integer specifying the number of steps between each consecutive time the discriminator is trained (generator is trained every step). If this index is 1 the generator is trained the same number of times as the generator. | 1 |
-|            | --spectra-weight              |          |  0.0     | Float specifying how much the spectra must weight in the calculation of the final generator loss. If 0.0, the spectra is not computed. | 10.0 |
-
-
-So as an example, if we wanted to generate `k` maps from `q,u` maps, using a pix2pix GAN with no residual connections, applying a noise of `0.2` to maps `u,k`,  without normalizing nor apodizing the maps, using a validation\_split of `0.35` and a dropout ratio of `0.3` for the generator and `0.75` for the discriminator, training the model for `200` epochs, using only GPU devices 1 and 2, and storing the result into folder `$HOME/RESULTS/astroDGAN_TEST/` the command issued should be:
-
-```console
-OUTPUT_DIR=$HOME/RESULTS/astroDGAN_TEST
-python main.py -i qu -o k -a pix2pix --gpus 12 --noise 0.2 --noise-channels uk -vs 0.35 -gdrop 0.3 -ddrop 0.75 -e 200 --output-dir $OUTPUT_DIR
-```
-
-When main.py is called, and the model folder is created in `output-dir`, a file called `command` is created. Inside this file, the command to be used to reproduce the exact results is stored. 
-
-For further examples on commands for different experiments and configurations, check the links in the [experiments section](#Experiments) below.
-
-## Experiments
-[[go back to the top]](#Table-of-Contents)
-
-| Test                    | inputs   |  outputs | architecture (gen) | epochs | lambda | adversarial | gen_bias| residuals | skip | noise|
-|-------------------------|:--------:|:--------:|:------------------:|:------:|:------:|:-----------:|:-------:|:---------:|:----:|:-----|
-| [Test0](./Docs/Test0.md)|  q,u     | e        | astroencoder       |  150   | 100    |✅           |❌      |✅         |✅    | 0.0  |
-| [Test1](./Docs/Test1.md)|  q,u     | k        | astroencoder       |  100   | 100    | ✅          |❌      |✅         |✅    | 0.0  |
-| [Test2](./Docs/Test2.md)|  q,u,e,k | b        | pix2pix            | 250    | 10     | ✅          |❌      |❌         |✅    | 0.0  |
-
-
-## Further tests and discussion
-[[go back to the top]](#Table-of-Contents)
-
-| Test | inputs |  outputs | Comments  |
-|------|:------:|:--------:|:--------:|
-| Test3|  q,u   | k        | Test1 showed overfitting in the discriminator, it would be interesting to check what happens when the discriminator is better trained, so that it truly identifies the fake samples. Combining this with, maybe, different values for lambda and more epochs for training we could achieve better retrieval of the high-freq signal.|
-| Test4|  q,u   | e        | |
-| Test5|  q,u   | k        | Minimize spectrum diff in loss too |
-| Test6|  q,u   | e        | Minimize spectrum diff in loss too |
-| Test7|  q,u,e,k | b        | Try different values for lambda, kernel size, dropout_ratio (to get rid of overfitting) |
-| Test8|  q,u,e,k | b        | Two step process: First train the system using more or less the same configuration used in Test2 (so the generator can learn how to create B modes) and then train the generator+discriminator with a low discriminator interval value |
-| Test9|  q,u,e,k,E,B | b    | Use analytic predicted E,B maps |
-| Test10|  q,u,e,k,E,B | b    | Minimize spectrum diff in loss too |
-
-
-
-
-## Future work
-[[go back to the top]](#Table-of-Contents)
-
-### Use E,B approximations
-[[go back to section header]](#Future-work)
-
-Two main issues are expected to be addressed with this work: 
-* Improve the accuracy for retrieving e and k maps from q, u maps.
-* Retrieve b maps from q, u maps.
-
-There exists and analytical relation between **unlensed** Q, U and E, B maps which is given by (1),
-
-![Analytical Equation](images/equation.gif)
-
-. We know that this equation, in reality, yields untrusty results when applied to discrete size maps (images), corrupting the obtained signals usually with an effect known as __bleeding__. 
-
-As the inputs to our model are **lensed** (q, u), if one wanted to use the analytical equation (1) to estimate the E and B modes, it would be necessary to, first, obtain the unlensed maps Q, U, which are inputs to (1). This can be achieved by using a deep network (GAN0/Delensing GAN), which can also be used at the same time to estimate the lensing map (k). Afterwards, the estimated delensed maps ~Q, ~U can be processed by the analytical equation (1) to estimate ~E and ~B, which will be corrupted due to the effects explained before. Later, the ~E and ~B maps can be inputed to second deep network (GAN1/Decomposition GAN) to correct the undesired effects introduced by the analytical equation (1) and thus obtain the final maps e, b. 
-
-Discriminative models have been observed to perform much better in image reconstruction/generation tasks such as the one presented here. This is why both neural networks used in our proposed methodology are GANs. Apart from that, both of them are based on João Caldeira's UResNet. 
-
-The workflow proposed for this problem can be seen in the following image, 
-
-![GAN](images/gan.jpeg)
-
-
-### Use different losses 
-[[go back to section header]](#Future-work)
-
-Take a look at this [article](https://towardsdatascience.com/metric-learning-loss-functions-5b67b3da99a5) 
-
-
 
 
 
