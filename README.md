@@ -192,11 +192,9 @@ Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actua
 
 |  |  |
 |:----:|:----:|
-| ![styleganv1](res/stylegan.png) | <img src="res/stylegan2.png" alt="drawing" style="width:200px;"/> |
+| <img src="res/stylegan.png" alt="styleganv1" style="width:200px;"/> | <img src="res/stylegan2.png" alt="drawing" style="width:200px;"/> |
 
-<img src="./res/stylegan2.png" alt="drawing" style="width:200px;"/>
-**Figure 14.** StyleGAN (v1).
-
+**Figure 14.** (a) StyleGANv1 (b) Revised version on v2.
 
 [2]: <https://arxiv.org/abs/1912.04958> "NVIDIA StyleGAN2"
 
