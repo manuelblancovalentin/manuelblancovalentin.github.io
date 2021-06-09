@@ -17,6 +17,7 @@
 
 
 ## Introduction to CMB
+
 [[go back to the top]](#Table-of-Contents)
 The evidences that Hubble found about the apparent redshift of galaxies relative to each other (and us), as well as the 
 recently proposed (at the time) theory of general relativity seem to indicate
@@ -62,6 +63,7 @@ structure.
 **Figure 2.** Real image of the CMB captured by the satellite Planck.
 
 ## CMB decomposition
+
 [[go back to the top]](#Table-of-Contents)
 
 Although CMB contains a great amount of information regarding a great range of physical phenomena, the data in the raw maps as 
@@ -98,6 +100,7 @@ The workflow that we are required to implement consists on:
 
 
 ## Previous work
+
 [[go back to the top]](#Table-of-Contents)
 
 Previous work on lensing reconstruction of CMB with machine learning showed competitive results even for 
@@ -185,6 +188,7 @@ Apparently going from q,u space to b space is just too complicated (specially wi
 
 
 ## Proposed methodology-StyleGAN2-CMB
+
 [[go back to the top]](#Table-of-Contents)
 >  Disclaimer: Due to confidentiality agreements between Fermilab and NU, the actual data cannot be posted on github. If you want, you can use this code for a different application/dataset.
 
@@ -203,6 +207,7 @@ style transfer [[2]].
 
 
 ## Experiments
+
 [[go back to the top]](#Table-of-Contents)
 
 
@@ -252,6 +257,7 @@ asdasdas
 
 
 ## Requirements
+
 [[go back to the top]](#Table-of-Contents)
 
 Take a look at the requirements to run this code:
