@@ -21,26 +21,29 @@
 
 // Category-specific colors (soft, pastel tones)
 .tag-badge {
-  // AI/ML - Light purple/lavender
+  // AI/ML/Deep Learning - Light purple/lavender
   &.tag-ai,
   &.tag-ml,
   &.tag-machine-learning,
   &.tag-deep-learning,
   &.tag-neural-network,
+  &.tag-neural-networks,
   &.tag-learning,
-  &.tag-inference {
+  &.tag-inference,
+  &.tag-computer-vision {
     background-color: #e6d5f0;
     color: #5a3d7a;
   }
 
-  // Hardware - Light gray
+  // Hardware/ASIC - Light gray
   &.tag-hardware,
-  &.tag-architecture {
+  &.tag-architecture,
+  &.tag-asic {
     background-color: #e8e8e8;
     color: #4a4a4a;
   }
 
-  // FPGA - Light blue
+  // FPGA/Reconfigurable - Light blue
   &.tag-fpga,
   &.tag-reconfigurable,
   &.tag-hls {
@@ -48,47 +51,46 @@
     color: #1b4965;
   }
 
-  // ASIC - Light cyan
-  &.tag-asic,
-  &.tag-chip,
-  &.tag-design {
-    background-color: #d1f0f7;
-    color: #0d5f6f;
-  }
-
   // Radiation/TMR/Reliability - Light orange
   &.tag-radiation,
   &.tag-tmr,
   &.tag-fault,
   &.tag-reliability,
-  &.tag-resilience {
+  &.tag-resilience,
+  &.tag-cryogenic {
     background-color: #ffe8d1;
     color: #7a4a1a;
   }
 
-  // HEP/Physics - Light yellow
+  // HEP/Physics/Astronomy - Light yellow
   &.tag-hep,
   &.tag-physics,
   &.tag-particle,
   &.tag-detector,
-  &.tag-accelerator {
+  &.tag-detectors,
+  &.tag-accelerator,
+  &.tag-astrophysics,
+  &.tag-quantum {
     background-color: #fff4d1;
     color: #7a6a1a;
   }
 
-  // Sensor/Pixel - Light green
+  // Sensor/Pixel/Imaging - Light green
   &.tag-sensor,
+  &.tag-sensors,
   &.tag-pixel,
-  &.tag-imaging {
+  &.tag-imaging,
+  &.tag-camera {
     background-color: #d4f1d4;
     color: #2a5a2a;
   }
 
-  // Software/Tools - Light pink
+  // Software/Tools/Geoscience - Light pink
   &.tag-software,
   &.tag-tools,
   &.tag-compiler,
-  &.tag-optimization {
+  &.tag-optimization,
+  &.tag-geoscience {
     background-color: #f0d4e8;
     color: #6a2a4a;
   }
@@ -101,7 +103,7 @@
     color: #2a5a5a;
   }
 
-  // ArXiv/DOI/Other - Light gray-blue
+  // ArXiv/DOI/Research - Light gray-blue
   &.tag-arxiv,
   &.tag-doi,
   &.tag-research {
@@ -115,3 +117,4 @@
     color: #6a2a2a;
   }
 }
+
