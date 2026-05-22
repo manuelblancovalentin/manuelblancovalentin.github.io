@@ -3,8 +3,15 @@ title: "Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for f
 collection: publications
 category: conferences
 permalink: /publication/2024-01-01-smart-pixels-algorithm-design-and-hardware-testing-for-a-28m-roic-for-future-pixel-trackers
+excerpt: 'Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for future pixel trackers.'
+description: 'Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for future pixel trackers.'
 date: 2024-01-01
 venue: 'APS April Meeting Abstracts'
+paperurl: 'https://www.google.com/search?q=Smart+Pixels%3A+Algorithm+design+and+hardware+testing+for+a+28m+ROIC+for+future+pixel+trackers'
+author_rank: 999
+citation_count: 0
+sort_key: '1-999999-79751130-smart-pixels-algorithm-design-and-hardware-testing-for-a-28m-roic-for-future-pixel-trackers'
+tags: [hardware, pixel]
 citation: 'Carissa Kumar, Emily Pan, Karri Dipetrillo, Anthony Badea, Jennet Dickinson, Jieun Yoo, Morris Swartz, Giuseppe Di Guglielmo, Alice Bean, Douglas Berry, others (2024). &quot;Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for future pixel trackers.&quot; <i>APS April Meeting Abstracts</i>. 2024, F14&#8211;005.'
 ---
 
@@ -14,10 +21,16 @@ citation: 'Carissa Kumar, Emily Pan, Karri Dipetrillo, Anthony Badea, Jennet Dic
 | Authors | Carissa Kumar, Emily Pan, Karri Dipetrillo, Anthony Badea, Jennet Dickinson, Jieun Yoo, Morris Swartz, Giuseppe Di Guglielmo, Alice Bean, Douglas Berry, others |
 | Venue | APS April Meeting Abstracts |
 | Year | 2024 |
+| Citations | 0 |
+| Tags | hardware, pixel |
 | Volume | 2024 |
 | Pages | F14&#8211;005 |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Smart+Pixels%3A+Algorithm+design+and+hardware+testing+for+a+28m+ROIC+for+future+pixel+trackers){:target="_blank"} for full citation.
+**Abstract**
+
+Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for future pixel trackers.
+
+[View publication](https://www.google.com/search?q=Smart+Pixels%3A+Algorithm+design+and+hardware+testing+for+a+28m+ROIC+for+future+pixel+trackers){:target="_blank"}
 
 **BibTeX**
 

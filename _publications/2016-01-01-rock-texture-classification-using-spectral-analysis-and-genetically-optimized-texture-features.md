@@ -3,8 +3,15 @@ title: "Rock Texture Classification Using Spectral Analysis And Genetically Opti
 collection: publications
 category: conferences
 permalink: /publication/2016-01-01-rock-texture-classification-using-spectral-analysis-and-genetically-optimized-texture-features
+excerpt: 'Rock Texture Classification Using Spectral Analysis And Genetically Optimized Texture Features.'
+description: 'Rock Texture Classification Using Spectral Analysis And Genetically Optimized Texture Features.'
 date: 2016-01-01
 venue: 'Computer Vision and Pattern Recognition (CVPR)'
+paperurl: 'https://www.google.com/search?q=Rock+Texture+Classification+Using+Spectral+Analysis+And+Genetically+Optimized+Texture+Features'
+author_rank: 1
+citation_count: 2
+sort_key: '0-999997-79831130-rock-texture-classification-using-spectral-analysis-and-genetically-optimized-texture-features'
+tags: [computer-vision]
 citation: 'Manuel Blanco Valentin, Clecio Roque De Bom, Marcio Portes de Albuquerque, Marcelo Portes de Albuquerque, Elisangela Faria, Maury Duarte Correia, Rodrigo Surmas (2016). &quot;Rock Texture Classification Using Spectral Analysis And Genetically Optimized Texture Features.&quot; <i>Computer Vision and Pattern Recognition (CVPR)</i>.'
 ---
 
@@ -14,8 +21,14 @@ citation: 'Manuel Blanco Valentin, Clecio Roque De Bom, Marcio Portes de Albuque
 | Authors | Manuel Blanco Valentin, Clecio Roque De Bom, Marcio Portes de Albuquerque, Marcelo Portes de Albuquerque, Elisangela Faria, Maury Duarte Correia, Rodrigo Surmas |
 | Venue | Computer Vision and Pattern Recognition (CVPR) |
 | Year | 2016 |
+| Citations | 2 |
+| Tags | computer-vision |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Rock+Texture+Classification+Using+Spectral+Analysis+And+Genetically+Optimized+Texture+Features){:target="_blank"} for full citation.
+**Abstract**
+
+Rock Texture Classification Using Spectral Analysis And Genetically Optimized Texture Features.
+
+[View publication](https://www.google.com/search?q=Rock+Texture+Classification+Using+Spectral+Analysis+And+Genetically+Optimized+Texture+Features){:target="_blank"}
 
 **BibTeX**
 

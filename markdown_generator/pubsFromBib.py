@@ -11,11 +11,17 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import os
 import re
+import time
 import unicodedata
-from urllib.parse import quote_plus
-from typing import Dict, List, Tuple
+import urllib.error
+import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
+from urllib.parse import quote_plus, urlencode
+from typing import Dict, List, Tuple, Optional
 
 from pybtex.database import BibliographyData
 from pybtex.database.input import bibtex
@@ -61,6 +67,36 @@ TYPE_LABELS = {
     "booklet": "Booklet",
 }
 
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+TAG_KEYWORDS = [
+    ("hls4ml", "hls"),
+    ("hls", "hls"),
+    ("fpga", "fpga"),
+    ("fpga", "hardware"),
+    ("reconfigurable", "reconfigurable"),
+    ("asic", "asic"),
+    ("asic", "hardware"),
+    ("hardware", "hardware"),
+    ("sensor", "sensors"),
+    ("pixel", "pixel"),
+    ("detector", "detectors"),
+    ("quantum", "quantum"),
+    ("cryogenic", "cryogenic"),
+    ("deep learning", "deep-learning"),
+    ("neural network", "neural-networks"),
+    ("machine learning", "machine-learning"),
+    ("computer vision", "computer-vision"),
+    ("image", "imaging"),
+    ("borehole", "geoscience"),
+    ("geological", "geoscience"),
+    ("petroleum", "geoscience"),
+    ("lensing", "astrophysics"),
+    ("arxiv", "arxiv"),
+    ("patent", "patent"),
+    ("thesis", "thesis"),
+]
+
 
 def latex_to_text(value: str) -> str:
     if value is None:
@@ -97,6 +133,171 @@ def clean_title_text(value: str) -> str:
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
+
+def normalize_title_key(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", normalize_ascii(value).lower())
+
+
+def normalize_name(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", normalize_ascii(value).lower())
+
+
+def truncate_text(text: str, limit: int = 280) -> str:
+    trimmed = text.strip()
+    if len(trimmed) <= limit:
+        return trimmed
+    return trimmed[: limit - 1].rstrip() + "…"
+
+
+def fetch_url(url: str) -> str:
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        charset = response.headers.get_content_charset() or "utf-8"
+        return response.read().decode(charset, errors="replace")
+
+
+def fetch_scholar_citations(profile_url: str) -> Dict[str, int]:
+    citations: Dict[str, int] = {}
+    parsed = urllib.parse.urlparse(profile_url)
+    query = urllib.parse.parse_qs(parsed.query)
+    user = query.get("user", [None])[0]
+    if not user:
+        raise ValueError("Scholar profile URL missing user parameter.")
+
+    cstart = 0
+    pagesize = 100
+    while True:
+        page_url = f"https://scholar.google.com/citations?user={user}&hl=en&cstart={cstart}&pagesize={pagesize}"
+        html_text = fetch_url(page_url)
+        rows = re.findall(r'<tr class="gsc_a_tr".*?>.*?</tr>', html_text, re.DOTALL)
+        if not rows:
+            break
+        for row in rows:
+            title_match = re.search(r'class="gsc_a_at"[^>]*>(.*?)</a>', row, re.DOTALL)
+            if not title_match:
+                continue
+            title = html.unescape(title_match.group(1)).strip()
+            cite_match = re.search(r'class="gsc_a_ac[^"]*"[^>]*>(.*?)</a>', row, re.DOTALL)
+            cite_text = cite_match.group(1).strip() if cite_match else "0"
+            cite_text = re.sub(r"[^0-9]", "", cite_text)
+            count = int(cite_text) if cite_text else 0
+            key = normalize_title_key(title)
+            if key:
+                citations[key] = max(count, citations.get(key, 0))
+        if len(rows) < pagesize:
+            break
+        cstart += pagesize
+        time.sleep(1)
+    return citations
+
+
+def extract_arxiv_id(fields: Dict[str, str]) -> Optional[str]:
+    candidates = [
+        fields.get("eprint", ""),
+        fields.get("journal", ""),
+        fields.get("note", ""),
+        fields.get("url", ""),
+    ]
+    for candidate in candidates:
+        text = latex_to_text(candidate)
+        match = re.search(r"arxiv\.org/abs/([0-9]+\.[0-9]+|[a-z\-]+/[0-9]+)", text, re.IGNORECASE)
+        if match:
+            return match.group(1)
+        match = re.search(r"arxiv:\s*([0-9]+\.[0-9]+|[a-z\-]+/[0-9]+)", text, re.IGNORECASE)
+        if match:
+            return match.group(1)
+    return None
+
+
+def extract_doi(fields: Dict[str, str]) -> Optional[str]:
+    if fields.get("doi"):
+        return latex_to_text(fields.get("doi")).strip()
+    url_text = latex_to_text(fields.get("url", ""))
+    match = re.search(r"doi\.org/([^\s]+)", url_text, re.IGNORECASE)
+    if match:
+        return match.group(1).strip()
+    return None
+
+
+def lookup_doi_by_title(title: str, authors: str) -> Optional[str]:
+    query = urlencode({"query.title": title, "rows": 1})
+    url = f"https://api.crossref.org/works?{query}"
+    try:
+        response = fetch_url(url)
+        payload = json.loads(response)
+        items = payload.get("message", {}).get("items", [])
+        if not items:
+            return None
+        item = items[0]
+        item_title = " ".join(item.get("title", []))
+        if normalize_title_key(item_title) != normalize_title_key(title):
+            return None
+        return item.get("DOI")
+    except (urllib.error.URLError, json.JSONDecodeError) as exc:
+        print(f"WARNING: Crossref DOI lookup failed for '{title}': {exc}")
+        return None
+
+
+def fetch_crossref_abstract(doi: str) -> Optional[str]:
+    url = f"https://api.crossref.org/works/{doi}"
+    try:
+        response = fetch_url(url)
+        payload = json.loads(response)
+        abstract = payload.get("message", {}).get("abstract")
+        if not abstract:
+            return None
+        abstract = re.sub(r"<[^>]+>", "", abstract)
+        return html.unescape(abstract).strip()
+    except (urllib.error.URLError, json.JSONDecodeError) as exc:
+        print(f"WARNING: Crossref abstract fetch failed for DOI {doi}: {exc}")
+        return None
+
+
+def fetch_arxiv_abstract(arxiv_id: str) -> Optional[str]:
+    url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
+    try:
+        response = fetch_url(url)
+        root = ET.fromstring(response)
+        namespace = {"atom": "http://www.w3.org/2005/Atom"}
+        entry = root.find("atom:entry", namespace)
+        if entry is None:
+            return None
+        summary = entry.findtext("atom:summary", default="", namespaces=namespace)
+        return " ".join(summary.split()).strip()
+    except (urllib.error.URLError, ET.ParseError) as exc:
+        print(f"WARNING: arXiv abstract fetch failed for {arxiv_id}: {exc}")
+        return None
+
+
+def derive_tags(title: str, venue: str, entry_type: str, note: str, doi: Optional[str], arxiv_id: Optional[str]) -> List[str]:
+    tag_set: List[str] = []
+    haystack = f"{title} {venue} {note} {entry_type}".lower()
+    for keyword, tag in TAG_KEYWORDS:
+        if keyword in haystack and tag not in tag_set:
+            tag_set.append(tag)
+    if arxiv_id and "arxiv" not in tag_set:
+        tag_set.append("arxiv")
+    if doi and "doi" not in tag_set:
+        tag_set.append("doi")
+    if entry_type in ("phdthesis", "mastersthesis") and "thesis" not in tag_set:
+        tag_set.append("thesis")
+    if entry_type == "misc" and "patent" in haystack and "patent" not in tag_set:
+        tag_set.append("patent")
+    if not tag_set:
+        tag_set.append("research")
+    return tag_set
+
+
+def is_url(value: str) -> bool:
+    return value.startswith("http://") or value.startswith("https://")
+
+
+def author_rank(authors: List[str], variants: List[str]) -> int:
+    normalized_variants = {normalize_name(v) for v in variants if v.strip()}
+    for idx, author in enumerate(authors, start=1):
+        if normalize_name(author) in normalized_variants:
+            return idx
+    return 999
 
 def slugify(value: str) -> str:
     ascii_title = normalize_ascii(value).lower()
@@ -145,6 +346,11 @@ def format_person(person) -> str:
 def format_authors(entry) -> str:
     authors = entry.persons.get("author", [])
     return ", ".join(format_person(author) for author in authors if format_person(author))
+
+
+def list_authors(entry) -> List[str]:
+    authors = entry.persons.get("author", [])
+    return [format_person(author) for author in authors if format_person(author)]
 
 
 def pick_venue(fields: Dict[str, str]) -> str:
@@ -220,7 +426,15 @@ def unique_path(out_dir: str, base_filename: str) -> str:
     return filename
 
 
-def build_detail_rows(entry_type: str, authors: str, venue: str, year: str, fields: Dict[str, str]) -> List[Tuple[str, str]]:
+def build_detail_rows(
+    entry_type: str,
+    authors: str,
+    venue: str,
+    year: str,
+    fields: Dict[str, str],
+    citation_count: int,
+    tags: List[str],
+) -> List[Tuple[str, str]]:
     rows: List[Tuple[str, str]] = []
     rows.append(("Publication type", TYPE_LABELS.get(entry_type, entry_type.title())))
     if authors:
@@ -229,6 +443,9 @@ def build_detail_rows(entry_type: str, authors: str, venue: str, year: str, fiel
         rows.append(("Venue", venue))
     if year:
         rows.append(("Year", year))
+    rows.append(("Citations", str(citation_count)))
+    if tags:
+        rows.append(("Tags", ", ".join(tags)))
     for label, key in [
         ("Volume", "volume"),
         ("Number", "number"),
@@ -274,7 +491,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Generate publication markdown files from a BibTeX file.")
     parser.add_argument("--bib", required=True, help="Path to a BibTeX file (.bib)")
     parser.add_argument("--out", default="../_publications", help="Output directory for markdown files")
+    parser.add_argument("--scholar", help="Google Scholar profile URL for citation counts")
+    parser.add_argument(
+        "--author",
+        action="append",
+        default=[],
+        help="Author name variant to detect primary/secondary author ordering (repeatable)",
+    )
     parser.add_argument("--keep-duplicates", action="store_true", help="Keep duplicate titles")
+    parser.add_argument("--no-abstracts", action="store_true", help="Skip fetching abstracts from arXiv/DOI")
     args = parser.parse_args()
 
     if not os.path.exists(args.bib):
@@ -286,10 +511,17 @@ def main() -> None:
     bib_text = load_bibtex_text(args.bib)
     bibdata = parser_bib.parse_string(bib_text)
 
+    citation_lookup: Dict[str, int] = {}
+    if args.scholar:
+        try:
+            citation_lookup = fetch_scholar_citations(args.scholar)
+        except Exception as exc:
+            raise SystemExit(f"Failed to fetch Google Scholar citations: {exc}") from exc
+
     entries: Dict[str, Tuple[str, object]] = {}
     for key, entry in bibdata.entries.items():
         raw_title = entry.fields.get("title", "")
-        normalized_title = re.sub(r"[^a-z0-9]+", "", normalize_ascii(raw_title).lower())
+        normalized_title = normalize_title_key(raw_title)
         if not normalized_title:
             normalized_title = key.lower()
         if args.keep_duplicates:
@@ -303,6 +535,8 @@ def main() -> None:
             entries[normalized_title] = (key, entry)
 
     writer = Writer()
+    doi_cache: Dict[str, Optional[str]] = {}
+    abstract_cache: Dict[str, Optional[str]] = {}
     for _, (bib_id, entry) in entries.items():
         fields = entry.fields
         entry_type = entry.type.lower()
@@ -317,21 +551,60 @@ def main() -> None:
         md_filename = unique_path(args.out, md_filename)
         html_filename = md_filename.replace(".md", "")
 
-        authors_text = format_authors(entry)
+        authors_list = list_authors(entry)
+        authors_text = ", ".join(authors_list)
         venue_text = pick_venue(fields)
 
         category = CATEGORY_MAP.get(entry_type, "manuscripts")
         citation_text = build_citation(authors_text, title_text, venue_text, pub_year, fields)
 
-        excerpt_text = ""
-        if fields.get("abstract"):
-            excerpt_text = latex_to_text(fields.get("abstract", ""))
-        elif fields.get("note"):
-            excerpt_text = latex_to_text(fields.get("note", ""))
+        note_text = latex_to_text(fields.get("note", "")).strip()
+        abstract_text = latex_to_text(fields.get("abstract", "")).strip()
 
-        paper_url = fields.get("url", "")
-        if not paper_url and fields.get("doi"):
-            paper_url = f"https://doi.org/{latex_to_text(fields.get('doi'))}"
+        arxiv_id = extract_arxiv_id(fields)
+        doi = extract_doi(fields)
+
+        paper_url = latex_to_text(fields.get("url", "")).strip()
+        if not paper_url and is_url(latex_to_text(fields.get("journal", ""))):
+            paper_url = latex_to_text(fields.get("journal", "")).strip()
+
+        if not doi:
+            cache_key = normalize_title_key(title_text)
+            if cache_key not in doi_cache:
+                doi_cache[cache_key] = lookup_doi_by_title(title_text, authors_text)
+            doi = doi_cache[cache_key]
+
+        if doi and not paper_url:
+            paper_url = f"https://doi.org/{doi}"
+        if arxiv_id and not paper_url:
+            paper_url = f"https://arxiv.org/abs/{arxiv_id}"
+
+        if not args.no_abstracts and not abstract_text:
+            if arxiv_id:
+                abstract_text = fetch_arxiv_abstract(arxiv_id) or ""
+            if not abstract_text and doi:
+                if doi not in abstract_cache:
+                    abstract_cache[doi] = fetch_crossref_abstract(doi)
+                abstract_text = abstract_cache.get(doi) or ""
+
+        description_text = abstract_text or note_text
+        if not description_text:
+            description_text = f"{title_text}."
+        excerpt_text = truncate_text(description_text) if description_text else ""
+
+        if not paper_url:
+            search_query = quote_plus(title_text)
+            paper_url = f"https://www.google.com/search?q={search_query}"
+
+        citation_count = citation_lookup.get(normalize_title_key(title_text), 0)
+        current_rank = author_rank(authors_list, args.author)
+        priority = 0 if current_rank <= 2 else 1
+        date_int = int(pub_date.replace("-", "")) if pub_date else 0
+        date_inverse = 99991231 - date_int
+        citations_inverse = 999999 - min(citation_count, 999999)
+        sort_key = f"{priority}-{citations_inverse:06d}-{date_inverse:08d}-{slug}"
+
+        tags = derive_tags(title_text, venue_text, entry_type, note_text, doi, arxiv_id)
 
         md = f"---\ntitle: \"{escape_yaml(title_text)}\"\n"
         md += "collection: publications"
@@ -339,28 +612,30 @@ def main() -> None:
         md += f"\npermalink: /publication/{html_filename}"
         if excerpt_text.strip():
             md += f"\nexcerpt: '{escape_yaml(excerpt_text)}'"
+        if description_text.strip():
+            md += f"\ndescription: '{escape_yaml(description_text)}'"
         md += f"\ndate: {pub_date}"
         md += f"\nvenue: '{escape_yaml(venue_text)}'"
-        if paper_url:
-            md += f"\npaperurl: '{paper_url}'"
+        md += f"\npaperurl: '{paper_url}'"
+        md += f"\nauthor_rank: {current_rank}"
+        md += f"\ncitation_count: {citation_count}"
+        md += f"\nsort_key: '{sort_key}'"
+        if tags:
+            md += f"\ntags: [{', '.join(tags)}]"
         if citation_text:
             md += f"\ncitation: '{escape_yaml(citation_text)}'"
         md += "\n---\n"
 
-        detail_rows = build_detail_rows(entry_type, authors_text, venue_text, pub_year, fields)
+        detail_rows = build_detail_rows(entry_type, authors_text, venue_text, pub_year, fields, citation_count, tags)
         if detail_rows:
             md += "\n| Field | Value |\n| --- | --- |\n"
             for label, value in detail_rows:
                 md += f"| {escape_table_value(label)} | {escape_table_value(value)} |\n"
 
-        if excerpt_text.strip():
-            md += f"\n{escape_yaml(excerpt_text)}\n"
+        if description_text.strip():
+            md += f"\n**Abstract**\n\n{escape_yaml(description_text)}\n"
 
-        if paper_url:
-            md += f"\n[Access paper here]({paper_url}){{:target=\"_blank\"}}\n"
-        else:
-            query = quote_plus(title_text)
-            md += f"\nUse [Google Scholar](https://scholar.google.com/scholar?q={query}){{:target=\"_blank\"}} for full citation.\n"
+        md += f"\n[View publication]({paper_url}){{:target=\"_blank\"}}\n"
 
         bibtex_str = writer.to_string(BibliographyData(entries={bib_id: entry}))
         md += "\n**BibTeX**\n\n```bibtex\n" + bibtex_str.strip() + "\n```\n"

@@ -3,8 +3,15 @@ title: "Desarrollo del sistema electr&#243;nico de control de navegaci&#243;n de
 collection: publications
 category: manuscripts
 permalink: /publication/2014-01-01-desarrollo-del-sistema-electronico-de-control-de-navegacion-de-un-barco-remolcador-a-escala
+excerpt: 'Desarrollo del sistema electr&#243;nico de control de navegaci&#243;n de un barco remolcador a escala.'
+description: 'Desarrollo del sistema electr&#243;nico de control de navegaci&#243;n de un barco remolcador a escala.'
 date: 2014-01-01
 venue: 'Universitat Polit&#232;cnica de Catalunya. Escola Universit&#224;ria d&apos;Enginyeria&#160;&#8230;'
+paperurl: 'https://www.google.com/search?q=Desarrollo+del+sistema+electr%C3%B3nico+de+control+de+navegaci%C3%B3n+de+un+barco+remolcador+a+escala'
+author_rank: 1
+citation_count: 0
+sort_key: '0-999999-79851130-desarrollo-del-sistema-electronico-de-control-de-navegacion-de-un-barco-remolcador-a-escala'
+tags: [thesis]
 citation: 'Manuel Blanco Valent&#237;n (2014). &quot;Desarrollo del sistema electr&#243;nico de control de navegaci&#243;n de un barco remolcador a escala.&quot; <i>Universitat Polit&#232;cnica de Catalunya. Escola Universit&#224;ria d&apos;Enginyeria&#160;&#8230;</i>.'
 ---
 
@@ -14,9 +21,15 @@ citation: 'Manuel Blanco Valent&#237;n (2014). &quot;Desarrollo del sistema elec
 | Authors | Manuel Blanco Valent&#237;n |
 | Venue | Universitat Polit&#232;cnica de Catalunya. Escola Universit&#224;ria d&apos;Enginyeria&#160;&#8230; |
 | Year | 2014 |
+| Citations | 0 |
+| Tags | thesis |
 | School | Universitat Polit&#232;cnica de Catalunya. Escola Universit&#224;ria d&apos;Enginyeria&#160;&#8230; |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Desarrollo+del+sistema+electr%C3%B3nico+de+control+de+navegaci%C3%B3n+de+un+barco+remolcador+a+escala){:target="_blank"} for full citation.
+**Abstract**
+
+Desarrollo del sistema electr&#243;nico de control de navegaci&#243;n de un barco remolcador a escala.
+
+[View publication](https://www.google.com/search?q=Desarrollo+del+sistema+electr%C3%B3nico+de+control+de+navegaci%C3%B3n+de+un+barco+remolcador+a+escala){:target="_blank"}
 
 **BibTeX**
 

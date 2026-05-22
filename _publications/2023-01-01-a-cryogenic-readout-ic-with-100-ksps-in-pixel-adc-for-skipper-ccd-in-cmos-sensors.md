@@ -3,8 +3,15 @@ title: "A cryogenic readout ic with 100 ksps in-pixel adc for skipper ccd-in-cmo
 collection: publications
 category: conferences
 permalink: /publication/2023-01-01-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors
+excerpt: 'A cryogenic readout ic with 100 ksps in-pixel adc for skipper ccd-in-cmos sensors.'
+description: 'A cryogenic readout ic with 100 ksps in-pixel adc for skipper ccd-in-cmos sensors.'
 date: 2023-01-01
 venue: '2023 IEEE International Symposium on Circuits and Systems (ISCAS)'
+paperurl: 'https://doi.org/10.1109/iscas46773.2023.10182087'
+author_rank: 2
+citation_count: 5
+sort_key: '0-999994-79761130-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors'
+tags: [sensors, pixel, cryogenic, doi]
 citation: 'Adam Quinn, Manuel B Valentin, Thomas Zimmerman, Davide Braga, Seda Memik, Farah Fahim (2023). &quot;A cryogenic readout ic with 100 ksps in-pixel adc for skipper ccd-in-cmos sensors.&quot; <i>2023 IEEE International Symposium on Circuits and Systems (ISCAS)</i>. 1&#8211;5.'
 ---
 
@@ -14,10 +21,16 @@ citation: 'Adam Quinn, Manuel B Valentin, Thomas Zimmerman, Davide Braga, Seda M
 | Authors | Adam Quinn, Manuel B Valentin, Thomas Zimmerman, Davide Braga, Seda Memik, Farah Fahim |
 | Venue | 2023 IEEE International Symposium on Circuits and Systems (ISCAS) |
 | Year | 2023 |
+| Citations | 5 |
+| Tags | sensors, pixel, cryogenic, doi |
 | Pages | 1&#8211;5 |
 | Organization | IEEE |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=A+cryogenic+readout+ic+with+100+ksps+in-pixel+adc+for+skipper+ccd-in-cmos+sensors){:target="_blank"} for full citation.
+**Abstract**
+
+A cryogenic readout ic with 100 ksps in-pixel adc for skipper ccd-in-cmos sensors.
+
+[View publication](https://doi.org/10.1109/iscas46773.2023.10182087){:target="_blank"}
 
 **BibTeX**
 

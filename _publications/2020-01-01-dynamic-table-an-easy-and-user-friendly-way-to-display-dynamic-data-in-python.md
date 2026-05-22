@@ -3,8 +3,15 @@ title: "Dynamic Table: An easy and user-friendly way to display dynamic data in 
 collection: publications
 category: manuscripts
 permalink: /publication/2020-01-01-dynamic-table-an-easy-and-user-friendly-way-to-display-dynamic-data-in-python
+excerpt: 'Dynamic Table: An easy and user-friendly way to display dynamic data in Python.'
+description: 'Dynamic Table: An easy and user-friendly way to display dynamic data in Python.'
 date: 2020-01-01
 venue: 'https://github.com/manuelblancovalentin/DynamicTable'
+paperurl: 'https://github.com/manuelblancovalentin/DynamicTable'
+author_rank: 1
+citation_count: 0
+sort_key: '0-999999-79791130-dynamic-table-an-easy-and-user-friendly-way-to-display-dynamic-data-in-python'
+tags: [research]
 citation: 'Manuel B Valentin (2020). &quot;Dynamic Table: An easy and user-friendly way to display dynamic data in Python.&quot; <i>https://github.com/manuelblancovalentin/DynamicTable</i>.'
 ---
 
@@ -14,8 +21,14 @@ citation: 'Manuel B Valentin (2020). &quot;Dynamic Table: An easy and user-frien
 | Authors | Manuel B Valentin |
 | Venue | https://github.com/manuelblancovalentin/DynamicTable |
 | Year | 2020 |
+| Citations | 0 |
+| Tags | research |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Dynamic+Table%3A+An+easy+and+user-friendly+way+to+display+dynamic+data+in+Python){:target="_blank"} for full citation.
+**Abstract**
+
+Dynamic Table: An easy and user-friendly way to display dynamic data in Python.
+
+[View publication](https://github.com/manuelblancovalentin/DynamicTable){:target="_blank"}
 
 **BibTeX**
 

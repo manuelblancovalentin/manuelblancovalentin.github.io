@@ -3,8 +3,15 @@ title: "Radiation-Hard Smart-Pixel Detector ASIC ReadOut with Digital AI in 28nm
 collection: publications
 category: manuscripts
 permalink: /publication/2024-01-01-radiation-hard-smart-pixel-detector-asic-readout-with-digital-ai-in-28nm
+excerpt: 'Radiation-Hard Smart-Pixel Detector ASIC ReadOut with Digital AI in 28nm.'
+description: 'Radiation-Hard Smart-Pixel Detector ASIC ReadOut with Digital AI in 28nm.'
 date: 2024-01-01
 venue: 'Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States)'
+paperurl: 'https://doi.org/10.2172/2477314'
+author_rank: 999
+citation_count: 0
+sort_key: '1-999999-79751130-radiation-hard-smart-pixel-detector-asic-readout-with-digital-ai-in-28nm'
+tags: [asic, hardware, pixel, detectors, doi]
 citation: 'Benjamin Parpillon, Anthony Badea, Chinar Syal, Corrinne Mills, Douglas Berry, Farah Fahim, Giuseppe Di Guglielmo, Jennet Dickinson, Jieun Yoo, Jim Hirschauer, others (2024). &quot;Radiation-Hard Smart-Pixel Detector ASIC ReadOut with Digital AI in 28nm.&quot; <i>Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States)</i>.'
 ---
 
@@ -14,9 +21,15 @@ citation: 'Benjamin Parpillon, Anthony Badea, Chinar Syal, Corrinne Mills, Dougl
 | Authors | Benjamin Parpillon, Anthony Badea, Chinar Syal, Corrinne Mills, Douglas Berry, Farah Fahim, Giuseppe Di Guglielmo, Jennet Dickinson, Jieun Yoo, Jim Hirschauer, others |
 | Venue | Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States) |
 | Year | 2024 |
+| Citations | 0 |
+| Tags | asic, hardware, pixel, detectors, doi |
 | Institution | Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States) |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Radiation-Hard+Smart-Pixel+Detector+ASIC+ReadOut+with+Digital+AI+in+28nm){:target="_blank"} for full citation.
+**Abstract**
+
+Radiation-Hard Smart-Pixel Detector ASIC ReadOut with Digital AI in 28nm.
+
+[View publication](https://doi.org/10.2172/2477314){:target="_blank"}
 
 **BibTeX**
 

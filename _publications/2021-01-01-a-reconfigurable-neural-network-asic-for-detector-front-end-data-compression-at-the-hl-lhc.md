@@ -3,8 +3,15 @@ title: "A reconfigurable neural network ASIC for detector front-end data compres
 collection: publications
 category: manuscripts
 permalink: /publication/2021-01-01-a-reconfigurable-neural-network-asic-for-detector-front-end-data-compression-at-the-hl-lhc
+excerpt: 'A reconfigurable neural network ASIC for detector front-end data compression at the HL-LHC.'
+description: 'A reconfigurable neural network ASIC for detector front-end data compression at the HL-LHC.'
 date: 2021-01-01
 venue: 'IEEE Transactions on Nuclear Science'
+paperurl: 'https://doi.org/10.1109/tns.2021.3087100'
+author_rank: 4
+citation_count: 91
+sort_key: '1-999908-79781130-a-reconfigurable-neural-network-asic-for-detector-front-end-data-compression-at-the-hl-lhc'
+tags: [reconfigurable, asic, hardware, detectors, neural-networks, doi]
 citation: 'Giuseppe Di Guglielmo, Farah Fahim, Christian Herwig, Manuel Blanco Valentin, Javier Duarte, Cristian Gingu, Philip Harris, James Hirschauer, Martin Kwok, Vladimir Loncar, others (2021). &quot;A reconfigurable neural network ASIC for detector front-end data compression at the HL-LHC.&quot; <i>IEEE Transactions on Nuclear Science</i>. 68(8), 2179&#8211;2186.'
 ---
 
@@ -14,12 +21,18 @@ citation: 'Giuseppe Di Guglielmo, Farah Fahim, Christian Herwig, Manuel Blanco V
 | Authors | Giuseppe Di Guglielmo, Farah Fahim, Christian Herwig, Manuel Blanco Valentin, Javier Duarte, Cristian Gingu, Philip Harris, James Hirschauer, Martin Kwok, Vladimir Loncar, others |
 | Venue | IEEE Transactions on Nuclear Science |
 | Year | 2021 |
+| Citations | 91 |
+| Tags | reconfigurable, asic, hardware, detectors, neural-networks, doi |
 | Volume | 68 |
 | Number | 8 |
 | Pages | 2179&#8211;2186 |
 | Publisher | IEEE |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=A+reconfigurable+neural+network+ASIC+for+detector+front-end+data+compression+at+the+HL-LHC){:target="_blank"} for full citation.
+**Abstract**
+
+A reconfigurable neural network ASIC for detector front-end data compression at the HL-LHC.
+
+[View publication](https://doi.org/10.1109/tns.2021.3087100){:target="_blank"}
 
 **BibTeX**
 

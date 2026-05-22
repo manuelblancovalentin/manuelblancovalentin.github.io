@@ -3,8 +3,15 @@ title: "AI-in-Pixel: Data compression at source"
 collection: publications
 category: manuscripts
 permalink: /publication/1900-01-01-ai-in-pixel-data-compression-at-source
+excerpt: 'AI-in-Pixel: Data compression at source.'
+description: 'AI-in-Pixel: Data compression at source.'
 date: 1900-01-01
 venue: 'Unpublished'
+paperurl: 'https://www.google.com/search?q=AI-in-Pixel%3A+Data+compression+at+source'
+author_rank: 999
+citation_count: 0
+sort_key: '1-999999-80991130-ai-in-pixel-data-compression-at-source'
+tags: [pixel]
 citation: 'Farah Fahim (1900). &quot;AI-in-Pixel: Data compression at source.&quot;'
 ---
 
@@ -14,8 +21,14 @@ citation: 'Farah Fahim (1900). &quot;AI-in-Pixel: Data compression at source.&qu
 | Authors | Farah Fahim |
 | Venue | Unpublished |
 | Year | 1900 |
+| Citations | 0 |
+| Tags | pixel |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=AI-in-Pixel%3A+Data+compression+at+source){:target="_blank"} for full citation.
+**Abstract**
+
+AI-in-Pixel: Data compression at source.
+
+[View publication](https://www.google.com/search?q=AI-in-Pixel%3A+Data+compression+at+source){:target="_blank"}
 
 **BibTeX**
 

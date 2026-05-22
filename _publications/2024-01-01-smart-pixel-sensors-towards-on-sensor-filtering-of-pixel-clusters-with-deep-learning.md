@@ -3,8 +3,15 @@ title: "Smart pixel sensors: towards on-sensor filtering of pixel clusters with 
 collection: publications
 category: manuscripts
 permalink: /publication/2024-01-01-smart-pixel-sensors-towards-on-sensor-filtering-of-pixel-clusters-with-deep-learning
+excerpt: 'Smart pixel sensors: towards on-sensor filtering of pixel clusters with deep learning.'
+description: 'Smart pixel sensors: towards on-sensor filtering of pixel clusters with deep learning.'
 date: 2024-01-01
 venue: 'Machine Learning: Science and Technology'
+paperurl: 'https://doi.org/10.2172/2282589'
+author_rank: 7
+citation_count: 17
+sort_key: '1-999982-79751130-smart-pixel-sensors-towards-on-sensor-filtering-of-pixel-clusters-with-deep-learning'
+tags: [sensors, pixel, deep-learning, machine-learning, doi]
 citation: 'Jieun Yoo, Jennet Dickinson, Morris Swartz, Giuseppe Di Guglielmo, Alice Bean, Douglas Berry, Manuel Blanco Valentin, Karri DiPetrillo, Farah Fahim, Lindsey Gray, others (2024). &quot;Smart pixel sensors: towards on-sensor filtering of pixel clusters with deep learning.&quot; <i>Machine Learning: Science and Technology</i>. 5(3), 035047.'
 ---
 
@@ -14,12 +21,18 @@ citation: 'Jieun Yoo, Jennet Dickinson, Morris Swartz, Giuseppe Di Guglielmo, Al
 | Authors | Jieun Yoo, Jennet Dickinson, Morris Swartz, Giuseppe Di Guglielmo, Alice Bean, Douglas Berry, Manuel Blanco Valentin, Karri DiPetrillo, Farah Fahim, Lindsey Gray, others |
 | Venue | Machine Learning: Science and Technology |
 | Year | 2024 |
+| Citations | 17 |
+| Tags | sensors, pixel, deep-learning, machine-learning, doi |
 | Volume | 5 |
 | Number | 3 |
 | Pages | 035047 |
 | Publisher | IOP Publishing |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Smart+pixel+sensors%3A+towards+on-sensor+filtering+of+pixel+clusters+with+deep+learning){:target="_blank"} for full citation.
+**Abstract**
+
+Smart pixel sensors: towards on-sensor filtering of pixel clusters with deep learning.
+
+[View publication](https://doi.org/10.2172/2282589){:target="_blank"}
 
 **BibTeX**
 

@@ -3,8 +3,15 @@ title: "Smart Pixels: In-pixel AI for on-sensor data filtering"
 collection: publications
 category: conferences
 permalink: /publication/2024-01-01-smart-pixels-in-pixel-ai-for-on-sensor-data-filtering
+excerpt: 'Smart Pixels: In-pixel AI for on-sensor data filtering.'
+description: 'Smart Pixels: In-pixel AI for on-sensor data filtering.'
 date: 2024-01-01
 venue: '2024 IEEE Nuclear Science Symposium (NSS), Medical Imaging Conference (MIC) and Room Temperature Semiconductor Detector Conference (RTSD)'
+paperurl: 'https://doi.org/10.1109/nss/mic/rtsd57108.2024.10655003'
+author_rank: 999
+citation_count: 5
+sort_key: '1-999994-79751130-smart-pixels-in-pixel-ai-for-on-sensor-data-filtering'
+tags: [sensors, pixel, detectors, doi]
 citation: 'Benjamin Parpillon, Chinar Syal, Jieun Yoo, M Swartz, G Di Guglielmo, A Bean, D Berry, M Blanco Valentin, K DiPetrillo, A Badea, others (2024). &quot;Smart Pixels: In-pixel AI for on-sensor data filtering.&quot; <i>2024 IEEE Nuclear Science Symposium (NSS), Medical Imaging Conference (MIC) and Room Temperature Semiconductor Detector Conference (RTSD)</i>. 1&#8211;2.'
 ---
 
@@ -14,10 +21,16 @@ citation: 'Benjamin Parpillon, Chinar Syal, Jieun Yoo, M Swartz, G Di Guglielmo,
 | Authors | Benjamin Parpillon, Chinar Syal, Jieun Yoo, M Swartz, G Di Guglielmo, A Bean, D Berry, M Blanco Valentin, K DiPetrillo, A Badea, others |
 | Venue | 2024 IEEE Nuclear Science Symposium (NSS), Medical Imaging Conference (MIC) and Room Temperature Semiconductor Detector Conference (RTSD) |
 | Year | 2024 |
+| Citations | 5 |
+| Tags | sensors, pixel, detectors, doi |
 | Pages | 1&#8211;2 |
 | Organization | IEEE |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Smart+Pixels%3A+In-pixel+AI+for+on-sensor+data+filtering){:target="_blank"} for full citation.
+**Abstract**
+
+Smart Pixels: In-pixel AI for on-sensor data filtering.
+
+[View publication](https://doi.org/10.1109/nss/mic/rtsd57108.2024.10655003){:target="_blank"}
 
 **BibTeX**
 

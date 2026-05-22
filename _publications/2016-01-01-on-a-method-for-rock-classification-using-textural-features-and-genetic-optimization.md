@@ -3,8 +3,15 @@ title: "On a method for Rock Classification using Textural Features and Genetic 
 collection: publications
 category: manuscripts
 permalink: /publication/2016-01-01-on-a-method-for-rock-classification-using-textural-features-and-genetic-optimization
+excerpt: 'On a method for Rock Classification using Textural Features and Genetic Optimization.'
+description: 'On a method for Rock Classification using Textural Features and Genetic Optimization.'
 date: 2016-01-01
 venue: 'arXiv e-prints'
+paperurl: 'https://doi.org/10.7437/nt2236-7640/2017.01.003'
+author_rank: 1
+citation_count: 8
+sort_key: '0-999991-79831130-on-a-method-for-rock-classification-using-textural-features-and-genetic-optimization'
+tags: [arxiv, doi]
 citation: 'Manuel Blanco Valentin, Clecio Roque De Bom, Marcio Portes de Albuquerque, Marcelo Portes de Albuquerque, Elisangela Faria, Maury Duarte Correia, Rodrigo Surmas (2016). &quot;On a method for Rock Classification using Textural Features and Genetic Optimization.&quot; <i>arXiv e-prints</i>. arXiv&#8211;1607.'
 ---
 
@@ -14,9 +21,15 @@ citation: 'Manuel Blanco Valentin, Clecio Roque De Bom, Marcio Portes de Albuque
 | Authors | Manuel Blanco Valentin, Clecio Roque De Bom, Marcio Portes de Albuquerque, Marcelo Portes de Albuquerque, Elisangela Faria, Maury Duarte Correia, Rodrigo Surmas |
 | Venue | arXiv e-prints |
 | Year | 2016 |
+| Citations | 8 |
+| Tags | arxiv, doi |
 | Pages | arXiv&#8211;1607 |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=On+a+method+for+Rock+Classification+using+Textural+Features+and+Genetic+Optimization){:target="_blank"} for full citation.
+**Abstract**
+
+On a method for Rock Classification using Textural Features and Genetic Optimization.
+
+[View publication](https://doi.org/10.7437/nt2236-7640/2017.01.003){:target="_blank"}
 
 **BibTeX**
 

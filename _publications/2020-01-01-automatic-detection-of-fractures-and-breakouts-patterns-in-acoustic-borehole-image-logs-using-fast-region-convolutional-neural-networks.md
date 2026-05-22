@@ -3,8 +3,15 @@ title: "Automatic detection of fractures and breakouts patterns in acoustic bore
 collection: publications
 category: manuscripts
 permalink: /publication/2020-01-01-automatic-detection-of-fractures-and-breakouts-patterns-in-acoustic-borehole-image-logs-using-fast-region-convolutional-neural-networks
+excerpt: 'Automatic detection of fractures and breakouts patterns in acoustic borehole image logs using fast-region convolutional neural networks.'
+description: 'Automatic detection of fractures and breakouts patterns in acoustic borehole image logs using fast-region convolutional neural networks.'
 date: 2020-01-01
 venue: 'Journal of Petroleum Science and Engineering'
+paperurl: 'https://doi.org/10.1016/j.petrol.2020.107099'
+author_rank: 4
+citation_count: 118
+sort_key: '1-999881-79791130-automatic-detection-of-fractures-and-breakouts-patterns-in-acoustic-borehole-image-logs-using-fast-region-convolutional-neural-networks'
+tags: [neural-networks, imaging, geoscience, doi]
 citation: 'Luciana Olivia Dias, Cl&#233;cio R Bom, Elisangela L Faria, Manuel Blanco Valent&#237;n, Maury Duarte Correia, M&#225;rcio P De Albuquerque, Marcelo P De Albuquerque, Juliana M Coelho (2020). &quot;Automatic detection of fractures and breakouts patterns in acoustic borehole image logs using fast-region convolutional neural networks.&quot; <i>Journal of Petroleum Science and Engineering</i>. 191, 107099.'
 ---
 
@@ -14,11 +21,17 @@ citation: 'Luciana Olivia Dias, Cl&#233;cio R Bom, Elisangela L Faria, Manuel Bl
 | Authors | Luciana Olivia Dias, Cl&#233;cio R Bom, Elisangela L Faria, Manuel Blanco Valent&#237;n, Maury Duarte Correia, M&#225;rcio P De Albuquerque, Marcelo P De Albuquerque, Juliana M Coelho |
 | Venue | Journal of Petroleum Science and Engineering |
 | Year | 2020 |
+| Citations | 118 |
+| Tags | neural-networks, imaging, geoscience, doi |
 | Volume | 191 |
 | Pages | 107099 |
 | Publisher | Elsevier |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Automatic+detection+of+fractures+and+breakouts+patterns+in+acoustic+borehole+image+logs+using+fast-region+convolutional+neural+networks){:target="_blank"} for full citation.
+**Abstract**
+
+Automatic detection of fractures and breakouts patterns in acoustic borehole image logs using fast-region convolutional neural networks.
+
+[View publication](https://doi.org/10.1016/j.petrol.2020.107099){:target="_blank"}
 
 **BibTeX**
 

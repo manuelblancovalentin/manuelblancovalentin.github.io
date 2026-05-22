@@ -3,8 +3,15 @@ title: "Porous medium permeability estimation for well imagery and characterizat
 collection: publications
 category: manuscripts
 permalink: /publication/2018-01-01-porous-medium-permeability-estimation-for-well-imagery-and-characterization-using-complex-resistivity-spectra
+excerpt: 'Porous medium permeability estimation for well imagery and characterization using complex resistivity spectra.'
+description: 'Porous medium permeability estimation for well imagery and characterization using complex resistivity spectra.'
 date: 2018-01-01
 venue: 'NOTAS T&#201;CNICAS'
+paperurl: 'https://doi.org/10.7437/nt2236-7640/2018.01.002'
+author_rank: 1
+citation_count: 0
+sort_key: '0-999999-79811130-porous-medium-permeability-estimation-for-well-imagery-and-characterization-using-complex-resistivity-spectra'
+tags: [imaging, doi]
 citation: 'Manuel Blanco Valentin, M&#225;rcio Portes de Albuquerque, Marcelo Portes de Albuquerque, Elis&#226;ngela L Farias, Cl&#233;cio Roque De Bom, Maury Duarte Correia, Yann Le Gu&#233;vel (2018). &quot;Porous medium permeability estimation for well imagery and characterization using complex resistivity spectra.&quot; <i>NOTAS T&#201;CNICAS</i>. 8(1).'
 ---
 
@@ -14,10 +21,16 @@ citation: 'Manuel Blanco Valentin, M&#225;rcio Portes de Albuquerque, Marcelo Po
 | Authors | Manuel Blanco Valentin, M&#225;rcio Portes de Albuquerque, Marcelo Portes de Albuquerque, Elis&#226;ngela L Farias, Cl&#233;cio Roque De Bom, Maury Duarte Correia, Yann Le Gu&#233;vel |
 | Venue | NOTAS T&#201;CNICAS |
 | Year | 2018 |
+| Citations | 0 |
+| Tags | imaging, doi |
 | Volume | 8 |
 | Number | 1 |
 
-Use [Google Scholar](https://scholar.google.com/scholar?q=Porous+medium+permeability+estimation+for+well+imagery+and+characterization+using+complex+resistivity+spectra){:target="_blank"} for full citation.
+**Abstract**
+
+Porous medium permeability estimation for well imagery and characterization using complex resistivity spectra.
+
+[View publication](https://doi.org/10.7437/nt2236-7640/2018.01.002){:target="_blank"}
 
 **BibTeX**
 
