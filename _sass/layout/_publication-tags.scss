@@ -1,0 +1,117 @@
+// Publication tag badges with category-specific soft colors
+
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  border: none;
+  cursor: default;
+}
+
+// Category-specific colors (soft, pastel tones)
+.tag-badge {
+  // AI/ML - Light purple/lavender
+  &.tag-ai,
+  &.tag-ml,
+  &.tag-machine-learning,
+  &.tag-deep-learning,
+  &.tag-neural-network,
+  &.tag-learning,
+  &.tag-inference {
+    background-color: #e6d5f0;
+    color: #5a3d7a;
+  }
+
+  // Hardware - Light gray
+  &.tag-hardware,
+  &.tag-architecture {
+    background-color: #e8e8e8;
+    color: #4a4a4a;
+  }
+
+  // FPGA - Light blue
+  &.tag-fpga,
+  &.tag-reconfigurable,
+  &.tag-hls {
+    background-color: #d4e6f1;
+    color: #1b4965;
+  }
+
+  // ASIC - Light cyan
+  &.tag-asic,
+  &.tag-chip,
+  &.tag-design {
+    background-color: #d1f0f7;
+    color: #0d5f6f;
+  }
+
+  // Radiation/TMR/Reliability - Light orange
+  &.tag-radiation,
+  &.tag-tmr,
+  &.tag-fault,
+  &.tag-reliability,
+  &.tag-resilience {
+    background-color: #ffe8d1;
+    color: #7a4a1a;
+  }
+
+  // HEP/Physics - Light yellow
+  &.tag-hep,
+  &.tag-physics,
+  &.tag-particle,
+  &.tag-detector,
+  &.tag-accelerator {
+    background-color: #fff4d1;
+    color: #7a6a1a;
+  }
+
+  // Sensor/Pixel - Light green
+  &.tag-sensor,
+  &.tag-pixel,
+  &.tag-imaging {
+    background-color: #d4f1d4;
+    color: #2a5a2a;
+  }
+
+  // Software/Tools - Light pink
+  &.tag-software,
+  &.tag-tools,
+  &.tag-compiler,
+  &.tag-optimization {
+    background-color: #f0d4e8;
+    color: #6a2a4a;
+  }
+
+  // Thesis - Light teal
+  &.tag-thesis,
+  &.tag-phd,
+  &.tag-masters {
+    background-color: #d1e8e8;
+    color: #2a5a5a;
+  }
+
+  // ArXiv/DOI/Other - Light gray-blue
+  &.tag-arxiv,
+  &.tag-doi,
+  &.tag-research {
+    background-color: #e0e8f0;
+    color: #3a4a5a;
+  }
+
+  // Patent - Light red
+  &.tag-patent {
+    background-color: #f0d4d4;
+    color: #6a2a2a;
+  }
+}

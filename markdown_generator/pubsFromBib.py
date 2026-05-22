@@ -197,14 +197,22 @@ def extract_arxiv_id(fields: Dict[str, str]) -> Optional[str]:
         fields.get("journal", ""),
         fields.get("note", ""),
         fields.get("url", ""),
+        fields.get("title", ""),
+        fields.get("abstract", ""),
     ]
     for candidate in candidates:
         text = latex_to_text(candidate)
+        # Try arXiv URL format: arxiv.org/abs/XXXX.XXXXX or arxiv.org/abs/category/XXXXXXX
         match = re.search(r"arxiv\.org/abs/([0-9]+\.[0-9]+|[a-z\-]+/[0-9]+)", text, re.IGNORECASE)
         if match:
             return match.group(1)
+        # Try arXiv: prefix
         match = re.search(r"arxiv:\s*([0-9]+\.[0-9]+|[a-z\-]+/[0-9]+)", text, re.IGNORECASE)
         if match:
+            return match.group(1)
+        # Try standalone arXiv ID
+        match = re.search(r"\b([0-9]+\.[0-9]{4,5})\b", text)
+        if match and "arxiv" in text.lower():
             return match.group(1)
     return None
 
@@ -220,22 +228,35 @@ def extract_doi(fields: Dict[str, str]) -> Optional[str]:
 
 
 def lookup_doi_by_title(title: str, authors: str) -> Optional[str]:
-    query = urlencode({"query.title": title, "rows": 1})
+    """Look up DOI by title via Crossref API."""
+    # First try exact title match
+    query = urlencode({"query.title": title, "rows": 5})
     url = f"https://api.crossref.org/works?{query}"
     try:
         response = fetch_url(url)
         payload = json.loads(response)
         items = payload.get("message", {}).get("items", [])
-        if not items:
-            return None
-        item = items[0]
-        item_title = " ".join(item.get("title", []))
-        if normalize_title_key(item_title) != normalize_title_key(title):
-            return None
-        return item.get("DOI")
+        for item in items:
+            item_title = " ".join(item.get("title", []))
+            # Allow fuzzy match if 80%+ of title words are present
+            if (normalize_title_key(item_title) == normalize_title_key(title) or
+                _fuzzy_title_match(title, item_title)):
+                return item.get("DOI")
+        return None
     except (urllib.error.URLError, json.JSONDecodeError) as exc:
         print(f"WARNING: Crossref DOI lookup failed for '{title}': {exc}")
         return None
+
+
+def _fuzzy_title_match(title1: str, title2: str, threshold: float = 0.8) -> bool:
+    """Check if titles match with fuzzy matching."""
+    words1 = set(normalize_ascii(w).lower() for w in re.split(r"\W+", title1) if len(w) > 2)
+    words2 = set(normalize_ascii(w).lower() for w in re.split(r"\W+", title2) if len(w) > 2)
+    if not words1 or not words2:
+        return False
+    intersection = len(words1 & words2)
+    union = len(words1 | words2)
+    return intersection / union >= threshold
 
 
 def fetch_crossref_abstract(doi: str) -> Optional[str]:
@@ -586,10 +607,19 @@ def main() -> None:
                 if doi not in abstract_cache:
                     abstract_cache[doi] = fetch_crossref_abstract(doi)
                 abstract_text = abstract_cache.get(doi) or ""
+            # If still no abstract, try to find DOI first if we haven't already
+            if not abstract_text and not doi:
+                cache_key = normalize_title_key(title_text)
+                if cache_key not in doi_cache:
+                    doi_cache[cache_key] = lookup_doi_by_title(title_text, authors_text)
+                doi = doi_cache[cache_key]
+                if doi:
+                    if doi not in abstract_cache:
+                        abstract_cache[doi] = fetch_crossref_abstract(doi)
+                    abstract_text = abstract_cache.get(doi) or ""
 
         description_text = abstract_text or note_text
-        if not description_text:
-            description_text = f"{title_text}."
+        # No fallback to title - leave blank if no abstract/note found
         excerpt_text = truncate_text(description_text) if description_text else ""
 
         if not paper_url:
