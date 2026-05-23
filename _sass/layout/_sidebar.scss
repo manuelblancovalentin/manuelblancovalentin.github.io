@@ -18,10 +18,15 @@
   }
 
   @media screen and (min-width: $sidebar-screen-min-width) {
-    height: 100vh;
-    overflow-y: auto;               // Add scrollbar if the sidebar is too long
-    position: fixed;
-    padding-top: $masthead-height;
+    /* Keep the author sidebar usable:
+     * - don't "pin" it forever (fixed), so it scrolls with the page
+     * - but keep it visible under the fixed masthead (sticky)
+     * - if it’s taller than the viewport, allow internal scrolling
+     */
+    position: sticky;
+    top: $masthead-height;
+    max-height: calc(100vh - #{$masthead-height});
+    overflow-y: auto;
   }
 
   @include breakpoint($large) {
