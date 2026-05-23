@@ -1,0 +1,122 @@
+/* TBox component styling - inspired by LaTeX tcolorbox */
+
+.tbox {
+  border-left: 4px solid #999;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.tbox__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tbox__body {
+  color: #555;
+  margin: 0;
+}
+
+.tbox__body p {
+  margin: 0.5rem 0;
+  
+  &:first-child {
+    margin-top: 0;
+  }
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Type-specific styling */
+
+.tbox--summary {
+  border-left-color: #4a90e2;
+  
+  .tbox__title {
+    color: #2c5aa0;
+  }
+}
+
+.tbox--warning {
+  border-left-color: #e2a04a;
+  background-color: #fffaf0;
+  
+  .tbox__title {
+    color: #c27d1a;
+  }
+}
+
+.tbox--todo {
+  border-left-color: #7cb342;
+  background-color: #f1f8e9;
+  
+  .tbox__title {
+    color: #558b2f;
+  }
+}
+
+.tbox--profile {
+  border-left-color: #2196f3;
+  
+  .tbox__title {
+    color: #1565c0;
+  }
+}
+
+/* Dark mode adjustments */
+html[data-theme='dark'] {
+  .tbox {
+    background-color: #2a2a2a;
+    border-left-color: #666;
+    
+    .tbox__title {
+      color: #e0e0e0;
+    }
+    
+    .tbox__body {
+      color: #bbb;
+    }
+  }
+  
+  .tbox--summary {
+    border-left-color: #64b5f6;
+    
+    .tbox__title {
+      color: #90caf9;
+    }
+  }
+  
+  .tbox--warning {
+    background-color: #3a2a1a;
+    border-left-color: #ffb74d;
+    
+    .tbox__title {
+      color: #ffb74d;
+    }
+  }
+  
+  .tbox--todo {
+    background-color: #1b5e20;
+    border-left-color: #9ccc65;
+    
+    .tbox__title {
+      color: #9ccc65;
+    }
+  }
+  
+  .tbox--profile {
+    border-left-color: #64b5f6;
+    
+    .tbox__title {
+      color: #90caf9;
+    }
+  }
+}

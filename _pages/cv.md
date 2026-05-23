@@ -3,23 +3,35 @@ layout: archive
 title: "CV"
 permalink: /cv/
 author_profile: true
-last_modified: 2026-05-22
-tags:
+last_modified: 2026-05-23
+skills:
   - ASIC
-  - Machine Learning
-  - Hardware Design
-  - HLS
-  - Radiation Hardening
-  - TMR
+  - VLSI
+  - RAS
   - FPGA
-  - Quantum Computing
+  - ML accelerators
+  - HLS
+  - Digital Design
+  - Verification
+  - PyTorch
+  - SystemVerilog
+  - Cadence EDA
 redirect_from:
   - /resume
 ---
 
 {% include base_path %}
 
-{% include page-meta.html %}
+{% include cv-header.html name="Manuel Blanco Valentin" title="PhD Computer Engineering — AI specialist" %}
+
+{% capture profile_content %}
+Passionate about designing efficient, fault-tolerant ML hardware systems and neuromorphic computing architectures. Expertise in radiation-hardened ASICs, high-level synthesis, and training-aware hardware accelerators. Enthusiastic about bridging the gap between machine learning and physical implementation challenges.
+{% endcapture %}
+
+{% include tbox.html type="profile" title="Profile" content=profile_content %}
+
+{% include cv-skills.html skills=page.skills %}
+
 
 
 Education

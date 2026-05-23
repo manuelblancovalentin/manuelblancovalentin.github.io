@@ -1,0 +1,12 @@
+{% comment %}
+CV Skills tags - display as badges
+Usage: {% include cv-skills.html skills=page.skills %}
+{% endcomment %}
+
+{% if include.skills %}
+<div class="cv-skills">
+  {% for skill in include.skills %}
+    <span class="cv-skill-tag">{{ skill }}</span>
+  {% endfor %}
+</div>
+{% endif %}

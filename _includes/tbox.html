@@ -1,0 +1,29 @@
+{% comment %}
+TBox component - styled container with title and content
+Usage: {% include tbox.html type="summary" title="Custom Title" %}
+         content goes here
+       {% endinclude %}
+{% endcomment %}
+
+{% assign normalized_type = include.type | downcase | replace: "_", "-" | replace: " ", "-" %}
+{% assign tbox_type = normalized_type | default: "summary" %}
+
+{% if include.title %}
+  {% assign tbox_title = include.title %}
+{% else %}
+  {% case tbox_type %}
+    {% when "warning" %}
+      {% assign tbox_title = "Warning" %}
+    {% when "todo" %}
+      {% assign tbox_title = "TODO" %}
+    {% else %}
+      {% assign tbox_title = "Note" %}
+  {% endcase %}
+{% endif %}
+
+<section class="tbox tbox--{{ tbox_type }}">
+  <div class="tbox__title">{{ tbox_title }}</div>
+  <div class="tbox__body">
+    {{ include.content }}
+  </div>
+</section>

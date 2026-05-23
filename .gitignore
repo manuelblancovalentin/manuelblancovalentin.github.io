@@ -21,3 +21,6 @@ package-lock.json
 
 # Ignore files created by MacOS
 .DS_Store
+
+# This is just a script to serve the site locally, it should not be tracked in git
+serve

@@ -1,3 +1,72 @@
+.cv-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.cv-header__name {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+
+html[data-theme='dark'] .cv-header__name {
+  color: #fff;
+}
+
+.cv-header__title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+html[data-theme='dark'] .cv-header__title {
+  color: #aaa;
+}
+
+.cv-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
+
+.cv-skill-tag {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #e8e8e8;
+    border-color: #bbb;
+    transform: translateY(-2px);
+  }
+}
+
+html[data-theme='dark'] .cv-skill-tag {
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+  border-color: #555;
+
+  &:hover {
+    background-color: #4a4a4a;
+    border-color: #777;
+  }
+}
+
 .cv-logo {
   width: 20px;
   height: 20px;
@@ -12,3 +81,4 @@
 .cv-publications li {
   margin-bottom: 0.35rem;
 }
+
