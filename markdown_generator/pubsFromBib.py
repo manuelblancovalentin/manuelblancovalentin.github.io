@@ -521,6 +521,11 @@ def main() -> None:
     )
     parser.add_argument("--keep-duplicates", action="store_true", help="Keep duplicate titles")
     parser.add_argument("--no-abstracts", action="store_true", help="Skip fetching abstracts from arXiv/DOI")
+    parser.add_argument(
+        "--no-overwrite",
+        action="store_true",
+        help="Do not overwrite existing markdown files; instead create unique -2, -3 filenames",
+    )
     args = parser.parse_args()
 
     if not os.path.exists(args.bib):
@@ -569,7 +574,8 @@ def main() -> None:
 
         slug = slugify(title_text)
         md_filename = f"{pub_date}-{slug}.md"
-        md_filename = unique_path(args.out, md_filename)
+        if args.no_overwrite:
+            md_filename = unique_path(args.out, md_filename)
         html_filename = md_filename.replace(".md", "")
 
         authors_list = list_authors(entry)

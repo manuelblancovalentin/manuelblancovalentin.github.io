@@ -84,6 +84,25 @@
   }
 }
 
+// Subtle wrappers for publication-like lists
+.publication-card,
+.patent-card {
+  padding: 1rem;
+  margin: 0.75rem 0 1rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  background: rgba(0, 0, 0, 0.015);
+}
+
+// Portfolio entries get the same treatment, slightly lighter
+.portfolio-card {
+  padding: 1rem;
+  margin: 0.75rem 0 1rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  background: rgba(0, 0, 0, 0.01);
+}
+
 
 /*
    List view

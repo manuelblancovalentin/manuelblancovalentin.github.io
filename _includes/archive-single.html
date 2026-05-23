@@ -13,7 +13,7 @@
 {% endif %}
 
 <div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="archive__item{% if post.collection == 'publications' %} publication-card{% elsif post.collection == 'patents' %} patent-card{% elsif post.collection == 'portfolio' %} portfolio-card{% endif %}" itemscope itemtype="http://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
         <img src=
@@ -58,6 +58,10 @@
         <span class="tag-badge tag-{{ tag | slugify }}">{{ tag }}</span>
       {% endfor %}
     </div>
+    {% endif %}
+
+    {% if post.collection == 'portfolio' and post.github_url and post.github_url != '' %}
+      <p><a href="{{ post.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     {% endif %}
     
     {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}

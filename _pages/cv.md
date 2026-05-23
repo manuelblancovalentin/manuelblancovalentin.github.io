@@ -11,42 +11,108 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* <img class="cv-logo" src="{{ base_path }}/images/logos/northwestern.svg" alt="Northwestern" /> **Ph.D. in Computer Engineering**, Northwestern University, Evanston, IL (2020–Present)
+  * GPA: 3.9/4.0
+  * Focus: Hardware-software co-designed ML systems, neuromorphic learning, radiation-hardened ASICs
+  * Thesis: In progress
+
+* <img class="cv-logo" src="{{ base_path }}/images/logos/northwestern.svg" alt="Northwestern" /> **M.S. in Computer Engineering**, Northwestern University, Evanston, IL (2020–2022)
+  * GPA: 3.9/4.0
+  * Completed graduate coursework in ASIC design, ML accelerators, and digital systems
+
+* <img class="cv-logo" src="{{ base_path }}/images/logos/cbpf.svg" alt="CBPF" /> **M.S. in Physics & Scientific Instrumentation**, CBPF (Brazilian Center for Physics Research), Rio de Janeiro, Brazil (2015–2018)
+  * GPA: 3.8/4.0
+  * Thesis: "Deep learning methods on geological reservoir borehole log images and applications"
+
+* <img class="cv-logo" src="{{ base_path }}/images/logos/upc.svg" alt="UPC" /> **B.S. in Robotics & Electronics Engineering**, UPC BarcelonaTech (Polytechnical University of Barcelona), Barcelona, Spain (2010–2014)
+  * GPA: 3.3/4.0
+  * Thesis: "Design and implementation of the autonomous navigation control system of a model tugboat"
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* <img class="cv-logo" src="{{ base_path }}/images/logos/amd.svg" alt="AMD" /> **Systems Engineer Junior – RAS** (June 2026–Sep 2026)
+  * AMD, Austin, TX / USA
+  * Developing techniques to evaluate resilience of high-performance processors under delay/fault scenarios
+  * Building ML/data-analysis pipelines to extract trends from reliability datasets
+  * Collaborating with system and hardware architects on mitigation strategies
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* <img class="cv-logo" src="{{ base_path }}/images/logos/northwestern.svg" alt="Northwestern" /> **ASIC + ML Accelerator Researcher** (2020–Present)
+  * Northwestern University / Fermilab / CERN, Evanston, IL
+  * Developing NRCST K: a neuromorphic learning system with local learning rules and metabolic optimization
+  * Led multiple ASIC efforts across GF 22nm FD-SOI, TSMC 28nm, and TSMC 65nm processes (RTL/HLS→P&R→signoff)
+  * Built reusable automation for synthesis, P&R, extraction, and signoff (Cadence Virtuoso/Innovus/Genus/Tempus/Voltus)
+  * Implemented radiation-hardened logic with TMR; developed RTL tools for redundancy injection
+  * Extended ENABOL: training-aware HLS templates and backward-pass wrappers for training-capable hardware
+
+* <img class="cv-logo" src="{{ base_path }}/images/logos/cadence.svg" alt="Cadence" /> **Tempus SSV Graduate Intern – Timing/EDA** (Mar 2023–Sep 2023)
+  * Cadence Design Systems, San Jose, CA / USA
+  * Researched silicon aging/drift impacts in 5nm CMOS and their effects on timing closure
+  * Developed and integrated drift estimation modules into Tempus SSV
+  * Created tooling for drift-aware library characterization and algorithm improvements
+  * Explored ML-assisted prediction techniques for drift-aware analysis
+
+* <img class="cv-logo" src="{{ base_path }}/images/logos/petrobras.svg" alt="Petrobras" /> **Deep Learning Specialist** (Sep 2015–Jun 2020)
+  * Petrobras, Rio de Janeiro, Brazil
+  * Built and deployed CNN/autoencoder/Bayesian deep learning models for industrial imaging and reservoir characterization
+  * Delivered end-to-end pipelines: data ingestion, training/evaluation, uncertainty quantification, production reporting
+  * Developed AI systems for oil & gas reservoir characterization using seismic and borehole image data
+  * Applied Bayesian deep learning for uncertainty quantification and model robustness
+
+* <img class="cv-logo" src="{{ base_path }}/images/logos/cern.svg" alt="CERN" /> **ASIC Design & Verification Lecturer (Invited Instructor)** (Aug 2021–Sep 2021)
+  * CERN INFIERI School, Universidad Autónoma de Madrid, Madrid, Spain
+  * Delivered 5-day lecture/lab series on ASIC design & verification (synthesis, P&R, DRC/LVS, signoff) to international cohort of ~20+ students
+  * Developed academic labs and automated flows covering full design methodology
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+
+**Programming**
+* Python, C/C++, Verilog/VHDL, Tcl/Tk, Bash, Cadence SKILL, SPICE
+
+**ML & AI**
+* PyTorch, TensorFlow/Keras, NumPy/Pandas, quantization-aware workflows
+
+**ASIC / EDA**
+* Cadence: Virtuoso, Innovus, Genus, Tempus, Voltus, Quantus, Calibre DRC/LVS
+* Mentor: Catapult HLS
+* Signoff automation and verification
+
+**HLS / FPGA**
+* Catapult HLS, Vivado/Vitis, RTL/HLS verification & testbench generation
+
+**Operating Systems**
+* Linux (expert), macOS, Windows
+
+**Languages**
+* Spanish (native), Catalan (native), Portuguese, English (fluent), French (basic)
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
+
+{% assign sorted_pubs = site.publications | sort: "sort_key" %}
+<ul class="cv-publications">
+{% for post in sorted_pubs %}
+  <li>
+    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+    — <i>{{ post.venue }}</i> ({{ post.date | default: "1900-01-01" | date: "%Y" }})
+  </li>
+{% endfor %}
+</ul>
+
+Patents
+======
+
+{% assign sorted_patents = site.patents | sort: "date" | reverse %}
+<ul>
+{% for post in sorted_patents %}
+  <li>
+    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+    — <i>{{ post.venue }}</i> ({{ post.date | default: "1900-01-01" | date: "%Y" }})
+  </li>
+{% endfor %}
+</ul>
+
 Talks
 ======
   <ul>{% for post in site.talks reversed %}
@@ -55,10 +121,14 @@ Talks
   
 Teaching
 ======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+
+{% assign sorted_teaching = site.teaching | sort: "date" | reverse %}
+<ul>
+{% for post in sorted_teaching %}
+  <li>
+    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+    — <i>{{ post.venue }}</i> ({{ post.date | default: "1900-01-01" | date: "%Y" }})
+  </li>
+{% endfor %}
+</ul>
   
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
