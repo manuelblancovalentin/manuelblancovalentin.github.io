@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Manuel Blanco Valentin / Site Title"
+title                    : "Manuel Blanco Valentin"
 title_separator          : "-"
 name                     : &name "Manu Blanco Valentin"
 description              : &description "Manuel Blanco Valentin's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -230,7 +230,10 @@ collections:
   patents:
     output: true
     permalink: /:collection/:path/
-  portfolio:
+  hardware:
+    output: true
+    permalink: /:collection/:path/
+  software:
     output: true
     permalink: /:collection/:path/
   talks:
@@ -276,10 +279,19 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _portfolio
+  # _hardware
   - scope:
       path: ""
-      type: portfolio
+      type: hardware
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comment: true
+  # _software
+  - scope:
+      path: ""
+      type: software
     values:
       layout: single
       author_profile: true

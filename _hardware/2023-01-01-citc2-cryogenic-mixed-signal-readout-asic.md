@@ -1,8 +1,8 @@
 ---
 title: "CITC2 - Cryogenic Mixed-Signal Readout ASIC"
-collection: portfolio
-category: portfolio
-permalink: /portfolio/citc2-cryogenic-mixed-signal-readout-asic
+collection: hardware
+category: hardware
+permalink: /hardware/citc2-cryogenic-mixed-signal-readout-asic
 excerpt: 'Digital controller and readout for mixed-signal cryogenic ASIC with 200MHz timing'
 date: 2023-01-01
 year: 2023

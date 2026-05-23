@@ -225,12 +225,12 @@
   </div>
   {% endif %}
   
-  {% if cv.portfolio.size > 0 %}
-  <!-- Portfolio -->
+  {% if cv.hardware.size > 0 %}
+  <!-- Hardware -->
   <div class="cv-section">
-    <h2>Portfolio</h2>
+    <h2>Hardware</h2>
     <ul class="cv-list">
-      {% for item in cv.portfolio %}
+      {% for item in cv.hardware %}
       <li class="cv-item">
         <div class="cv-item-header">
           <div class="cv-item-title">{{ item.name }}</div>
@@ -252,7 +252,35 @@
     </ul>
   </div>
   {% endif %}
-  
+
+  {% if cv.software.size > 0 %}
+  <!-- Software -->
+  <div class="cv-section">
+    <h2>Software</h2>
+    <ul class="cv-list">
+      {% for item in cv.software %}
+      <li class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-title">{{ item.name }}</div>
+          <div class="cv-item-date">{{ item.date | slice: 0, 4 }}</div>
+        </div>
+        <div class="cv-item-content">
+          <div class="cv-item-subtitle">{{ item.category | capitalize }}</div>
+          {% if item.description %}
+          <div class="cv-item-detail">{{ item.description }}</div>
+          {% endif %}
+          {% if item.url %}
+          <div class="cv-item-detail">
+            <a href="{{ item.url }}" target="_blank">View Project</a>
+          </div>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
   {% if cv.languages.size > 0 %}
   <!-- Languages -->
   <div class="cv-section">

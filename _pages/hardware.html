@@ -1,14 +1,14 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
+title: "Hardware"
+permalink: /hardware/
 author_profile: true
 ---
 
 {% include base_path %}
 
 
-{% assign sorted_projects = site.portfolio | sort: "date" | reverse %}
+{% assign sorted_projects = site.hardware | sort: "date" | reverse %}
 {% for post in sorted_projects %}
   {% include archive-single.html %}
 {% endfor %}

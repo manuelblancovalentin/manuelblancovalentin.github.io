@@ -1,31 +1,31 @@
 ---
-title: "RadHard-AI v1 - Radiation-Hard ML Accelerator"
-collection: portfolio
-category: portfolio
-permalink: /portfolio/radhard-ai-v1-anomaly-detection
-excerpt: 'Radiation-tolerant ML accelerator for on-edge anomaly detection in particle physics'
-date: 2022-01-01
+title: "CryoAI v2 - Quantum Control ML Accelerator"
+collection: hardware
+category: hardware
+permalink: /hardware/cryoai-v2-quantum-control
+excerpt: 'Low-power ML accelerator for quantum readout and control in cryogenic environment'
+date: 2022-10-01
 year: 2022
-technology: 'TSMC 28nm'
+technology: 'GF 22nm FD-SOI'
 funding: 'Fermilab, Northwestern University, Columbia University'
 github_url: ''
 status: 'Completed'
 ---
 
-## RadHard-AI v1 - Radiation-Hard ML Accelerator
+## CryoAI v2 - Quantum Control ML Accelerator
 
 | Field | Value |
 | --- | --- |
-| Project | RadHard-AI v1 - Radiation-Hard ML Accelerator |
+| Project | CryoAI v2 - Quantum Control ML Accelerator |
 | Year | 2022 |
-| Technology | TSMC 28nm |
+| Technology | GF 22nm FD-SOI |
 | Type | ASIC |
 | Status | Completed |
 | Funding | Fermilab, Northwestern University, Columbia University |
 
 ### Project Overview
 
-Radiation-hardened hardware for anomaly detection in TSMC 28nm. Features automatic TMR injection for radiation hardening and RISC-V processor integration.
+Development of on-edge ML accelerator for quantum readout/control in GF 22nm. Complete automatic digital design flow with e-FPGA processor integration and cryogenic optimization.
 
 ### Design Flow
 

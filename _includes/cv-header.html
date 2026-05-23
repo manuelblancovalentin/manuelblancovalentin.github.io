@@ -3,6 +3,19 @@ CV header with name and title
 {% endcomment %}
 
 <div class="cv-header">
-  <h1 class="cv-header__name">{{ include.name }}</h1>
+    <h1 class="cv-header__name" style="display: inline;">{{ include.name }}</h1>
+    <h1 class="cv-header__surname" style="display: inline; margin-left: 10px;">{{ include.surname }}</h1>
   <p class="cv-header__title">{{ include.title }}</p>
+  <div class="cv-header__contact">
+    <a href="mailto:{{ site.author.email }}" class="email-icon-btn">
+      <i class="fa fa-envelope"></i>Email
+    </a>
+    <a href="http://linkedin.com/in/{{ site.author.linkedin }}" class="linkedin-icon-btn" target="_blank">
+      <i class="fa fa-linkedin"></i>Profile
+    </a>
+    <a href="http://github.com/{{ site.author.github }}" class="github-icon-btn" target="_blank">
+      <i class="fa fa-github"></i>GitHub
+    </a>
+  </div>
+  
 </div>

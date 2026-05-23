@@ -1,31 +1,31 @@
 ---
-title: "CryoAI v1 - Cryogenic ML Accelerator"
-collection: portfolio
-category: portfolio
-permalink: /portfolio/cryoai-v1-cryogenic-accelerator
-excerpt: 'Ultra-low-power ML accelerator with custom cryogenic memories and RISC-V'
-date: 2021-12-01
-year: 2021
-technology: 'GF 22nm FD-SOI'
+title: "RadHard-AI v1 - Radiation-Hard ML Accelerator"
+collection: hardware
+category: hardware
+permalink: /hardware/radhard-ai-v1-anomaly-detection
+excerpt: 'Radiation-tolerant ML accelerator for on-edge anomaly detection in particle physics'
+date: 2022-01-01
+year: 2022
+technology: 'TSMC 28nm'
 funding: 'Fermilab, Northwestern University, Columbia University'
 github_url: ''
 status: 'Completed'
 ---
 
-## CryoAI v1 - Cryogenic ML Accelerator
+## RadHard-AI v1 - Radiation-Hard ML Accelerator
 
 | Field | Value |
 | --- | --- |
-| Project | CryoAI v1 - Cryogenic ML Accelerator |
-| Year | 2021 |
-| Technology | GF 22nm FD-SOI |
+| Project | RadHard-AI v1 - Radiation-Hard ML Accelerator |
+| Year | 2022 |
+| Technology | TSMC 28nm |
 | Type | ASIC |
 | Status | Completed |
 | Funding | Fermilab, Northwestern University, Columbia University |
 
 ### Project Overview
 
-On-edge ML accelerator optimized for cryogenic (4K) operation in GF 22nm. Features custom 22nm memory compilation, e-MRAM integration, and RISC-V processor.
+Radiation-hardened hardware for anomaly detection in TSMC 28nm. Features automatic TMR injection for radiation hardening and RISC-V processor integration.
 
 ### Design Flow
 

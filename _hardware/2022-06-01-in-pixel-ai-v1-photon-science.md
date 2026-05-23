@@ -1,8 +1,8 @@
 ---
 title: "In-Pixel AI v1 - Photon Science Detector"
-collection: portfolio
-category: portfolio
-permalink: /portfolio/in-pixel-ai-v1-photon-science
+collection: hardware
+category: hardware
+permalink: /hardware/in-pixel-ai-v1-photon-science
 excerpt: 'ML-based compression accelerator for photon science and particle detection'
 date: 2022-06-01
 year: 2022

@@ -1,11 +1,19 @@
 .cv-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.2rem;
   padding-bottom: 1.5rem;
   border-bottom: 2px solid #e0e0e0;
 }
 
 .cv-header__name {
+  font-size: 2.8rem;
+  font-weight: 200;
+  margin: 0 0 0.5rem 0;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+
+.cv-header__surname {
   font-size: 2.8rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
@@ -18,17 +26,29 @@ html[data-theme='dark'] .cv-header__name {
 }
 
 .cv-header__title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 400;
-  color: #666;
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: rgb(203,68,48);
   margin: 0;
-  font-style: italic;
   letter-spacing: 0.5px;
 }
 
 html[data-theme='dark'] .cv-header__title {
   color: #aaa;
 }
+
+
+.cv-header__contact {
+    margin-top: 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 1.0rem;
+}
+
 
 .cv-skills {
   display: flex;
@@ -68,10 +88,10 @@ html[data-theme='dark'] .cv-skill-tag {
 }
 
 .cv-logo {
-  width: 20px;
-  height: 20px;
-  vertical-align: -0.25em;
-  margin-right: 0.4rem;
+  width: auto;
+  height: 50px;
+  vertical-align: -1em;
+  margin-right: 0.1rem;
 }
 
 .cv-publications {
@@ -81,4 +101,8 @@ html[data-theme='dark'] .cv-skill-tag {
 .cv-publications li {
   margin-bottom: 0.35rem;
 }
+
+
+
+
 

@@ -1,8 +1,8 @@
 ---
 title: "ECONAI-CMS v1 - CMS Calorimeter AI Accelerator"
-collection: portfolio
-category: portfolio
-permalink: /portfolio/econai-cms-v1-calorimeter
+collection: hardware
+category: hardware
+permalink: /hardware/econai-cms-v1-calorimeter
 excerpt: 'Reprogrammable AI accelerator for CMS calorimeter with radiation hardening'
 date: 2021-09-01
 year: 2021

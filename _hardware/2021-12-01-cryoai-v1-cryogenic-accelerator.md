@@ -1,23 +1,23 @@
 ---
-title: "CryoAI v2 - Quantum Control ML Accelerator"
-collection: portfolio
-category: portfolio
-permalink: /portfolio/cryoai-v2-quantum-control
-excerpt: 'Low-power ML accelerator for quantum readout and control in cryogenic environment'
-date: 2022-10-01
-year: 2022
+title: "CryoAI v1 - Cryogenic ML Accelerator"
+collection: hardware
+category: hardware
+permalink: /hardware/cryoai-v1-cryogenic-accelerator
+excerpt: 'Ultra-low-power ML accelerator with custom cryogenic memories and RISC-V'
+date: 2021-12-01
+year: 2021
 technology: 'GF 22nm FD-SOI'
 funding: 'Fermilab, Northwestern University, Columbia University'
 github_url: ''
 status: 'Completed'
 ---
 
-## CryoAI v2 - Quantum Control ML Accelerator
+## CryoAI v1 - Cryogenic ML Accelerator
 
 | Field | Value |
 | --- | --- |
-| Project | CryoAI v2 - Quantum Control ML Accelerator |
-| Year | 2022 |
+| Project | CryoAI v1 - Cryogenic ML Accelerator |
+| Year | 2021 |
 | Technology | GF 22nm FD-SOI |
 | Type | ASIC |
 | Status | Completed |
@@ -25,7 +25,7 @@ status: 'Completed'
 
 ### Project Overview
 
-Development of on-edge ML accelerator for quantum readout/control in GF 22nm. Complete automatic digital design flow with e-FPGA processor integration and cryogenic optimization.
+On-edge ML accelerator optimized for cryogenic (4K) operation in GF 22nm. Features custom 22nm memory compilation, e-MRAM integration, and RISC-V processor.
 
 ### Design Flow
 

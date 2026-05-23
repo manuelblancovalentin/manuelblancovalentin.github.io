@@ -363,3 +363,40 @@ b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a,
       display: none;
     }
   }
+
+
+.linkedin-icon-btn {
+  background-color: #0A66C2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px; /* Rounded pill shape */
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.email-icon-btn {
+  background-color: #D44638;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px; /* Rounded pill shape */
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.github-icon-btn {
+  background-color: #333;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px; /* Rounded pill shape */
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}

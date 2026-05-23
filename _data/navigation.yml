@@ -14,8 +14,11 @@ main:
   - title: "Publications"
     url: /publications/
   
-  - title: "Portfolio"
-    url: /portfolio/
+  - title: "Hardware"
+    url: /hardware/
+
+  - title: "Software"
+    url: /software/
 
   - title: "Patents"
     url: /patents/
