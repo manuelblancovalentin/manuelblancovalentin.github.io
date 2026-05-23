@@ -1,3 +1,3 @@
 # Welcome! 
 
-Go to my live page [HERE](www.blancovalentin.me)
+Go to my live page [HERE](https://www.blancovalentin.me)
