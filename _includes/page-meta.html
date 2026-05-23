@@ -1,0 +1,23 @@
+{% if page.last_modified or page.tags %}
+<div class="page-meta">
+  {% if page.last_modified %}
+    <div class="page-meta__row">
+      <span class="page-meta__label">Last modified:</span>
+      <time dateTime="{{ page.last_modified | date: '%Y-%m-%d' }}" class="page-meta__date">
+        {{ page.last_modified | date: "%B %d, %Y" }}
+      </time>
+    </div>
+  {% endif %}
+
+  {% if page.tags %}
+    <div class="page-meta__row">
+      <span class="page-meta__label">Tags:</span>
+      <div class="publication-tags">
+        {% for tag in page.tags %}
+          <span class="tag-badge tag-{{ tag | slugify }}">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endif %}

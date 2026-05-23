@@ -3,11 +3,24 @@ layout: archive
 title: "CV"
 permalink: /cv/
 author_profile: true
+last_modified: 2026-05-22
+tags:
+  - ASIC
+  - Machine Learning
+  - Hardware Design
+  - HLS
+  - Radiation Hardening
+  - TMR
+  - FPGA
+  - Quantum Computing
 redirect_from:
   - /resume
 ---
 
 {% include base_path %}
+
+{% include page-meta.html %}
+
 
 Education
 ======

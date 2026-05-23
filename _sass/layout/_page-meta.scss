@@ -1,0 +1,41 @@
+/* ==========================================================================
+   PAGE META (Last modified, tags, etc.)
+   ========================================================================== */
+
+.page-meta {
+  margin: 0.75rem 0 1.5rem;
+  padding: 0.75rem;
+  border-left: 3px solid var(--global-border-color);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 0.25rem;
+  font-size: $type-size-6;
+}
+
+.page-meta__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page-meta__label {
+  font-weight: 600;
+  color: var(--global-text-color);
+  white-space: nowrap;
+}
+
+.page-meta__date {
+  color: var(--global-text-color-light);
+  font-style: italic;
+}
+
+/* Tags container within page-meta */
+.page-meta .publication-tags {
+  margin: 0;
+  gap: 0.375rem;
+}
