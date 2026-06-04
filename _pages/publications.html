@@ -96,7 +96,7 @@ author_profile: true
                   {% assign filter_label = filter_short_label %}
                   {% assign filter_short_label = nil %}
                 {% elsif tag_def.group == 'type' and filter_short_label %}
-                  {% assign filter_label = filter_short_label %}
+                  {% assign filter_label = filter_short_label | upcase %}
                   {% assign filter_short_label = nil %}
                 {% endif %}
                 {% assign tag_family = tag_def.color_family | default: tag_def.group | default: 'other' %}
@@ -104,7 +104,13 @@ author_profile: true
                   {% if tag_def.icon %}
                     {% include lucide-icon.html name=tag_def.icon class="tag-badge__icon" size=15 %}
                   {% endif %}
-                  <span>{{ filter_label }}{% if filter_short_label and filter_short_label != filter_label %} ({{ filter_short_label }}){% endif %}</span>
+                  <span>
+                    {% if tag_def.group == 'type' %}
+                      {{ filter_label | upcase }}
+                    {% else %}
+                      {{ filter_label }}{% if filter_short_label and filter_short_label != filter_label %} ({{ filter_short_label }}){% endif %}
+                    {% endif %}
+                  </span>
                 </button>
               {% endif %}
             {% endfor %}
