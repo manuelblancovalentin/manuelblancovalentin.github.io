@@ -5,9 +5,15 @@
   <div class="cv-education-card__main">
     <div class="cv-education-card__institution-row">
       {% if include.logo %}
-        <span class="cv-education-card__logo-wrap">
-          <img class="cv-education-card__logo" src="{{ include.logo }}" alt="{{ logo_alt }}">
-        </span>
+        {% if include.logo_url %}
+          <a class="cv-education-card__logo-wrap cv-education-card__logo-link" href="{{ include.logo_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ logo_alt }}">
+            <img class="cv-education-card__logo" src="{{ include.logo }}" alt="{{ logo_alt }}">
+          </a>
+        {% else %}
+          <span class="cv-education-card__logo-wrap">
+            <img class="cv-education-card__logo" src="{{ include.logo }}" alt="{{ logo_alt }}">
+          </span>
+        {% endif %}
       {% endif %}
       <div>
         {% if include.institution %}
