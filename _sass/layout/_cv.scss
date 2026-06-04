@@ -176,7 +176,7 @@ html[data-theme='dark'] .cv-section-heading::after {
 
   display: grid;
   grid-template-columns: minmax(0, 1fr) max-content;
-  gap: 0.95rem;
+  gap: 0.55rem;
   margin: 1.2rem 0 1.4rem;
   padding: 1.2rem 1.35rem;
   background: #fff;
@@ -285,7 +285,7 @@ html[data-theme='dark'] .cv-section-heading::after {
   flex-direction: column;
   justify-self: end;
   gap: 0.65rem;
-  min-width: 9.5rem;
+  min-width: 8.4rem;
   padding-top: 0.15rem;
   color: #555;
   font-size: 0.88rem;
@@ -374,7 +374,7 @@ html[data-theme='dark'] .cv-education-card__meta {
 
   display: grid;
   grid-template-columns: minmax(0, 1fr) max-content;
-  gap: 0.95rem;
+  gap: 0.55rem;
   margin: 1.2rem 0 1.4rem;
   padding: 1.2rem 1.35rem;
   background: #fff;
@@ -480,7 +480,7 @@ html[data-theme='dark'] .cv-education-card__meta {
   flex-direction: column;
   justify-self: end;
   gap: 0.65rem;
-  min-width: 9.5rem;
+  min-width: 8.4rem;
   padding-top: 0.15rem;
   color: #555;
   font-size: 0.88rem;
