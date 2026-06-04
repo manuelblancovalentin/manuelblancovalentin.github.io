@@ -3,26 +3,32 @@
 {% assign accent = category.accent | default: '#555' %}
 
 <article class="cv-skill-card" style="--cv-skill-accent: {{ accent }};">
-  <div class="cv-skill-card__header">
-    {% if category.icon %}
-      <span class="cv-skill-card__icon" aria-hidden="true">
-        {% case category.icon %}
-          {% when 'code' %}&lt;/&gt;
-          {% when 'brain' %}ML
-          {% when 'microchip' %}IC
-          {% when 'fpga' %}FPGA
-          {% when 'terminal' %}&gt;_
-          {% when 'language' %}Aa
-          {% else %}•
-        {% endcase %}
-      </span>
-    {% endif %}
-    <h3>{{ category.title }}</h3>
-  </div>
+  {% unless category.hide_header %}
+    <div class="cv-skill-card__header">
+      {% if category.icon %}
+        <span class="cv-skill-card__icon" aria-hidden="true">
+          {% case category.icon %}
+            {% when 'code' %}&lt;/&gt;
+            {% when 'brain' %}ML
+            {% when 'microchip' %}IC
+            {% when 'fpga' %}FPGA
+            {% when 'terminal' %}&gt;_
+            {% when 'language' %}Aa
+            {% else %}•
+          {% endcase %}
+        </span>
+      {% endif %}
+      <h3>{{ category.title }}</h3>
+    </div>
+  {% endunless %}
 
   <div class="cv-skill-card__chips">
     {% for skill in category.skills %}
-      <span class="cv-skill-chip">
+      {% if skill.url %}
+        <a class="cv-skill-chip cv-skill-chip--link" href="{{ skill.url }}" target="_blank" rel="noopener noreferrer">
+      {% else %}
+        <span class="cv-skill-chip">
+      {% endif %}
         {% if skill.logo %}
           {% assign skill_logo = skill.logo %}
           {% if skill_logo contains '://' %}
@@ -52,7 +58,11 @@
         {% if skill.level %}
           <span class="cv-skill-chip__level">{{ skill.level }}</span>
         {% endif %}
-      </span>
+      {% if skill.url %}
+        </a>
+      {% else %}
+        </span>
+      {% endif %}
     {% endfor %}
   </div>
 </article>

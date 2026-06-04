@@ -5,18 +5,25 @@ skill_categories:
     skills:
       - label: Python
         logo: /images/skills/python.svg
+        url: https://www.python.org
       - label: C/C++
         logo: /images/skills/cpp.svg
+        url: https://isocpp.org
       - label: Verilog/VHDL
         logo: /images/skills/verilog.svg
+        url: https://www.accellera.org/activities/working-groups/verilog-ams
       - label: Tcl/Tk
         logo: /images/skills/terminal.svg
+        url: https://www.tcl-lang.org
       - label: Bash
         logo: /images/skills/terminal.svg
+        url: https://www.gnu.org/software/bash/
       - label: Cadence SKILL
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com
       - label: SPICE
         icon: waveform
+        url: https://bwrcs.eecs.berkeley.edu/Classes/IcBook/SPICE/
 
   - title: ML & AI
     icon: brain
@@ -24,12 +31,16 @@ skill_categories:
     skills:
       - label: PyTorch
         logo: /images/skills/ml.svg
+        url: https://pytorch.org
       - label: TensorFlow/Keras
         logo: /images/skills/ml.svg
+        url: https://www.tensorflow.org
       - label: NumPy/Pandas
         logo: /images/skills/python.svg
+        url: https://numpy.org
       - label: Quantization-aware workflows
         logo: /images/skills/ml.svg
+        url: https://www.tensorflow.org/model_optimization/guide/quantization/training
 
   - title: ASIC / EDA
     icon: microchip
@@ -37,22 +48,30 @@ skill_categories:
     skills:
       - label: Virtuoso
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design/virtuoso-studio.html
       - label: Innovus
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-floorplanning/innovus-implementation-system.html
       - label: Genus
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/synthesis/genus-synthesis-solution.html
       - label: Tempus
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/silicon-signoff/tempus-timing-signoff-solution.html
       - label: Voltus
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/silicon-signoff/voltus-ic-power-integrity-solution.html
       - label: Quantus
         logo: /images/logos/cadence.svg
+        url: https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/silicon-signoff/quantus-extraction-solution.html
       - label: Calibre DRC/LVS
         logo: /images/skills/microchip.svg
+        url: https://eda.sw.siemens.com/en-US/ic/calibre-design/
       - label: Signoff automation
         icon: check
       - label: Verification
         logo: /images/skills/verilog.svg
+        url: https://www.accellera.org/activities/working-groups/systemverilog
 
   - title: HLS / FPGA
     icon: fpga
@@ -60,8 +79,10 @@ skill_categories:
     skills:
       - label: Catapult HLS
         logo: /images/skills/fpga.svg
+        url: https://eda.sw.siemens.com/en-US/ic/catapult-high-level-synthesis/
       - label: Vivado/Vitis
         logo: /images/skills/fpga.svg
+        url: https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vitis.html
       - label: RTL/HLS verification
         logo: /images/skills/verilog.svg
       - label: Testbench generation
@@ -73,14 +94,18 @@ skill_categories:
     skills:
       - label: Linux
         logo: /images/skills/linux.svg
+        url: https://www.kernel.org
         level: expert
       - label: macOS
         icon: desktop
+        url: https://www.apple.com/macos/
       - label: Windows
         icon: desktop
+        url: https://www.microsoft.com/windows
 
 language_categories:
   - title: Languages
+    hide_header: true
     icon: language
     accent: "#2e8b57"
     skills:

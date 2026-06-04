@@ -578,6 +578,22 @@ html[data-theme='dark'] .cv-work-card__meta {
   line-height: 1.2;
 }
 
+a.cv-skill-chip {
+  text-decoration: none;
+}
+
+.cv-skill-chip--link {
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+
+.cv-skill-chip--link:hover,
+.cv-skill-chip--link:focus {
+  color: #303030;
+  border-color: color-mix(in srgb, var(--cv-skill-accent) 42%, rgba(60, 60, 60, 0.14));
+  box-shadow: 0 4px 12px rgba(20, 20, 20, 0.08);
+  transform: translateY(-1px);
+}
+
 .cv-skill-chip__logo,
 .cv-skill-chip__flag {
   display: inline-block;
@@ -635,6 +651,13 @@ html[data-theme='dark'] .cv-skill-card__icon {
 html[data-theme='dark'] .cv-skill-chip {
   background: #2b2b2b;
   border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme='dark'] .cv-skill-chip--link:hover,
+html[data-theme='dark'] .cv-skill-chip--link:focus {
+  color: #f1f1f1;
+  border-color: color-mix(in srgb, var(--cv-skill-accent) 55%, rgba(255, 255, 255, 0.12));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.26);
 }
 
 html[data-theme='dark'] .cv-skill-chip__level {
