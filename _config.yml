@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
+site_theme               : "air" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
 title                    : "Manuel Blanco Valentin"
 title_separator          : "-"
 name                     : &name "Manu Blanco Valentin"
@@ -274,6 +274,15 @@ defaults:
   - scope:
       path: ""
       type: publications
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  # _patents
+  - scope:
+      path: ""
+      type: patents
     values:
       layout: single
       author_profile: true

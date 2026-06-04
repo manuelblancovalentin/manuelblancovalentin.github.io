@@ -4,8 +4,19 @@ collection: hardware
 category: hardware
 permalink: /hardware/2023-01-01-cms28v2-ai-in-pixel-readout-chip
 excerpt: "Full digital logic and layout of a radiation-hard pixel ASIC in 28nm CMOS with integrated neural network classifiers<br/><img src='/images/500x300.png'>"
+subtitle: 'Radiation-hard in-pixel AI filtering for the HL-LHC upgrade'
 date: 2023-01-01
 technologies: [ASIC, 28nm CMOS, AI Accelerator, HLS, High-Energy Physics]
+card_badges: [TSMC, 28nm, Radhard, TMR, AI accelerator, HEP]
+taxonomy:
+  discipline: [hep]
+  topic: [hardware, asic, in-pixel-ai, ai-accelerator, data-compression, radhard, tmr]
+  technology: [tsmc28, hls4ml]
+  foundry: [tsmc]
+  process-node: [28nm]
+  software: [hls4ml]
+  organization: [cern, fermilab, northwestern, columbia]
+  contribution: [architecture, rtl, asic-design, verification, tapeout]
 funding: 'CERN, Fermilab, Northwestern University, Columbia University'
 github_url: ''
 description: |
@@ -19,6 +30,24 @@ description: |
   - Production-ready design for fabrication
 
 status: 'Completed / Taped Out'
+card_image: '/images/hardware/cms28/second_ROIC_chip.png'
+card_image_alt: '...'
+gallery_images:
+  - image: '/images/hardware/cms28/second_ROIC_chip.png'
+    alt: '...'
+    caption: '...'
+  - image: '/images/hardware/cms28/actual_chip.png'
+    alt: '...'
+    caption: '...'
+  - image: '/images/hardware/cms28/first_ROIC_chip.png'
+    alt: '...'
+    caption: '...'
+  - image: '/images/hardware/cms28/schematic_ml.png'
+    alt: '...'
+    caption: '...'
+  - image: '/images/hardware/cms28/layout.png'
+    alt: '...'
+    caption: '...'
 ---
 
 ## CMS28v2: In-Pixel AI Readout Chip

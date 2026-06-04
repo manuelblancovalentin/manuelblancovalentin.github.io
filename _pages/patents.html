@@ -7,7 +7,9 @@ author_profile: true
 
 {% include base_path %}
 
-{% assign sorted_patents = site.patents | sort: "date" | reverse %}
-{% for post in sorted_patents %}
-  {% include archive-single.html %}
-{% endfor %}
+<div class="patent-card-list">
+  {% assign sorted_patents = site.patents | sort: "date" | reverse %}
+  {% for post in sorted_patents %}
+    {% include display-card.html item=post type="patents" label="Patent" %}
+  {% endfor %}
+</div>

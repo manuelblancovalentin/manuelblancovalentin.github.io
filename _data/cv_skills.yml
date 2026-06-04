@@ -1,0 +1,101 @@
+skill_categories:
+  - title: Programming
+    icon: code
+    accent: "#3776ab"
+    skills:
+      - label: Python
+        logo: /images/skills/python.svg
+      - label: C/C++
+        logo: /images/skills/cpp.svg
+      - label: Verilog/VHDL
+        logo: /images/skills/verilog.svg
+      - label: Tcl/Tk
+        logo: /images/skills/terminal.svg
+      - label: Bash
+        logo: /images/skills/terminal.svg
+      - label: Cadence SKILL
+        logo: /images/logos/cadence.svg
+      - label: SPICE
+        icon: waveform
+
+  - title: ML & AI
+    icon: brain
+    accent: "#7b61ff"
+    skills:
+      - label: PyTorch
+        logo: /images/skills/ml.svg
+      - label: TensorFlow/Keras
+        logo: /images/skills/ml.svg
+      - label: NumPy/Pandas
+        logo: /images/skills/python.svg
+      - label: Quantization-aware workflows
+        logo: /images/skills/ml.svg
+
+  - title: ASIC / EDA
+    icon: microchip
+    accent: "#8a5a44"
+    skills:
+      - label: Virtuoso
+        logo: /images/logos/cadence.svg
+      - label: Innovus
+        logo: /images/logos/cadence.svg
+      - label: Genus
+        logo: /images/logos/cadence.svg
+      - label: Tempus
+        logo: /images/logos/cadence.svg
+      - label: Voltus
+        logo: /images/logos/cadence.svg
+      - label: Quantus
+        logo: /images/logos/cadence.svg
+      - label: Calibre DRC/LVS
+        logo: /images/skills/microchip.svg
+      - label: Signoff automation
+        icon: check
+      - label: Verification
+        logo: /images/skills/verilog.svg
+
+  - title: HLS / FPGA
+    icon: fpga
+    accent: "#0072ce"
+    skills:
+      - label: Catapult HLS
+        logo: /images/skills/fpga.svg
+      - label: Vivado/Vitis
+        logo: /images/skills/fpga.svg
+      - label: RTL/HLS verification
+        logo: /images/skills/verilog.svg
+      - label: Testbench generation
+        icon: check
+
+  - title: Operating Systems
+    icon: terminal
+    accent: "#263238"
+    skills:
+      - label: Linux
+        logo: /images/skills/linux.svg
+        level: expert
+      - label: macOS
+        icon: desktop
+      - label: Windows
+        icon: desktop
+
+language_categories:
+  - title: Languages
+    icon: language
+    accent: "#2e8b57"
+    skills:
+      - label: Spanish
+        flag: /images/flags/spain.svg
+        level: native
+      - label: Catalan
+        flag: /images/flags/catalonia.svg
+        level: native
+      - label: Portuguese
+        flag: /images/flags/brazil.svg
+        level: native-like
+      - label: English
+        flag: /images/flags/us.svg
+        level: fluent
+      - label: French
+        flag: /images/flags/france.svg
+        level: basic

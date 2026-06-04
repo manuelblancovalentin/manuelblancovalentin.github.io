@@ -1,0 +1,61 @@
+{% assign accent = include.accent | default: '#4e2a84' %}
+{% assign logo_alt = include.logo_alt | default: include.institution %}
+
+<article class="cv-education-card" style="--cv-education-accent: {{ accent }};">
+  <div class="cv-education-card__main">
+    <div class="cv-education-card__institution-row">
+      {% if include.logo %}
+        <span class="cv-education-card__logo-wrap">
+          <img class="cv-education-card__logo" src="{{ include.logo }}" alt="{{ logo_alt }}">
+        </span>
+      {% endif %}
+      <div>
+        {% if include.institution %}
+          <div class="cv-education-card__institution">{{ include.institution }}</div>
+        {% endif %}
+        {% if include.department %}
+          <div class="cv-education-card__department">{{ include.department }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if include.title %}
+      <h3 class="cv-education-card__title">{{ include.title }}</h3>
+    {% endif %}
+
+    {% if include.gpa %}
+      <div class="cv-education-card__gpa">
+        <span class="cv-education-card__label">GPA</span>
+        <span>{{ include.gpa }}</span>
+      </div>
+    {% endif %}
+
+    {% if include.description %}
+      <div class="cv-education-card__description">
+        {{ include.description | markdownify }}
+      </div>
+    {% endif %}
+  </div>
+
+  <aside class="cv-education-card__meta" aria-label="Education details">
+    {% if include.location %}
+      {% if include.location_url %}
+        <a class="cv-education-card__meta-item cv-education-card__meta-link" href="{{ include.location_url }}" target="_blank" rel="noopener">
+          <span class="cv-education-card__meta-emoji" aria-hidden="true">📍</span>
+          <span>{{ include.location }}</span>
+        </a>
+      {% else %}
+        <div class="cv-education-card__meta-item">
+          <span class="cv-education-card__meta-emoji" aria-hidden="true">📍</span>
+          <span>{{ include.location }}</span>
+        </div>
+      {% endif %}
+    {% endif %}
+    {% if include.timeline %}
+      <div class="cv-education-card__meta-item">
+        <i class="fa fa-calendar-alt" aria-hidden="true"></i>
+        <span>{{ include.timeline }}</span>
+      </div>
+    {% endif %}
+  </aside>
+</article>

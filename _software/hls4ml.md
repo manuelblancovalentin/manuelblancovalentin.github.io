@@ -3,13 +3,25 @@ title: "hls4ml"
 collection: software
 category: software
 permalink: /software/hls4ml
-excerpt: "blabla<br/><img src='/images/hls4ml_logo.png' width='300px' height='auto'>"
+excerpt: "Machine-learning inference for FPGA and ASIC implementation flows"
+subtitle: "High-level synthesis for machine-learning inference"
 date: 2023-01-01
 technologies: [Python, Machine Learning, Data Analysis]
+card_badges: [Python, Machine Learning, HLS]
 funding: 'Fermilab, Northwestern University'
-github_url: ''
-description: 
+github_url: 'https://github.com/manuelblancovalentin/hls4ml'
+card_image: '/images/hls4ml_logo.png'
+card_image_alt: 'hls4ml logo'
+description: 'Machine-learning inference for FPGA and ASIC implementation flows.'
 status: 'Completed'
+taxonomy:
+  discipline: [computer-engineering, computer-science, hep]
+  topic: [machine-learning, hls, fpga, asic]
+  technology: [python, c-plus-plus]
+  software: [hls4ml]
+  organization: [fermilab, northwestern]
+  contribution: [lead-development]
+  status: [finalized]
 ---
 
 ## hls4ml: 

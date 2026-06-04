@@ -1,0 +1,698 @@
+# Global tag taxonomy used by display cards and filter controls.
+#
+# Future front matter can use grouped taxonomy:
+#
+# taxonomy:
+#   type: [paper]
+#   discipline: [hep, computer-engineering]
+#   topic: [hardware, asic, neural-networks]
+#   technology: [tsmc28, fdsoi]
+#   venue: [tns]
+#
+# Existing flat `tags: [...]` still work. For venue tags, `match:` lets the
+# site infer a tag from the publication `venue:` field without editing every
+# publication immediately.
+
+groups:
+  - slug: type
+    label: Type
+  - slug: discipline
+    label: Discipline
+  - slug: domain
+    label: Domain
+  - slug: topic
+    label: Topic
+  - slug: technology
+    label: Technology
+  - slug: foundry
+    label: Foundry
+  - slug: process-node
+    label: Process Node
+  - slug: software
+    label: Software
+  - slug: venue
+    label: Venue / Publisher
+  - slug: organization
+    label: Organization / Funding
+  - slug: contribution
+    label: Contribution
+  - slug: other
+    label: Other
+  - slug: status
+    label: Status
+  - slug: year
+    label: Year
+
+tags:
+  year-2014:
+    label: "2014"
+    short_label: "2014"
+    group: year
+    color_family: year
+  year-2016:
+    label: "2016"
+    short_label: "2016"
+    group: year
+    color_family: year
+  year-2017:
+    label: "2017"
+    short_label: "2017"
+    group: year
+    color_family: year
+  year-2018:
+    label: "2018"
+    short_label: "2018"
+    group: year
+    color_family: year
+  year-2019:
+    label: "2019"
+    short_label: "2019"
+    group: year
+    color_family: year
+  year-2020:
+    label: "2020"
+    short_label: "2020"
+    group: year
+    color_family: year
+  year-2021:
+    label: "2021"
+    short_label: "2021"
+    group: year
+    color_family: year
+  year-2022:
+    label: "2022"
+    short_label: "2022"
+    group: year
+    color_family: year
+  year-2023:
+    label: "2023"
+    short_label: "2023"
+    group: year
+    color_family: year
+  year-2024:
+    label: "2024"
+    short_label: "2024"
+    group: year
+    color_family: year
+  year-2025:
+    label: "2025"
+    short_label: "2025"
+    group: year
+    color_family: year
+  year-2026:
+    label: "2026"
+    short_label: "2026"
+    group: year
+    color_family: year
+
+  paper:
+    label: Paper
+    short_label: Paper
+    group: type
+    color_family: type
+    link_label: Paper
+  preprint:
+    label: Preprint
+    short_label: Preprint
+    group: type
+    color_family: type
+    link_label: Preprint
+  talk:
+    label: Talk
+    short_label: Talk
+    group: type
+    color_family: type
+    link_label: Talk
+  slides:
+    label: Slides
+    short_label: Slides
+    group: type
+    color_family: type
+    link_label: Slides
+  poster:
+    label: Poster
+    short_label: Poster
+    group: type
+    color_family: type
+    link_label: Poster
+  thesis:
+    label: Thesis
+    short_label: Thesis
+    group: type
+    color_family: type
+    link_label: Thesis
+
+  computer-engineering:
+    label: Computer Engineering
+    short_label: CE
+    group: discipline
+    color_family: engineering
+  computer-science:
+    label: Computer Science
+    short_label: CS
+    group: discipline
+    color_family: engineering
+  astronomy:
+    label: Astronomy
+    short_label: Astronomy
+    group: discipline
+    color_family: astronomy
+  astrophysics:
+    label: Astrophysics
+    short_label: Astro
+    group: discipline
+    color_family: astronomy
+  geoscience:
+    label: Geoscience
+    short_label: Geo
+    group: discipline
+    color_family: earth
+  petrophysics:
+    label: Petrophysics
+    short_label: Petro
+    group: discipline
+    color_family: earth
+  hep:
+    label: High-Energy Physics
+    short_label: HEP
+    group: discipline
+    color_family: physics
+  quantum:
+    label: Quantum
+    short_label: Quantum
+    group: discipline
+    color_family: quantum
+  neuroscience:
+    label: Neuroscience
+    short_label: Neuro
+    group: discipline
+    color_family: quantum
+  photon-science:
+    label: Photon Science
+    short_label: Photon
+    group: domain
+    color_family: sensors
+  control:
+    label: Control
+    short_label: Control
+    group: domain
+    color_family: quantum
+  cryogenics:
+    label: Cryogenics
+    short_label: Cryo
+    group: domain
+    color_family: quantum
+
+  hardware:
+    label: Hardware
+    short_label: HW
+    group: topic
+    color_family: hardware
+  asic:
+    label: ASIC
+    short_label: ASIC
+    group: topic
+    color_family: hardware
+  fpga:
+    label: FPGA
+    short_label: FPGA
+    group: topic
+    color_family: hardware
+  hls:
+    label: High-Level Synthesis
+    short_label: HLS
+    group: topic
+    color_family: hardware
+  reconfigurable:
+    label: Reconfigurable Computing
+    short_label: Reconf.
+    group: topic
+    color_family: hardware
+  neural-networks:
+    label: Neural Networks
+    short_label: NN
+    group: topic
+    color_family: ml
+  machine-learning:
+    label: Machine Learning
+    short_label: ML
+    group: topic
+    color_family: ml
+  deep-learning:
+    label: Deep Learning
+    short_label: DL
+    group: topic
+    color_family: ml
+  ai:
+    label: Artificial Intelligence
+    short_label: AI
+    group: topic
+    color_family: ml
+  ai-accelerator:
+    label: AI Accelerator
+    short_label: AI Accel.
+    group: topic
+    color_family: ml
+  in-pixel-ai:
+    label: In-Pixel AI
+    short_label: In-Pixel AI
+    group: topic
+    color_family: ml
+  data-compression:
+    label: Data Compression
+    short_label: Compression
+    group: topic
+    color_family: readout
+  anomaly-detection:
+    label: Anomaly Detection
+    short_label: Anomaly
+    group: topic
+    color_family: ml
+  readout:
+    label: Readout
+    short_label: Readout
+    group: topic
+    color_family: readout
+  mixed-signal:
+    label: Mixed Signal
+    short_label: Mixed Signal
+    group: topic
+    color_family: readout
+  radiation:
+    label: Radiation
+    short_label: Rad.
+    group: topic
+    color_family: radiation
+  hard-radiation:
+    label: Hard Radiation
+    short_label: Hard Rad.
+    group: topic
+    color_family: radiation
+  radhard:
+    label: Radiation Hardness
+    short_label: RadHard
+    group: topic
+    color_family: radiation
+  tmr:
+    label: Triple Modular Redundancy
+    short_label: TMR
+    group: topic
+    color_family: radiation
+  detectors:
+    label: Detectors
+    short_label: Detectors
+    group: topic
+    color_family: physics
+  sensors:
+    label: Sensors
+    short_label: Sensors
+    group: topic
+    color_family: sensors
+  pixel:
+    label: Pixel Detectors
+    short_label: Pixel
+    group: topic
+    color_family: sensors
+  smart-pixels:
+    label: Smart Pixels
+    short_label: Smart Pix.
+    group: topic
+    color_family: sensors
+  imaging:
+    label: Imaging
+    short_label: Imaging
+    group: topic
+    color_family: sensors
+  computer-vision:
+    label: Computer Vision
+    short_label: CV
+    group: topic
+    color_family: ml
+  cryogenic:
+    label: Cryogenic
+    short_label: Cryo
+    group: topic
+    color_family: quantum
+  adaptive-training:
+    label: Adaptive Training
+    short_label: Adaptive Training
+    group: topic
+    color_family: ml
+  experiment-tooling:
+    label: Experiment Tooling
+    short_label: Experiments
+    group: topic
+    color_family: software
+  edge-ai:
+    label: Edge AI
+    short_label: Edge AI
+    group: topic
+    color_family: ml
+  neuromorphic:
+    label: Neuromorphic
+    short_label: Neuromorphic
+    group: topic
+    color_family: quantum
+  hardware-aware-training:
+    label: Hardware-Aware Training
+    short_label: HW-Aware Training
+    group: topic
+    color_family: hardware
+  workflow-automation:
+    label: Workflow Automation
+    short_label: Workflows
+    group: topic
+    color_family: software
+  reporting:
+    label: Reporting
+    short_label: Reporting
+    group: topic
+    color_family: software
+  eda:
+    label: Electronic Design Automation
+    short_label: EDA
+    group: topic
+    color_family: hardware
+  digital-flow:
+    label: Digital Implementation Flow
+    short_label: Digital Flow
+    group: topic
+    color_family: hardware
+
+  tsmc28:
+    label: TSMC 28 nm
+    short_label: TSMC28
+    group: technology
+    color_family: technology
+  tsmc65:
+    label: TSMC 65 nm
+    short_label: TSMC65
+    group: technology
+    color_family: technology
+  gf22:
+    label: GlobalFoundries 22FDX
+    short_label: GF22
+    group: technology
+    color_family: technology
+  fdsoi:
+    label: Fully Depleted Silicon-On-Insulator
+    short_label: FDSOI
+    group: technology
+    color_family: technology
+  65nm:
+    label: 65 nm
+    short_label: 65nm
+    group: process-node
+    color_family: process-node
+  22nm:
+    label: 22 nm
+    short_label: 22nm
+    group: process-node
+    color_family: process-node
+  28nm:
+    label: 28 nm
+    short_label: 28nm
+    group: process-node
+    color_family: process-node
+  tsmc:
+    label: TSMC
+    short_label: TSMC
+    group: foundry
+    color_family: foundry
+  globalfoundries:
+    label: GlobalFoundries
+    short_label: GF
+    group: foundry
+    color_family: foundry
+  gf:
+    label: GlobalFoundries
+    short_label: GF
+    group: foundry
+    color_family: foundry
+  python:
+    label: Python
+    short_label: Python
+    group: technology
+    color_family: software
+  c-plus-plus:
+    label: C++
+    short_label: C++
+    group: technology
+    color_family: software
+  html:
+    label: HTML
+    short_label: HTML
+    group: technology
+    color_family: software
+
+  hls4ml:
+    label: hls4ml
+    short_label: hls4ml
+    group: software
+    color_family: software
+
+  arxiv:
+    label: arXiv
+    short_label: arXiv
+    group: venue
+    color_family: venue
+    link_label: Preprint
+    match:
+      - arXiv
+  jpse:
+    label: Journal of Petroleum Science and Engineering
+    short_label: JPSE
+    group: venue
+    color_family: venue
+    match:
+      - Journal of Petroleum Science and Engineering
+  aa:
+    label: Astronomy and Astrophysics
+    short_label: A&A
+    group: venue
+    color_family: venue
+    match:
+      - Astronomy
+      - Astrophysics
+  fccm:
+    label: IEEE International Symposium on Field-Programmable Custom Computing Machines
+    short_label: FCCM
+    group: venue
+    color_family: venue
+    match:
+      - Field-Programmable Custom Computing Machines
+      - FCCM
+  acm-trets:
+    label: ACM Transactions on Reconfigurable Technology and Systems
+    short_label: TRETS
+    group: venue
+    color_family: venue
+    match:
+      - ACM Transactions on Reconfigurable Technology and Systems
+  nss-mic-rtsd:
+    label: IEEE Nuclear Science Symposium, Medical Imaging Conference, and Room Temperature Semiconductor Detector Conference
+    short_label: NSS/MIC/RTSD
+    group: venue
+    color_family: venue
+    match:
+      - Nuclear Science Symposium
+      - Medical Imaging Conference
+      - Room Temperature Semiconductor Detector
+  aps-april:
+    label: APS April Meeting Abstracts
+    short_label: APS April
+    group: venue
+    color_family: venue
+    match:
+      - APS April Meeting Abstracts
+  aps-march:
+    label: APS March Meeting Abstracts
+    short_label: APS March
+    group: venue
+    color_family: venue
+    match:
+      - APS March Meeting Abstracts
+  nima:
+    label: Nuclear Instruments and Methods in Physics Research Section A
+    short_label: NIMA
+    group: venue
+    color_family: venue
+    match:
+      - Nuclear Instruments and Methods
+  iscas:
+    label: IEEE International Symposium on Circuits and Systems
+    short_label: ISCAS
+    group: venue
+    color_family: venue
+    match:
+      - International Symposium on Circuits and Systems
+      - ISCAS
+  mnras:
+    label: Monthly Notices of the Royal Astronomical Society
+    short_label: MNRAS
+    group: venue
+    color_family: venue
+    match:
+      - Monthly Notices of the Royal Astronomical Society
+  tns:
+    label: IEEE Transactions on Nuclear Science
+    short_label: TNS
+    group: venue
+    color_family: venue
+    match:
+      - IEEE Transactions on Nuclear Science
+  cbpf:
+    label: Centro Brasileiro de Pesquisas Fisicas
+    short_label: CBPF
+    group: venue
+    color_family: venue
+    match:
+      - Centro Brasileiro de Pesquisas
+      - CBPF
+      - Notas T
+  rbef:
+    label: Revista Brasileira de Ensino de Fisica
+    short_label: RBEF
+    group: venue
+    color_family: venue
+    match:
+      - Revista Brasileira de Ensino
+      - RBEF
+  cvpr:
+    label: Computer Vision and Pattern Recognition
+    short_label: CVPR
+    group: venue
+    color_family: venue
+    match:
+      - Computer Vision and Pattern Recognition
+      - CVPR
+  upcommons:
+    label: UPCommons
+    short_label: UPCommons
+    group: venue
+    color_family: venue
+    match:
+      - Universitat
+      - UPCommons
+  smt:
+    label: SMT
+    short_label: SMT
+    group: venue
+    color_family: venue
+    match:
+      - SMT
+  fnal-report:
+    label: Fermi National Accelerator Laboratory report
+    short_label: FNAL
+    group: venue
+    color_family: venue
+    match:
+      - Fermi National Accelerator Laboratory
+      - FNAL
+  fastml:
+    label: Workshop on Machine Learning and the Physical Sciences
+    short_label: FASTML
+    group: venue
+    color_family: venue
+    match:
+      - FASTML
+  cosyne:
+    label: Computational and Systems Neuroscience
+    short_label: Cosyne
+    group: venue
+    color_family: venue
+    match:
+      - Cosyne
+
+  fermilab:
+    label: Fermilab
+    short_label: Fermilab
+    group: organization
+    color_family: organization
+  cern:
+    label: CERN
+    short_label: CERN
+    group: organization
+    color_family: organization
+  northwestern:
+    label: Northwestern University
+    short_label: Northwestern
+    group: organization
+    color_family: organization
+  columbia:
+    label: Columbia University
+    short_label: Columbia
+    group: organization
+    color_family: organization
+  personal:
+    label: Personal
+    short_label: Personal
+    group: organization
+    color_family: organization
+
+  first-author:
+    label: First Author
+    short_label: First Author
+    group: contribution
+    color_family: contribution
+  hardware-design:
+    label: Hardware Design
+    short_label: HW Design
+    group: contribution
+    color_family: contribution
+  firmware:
+    label: Firmware
+    short_label: Firmware
+    group: contribution
+    color_family: contribution
+  ml-design:
+    label: Machine Learning Design
+    short_label: ML Design
+    group: contribution
+    color_family: contribution
+  architecture:
+    label: Architecture
+    short_label: Arch.
+    group: contribution
+    color_family: contribution
+  rtl:
+    label: RTL Design
+    short_label: RTL
+    group: contribution
+    color_family: contribution
+  asic-design:
+    label: ASIC Design
+    short_label: ASIC Design
+    group: contribution
+    color_family: contribution
+  verification:
+    label: Verification
+    short_label: Verification
+    group: contribution
+    color_family: contribution
+  testing:
+    label: Testing
+    short_label: Testing
+    group: contribution
+    color_family: contribution
+  lead-development:
+    label: Lead Development
+    short_label: Lead Dev
+    group: contribution
+    color_family: contribution
+
+  ongoing:
+    label: Ongoing
+    short_label: Ongoing
+    group: status
+    color_family: status
+  finalized:
+    label: Finalized
+    short_label: Finalized
+    group: status
+    color_family: status
+  tapeout:
+    label: Tapeout
+    short_label: Tapeout
+    group: contribution
+    color_family: contribution

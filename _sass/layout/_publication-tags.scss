@@ -1,5 +1,194 @@
 // Publication tag badges with category-specific soft colors
 
+.publication-controls {
+  --filter-card-bg: #f4f5f2;
+  --filter-card-body-bg: #fbfbf8;
+  --filter-card-border: #d8dcd2;
+  --filter-card-soft-border: #d8dcd2;
+  --filter-card-text: #242720;
+  --filter-card-muted: #686d61;
+  --filter-card-chip-bg: #e9ebe4;
+
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1.15rem;
+  padding: 0.95rem;
+  color: var(--filter-card-text);
+  background: var(--filter-card-bg);
+  border: 1px solid var(--filter-card-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(55, 45, 30, 0.06);
+}
+
+.publication-controls__header,
+.publication-controls__filter-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    color: var(--filter-card-text);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0.25rem 0 0;
+    color: var(--filter-card-muted);
+    font-size: 0.86rem;
+  }
+}
+
+.publication-controls__filter-header {
+  align-items: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.publication-controls__filters {
+  border-top: 1px solid var(--filter-card-soft-border);
+  padding-top: 0.75rem;
+}
+
+.publication-controls__filters-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  list-style: none;
+  cursor: pointer;
+  color: var(--filter-card-text);
+  font-size: 0.86rem;
+  font-weight: 800;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--display-card-focus, #a8c7d8);
+    outline-offset: 2px;
+  }
+
+  &::after {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px);
+    transition: transform 160ms ease;
+  }
+}
+
+.publication-controls__filters[open] .publication-controls__filters-summary::after {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+
+.publication-controls__filters[open] .publication-controls__filters-hint {
+  font-size: 0;
+
+  &::before {
+    content: "collapse";
+    font-size: 0.78rem;
+  }
+}
+
+.publication-controls__filters-hint {
+  margin-left: auto;
+  color: var(--filter-card-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.publication-controls__filter-body {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.85rem;
+}
+
+.publication-controls__reset {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding: 0.35rem 0.75rem;
+  color: #9d2f24;
+  background: var(--filter-card-chip-bg);
+  border: 1px solid var(--filter-card-border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--display-card-focus, #a8c7d8);
+    outline-offset: 2px;
+  }
+}
+
+.publication-controls__tags {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.publication-controls__group {
+  display: grid;
+  gap: 0.45rem;
+
+  h3 {
+    margin: 0;
+    color: var(--filter-card-muted);
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+.publication-controls__group-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.publication-controls__sort {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--filter-card-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+
+  select {
+    min-height: 34px;
+    padding: 0.25rem 0.65rem;
+    color: var(--filter-card-text);
+    background: var(--filter-card-body-bg);
+    border: 1px solid var(--filter-card-border);
+    border-radius: 8px;
+  }
+}
+
+.publication-controls__count {
+  color: var(--filter-card-muted);
+  font-weight: 700;
+}
+
+.publication-card-list [hidden],
+.hardware-card-list [hidden],
+.software-card-list [hidden],
+.talk-card-list [hidden] {
+  display: none !important;
+}
+
 .publication-tags {
   display: flex;
   flex-wrap: wrap;
@@ -8,15 +197,80 @@
 }
 
 .tag-badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 1.5rem;
-  font-size: 0.85rem;
-  font-weight: 500;
+  --tag-bg: #e0e8f0;
+  --tag-text: #3a4a5a;
+  --tag-border: rgba(58, 74, 90, 0.2);
+
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.3rem 0.65rem;
+  color: var(--tag-text);
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;
-  border: none;
   cursor: default;
+
+  .tag-badge__logo {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin: -0.15rem 0.2rem -0.15rem -0.4rem;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.42),
+      0 0 0 1px var(--tag-border);
+  }
+
+  .tag-badge__icon,
+  .tag-badge__mark,
+  .tag-badge__emoji {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: -0.15rem 0.2rem -0.15rem -0.4rem;
+    color: var(--tag-text);
+    background: rgba(255, 255, 255, 0.46);
+    border: 1px solid var(--tag-border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  .tag-badge__mark {
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+  }
+
+  &.publication-filter-tag {
+    cursor: pointer;
+
+    &:hover {
+      filter: saturate(1.08) contrast(1.02);
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--display-card-focus, #a8c7d8);
+      outline-offset: 2px;
+    }
+
+    &.is-active {
+      box-shadow:
+        0 0 0 2px var(--display-card-bg, #fffaf1),
+        0 0 0 4px var(--tag-text);
+    }
+  }
 }
 
 // Category-specific colors (soft, pastel tones)
@@ -30,36 +284,48 @@
   &.tag-neural-networks,
   &.tag-learning,
   &.tag-inference,
-  &.tag-computer-vision {
-    background-color: #e6d5f0;
-    color: #5a3d7a;
+  &.tag-computer-vision,
+  &.tag-ai-accelerator {
+    --tag-bg: #e8dcf4;
+    --tag-text: #56387a;
+    --tag-border: rgba(86, 56, 122, 0.24);
   }
 
   // Hardware/ASIC - Light gray
   &.tag-hardware,
   &.tag-architecture,
-  &.tag-asic {
-    background-color: #e8e8e8;
-    color: #4a4a4a;
+  &.tag-asic,
+  &.tag-tsmc,
+  &.tag-gf,
+  &.tag-65nm,
+  &.tag-22nm,
+  &.tag-28nm,
+  &.tag-fdsoi {
+    --tag-bg: #e7e8ea;
+    --tag-text: #3e444a;
+    --tag-border: rgba(62, 68, 74, 0.22);
   }
 
   // FPGA/Reconfigurable - Light blue
   &.tag-fpga,
   &.tag-reconfigurable,
   &.tag-hls {
-    background-color: #d4e6f1;
-    color: #1b4965;
+    --tag-bg: #d9eaf5;
+    --tag-text: #24516d;
+    --tag-border: rgba(36, 81, 109, 0.24);
   }
 
   // Radiation/TMR/Reliability - Light orange
   &.tag-radiation,
+  &.tag-radhard,
   &.tag-tmr,
   &.tag-fault,
   &.tag-reliability,
   &.tag-resilience,
   &.tag-cryogenic {
-    background-color: #ffe8d1;
-    color: #7a4a1a;
+    --tag-bg: #ffe7cf;
+    --tag-text: #754718;
+    --tag-border: rgba(117, 71, 24, 0.24);
   }
 
   // HEP/Physics/Astronomy - Light yellow
@@ -71,18 +337,21 @@
   &.tag-accelerator,
   &.tag-astrophysics,
   &.tag-quantum {
-    background-color: #fff4d1;
-    color: #7a6a1a;
+    --tag-bg: #fff1c6;
+    --tag-text: #6f5d12;
+    --tag-border: rgba(111, 93, 18, 0.24);
   }
 
   // Sensor/Pixel/Imaging - Light green
   &.tag-sensor,
   &.tag-sensors,
   &.tag-pixel,
+  &.tag-smart-pixels,
   &.tag-imaging,
   &.tag-camera {
-    background-color: #d4f1d4;
-    color: #2a5a2a;
+    --tag-bg: #d8eed6;
+    --tag-text: #2e5a2a;
+    --tag-border: rgba(46, 90, 42, 0.24);
   }
 
   // Software/Tools/Geoscience - Light pink
@@ -90,31 +359,183 @@
   &.tag-tools,
   &.tag-compiler,
   &.tag-optimization,
-  &.tag-geoscience {
-    background-color: #f0d4e8;
-    color: #6a2a4a;
+  &.tag-geoscience,
+  &.tag-petrophysics {
+    --tag-bg: #f1d8e9;
+    --tag-text: #68314f;
+    --tag-border: rgba(104, 49, 79, 0.24);
   }
 
   // Thesis - Light teal
   &.tag-thesis,
   &.tag-phd,
   &.tag-masters {
-    background-color: #d1e8e8;
-    color: #2a5a5a;
+    --tag-bg: #d7ecec;
+    --tag-text: #2f5c5c;
+    --tag-border: rgba(47, 92, 92, 0.24);
   }
 
   // ArXiv/DOI/Research - Light gray-blue
   &.tag-arxiv,
-  &.tag-doi,
-  &.tag-research {
-    background-color: #e0e8f0;
-    color: #3a4a5a;
+  &.tag-research,
+  &.tag-cbpf,
+  &.tag-slides,
+  &.tag-talk {
+    --tag-bg: #e2eaf2;
+    --tag-text: #3d4f61;
+    --tag-border: rgba(61, 79, 97, 0.22);
   }
 
   // Patent - Light red
   &.tag-patent {
-    background-color: #f0d4d4;
-    color: #6a2a2a;
+    --tag-bg: #f1d8d8;
+    --tag-text: #6d3030;
+    --tag-border: rgba(109, 48, 48, 0.24);
   }
 }
 
+// Taxonomy color families. These are intentionally semantic rather than random:
+// related disciplines and topics share nearby hues, while venues stay neutral.
+.tag-badge {
+  &.tag-family-year {
+    --tag-bg: #e5e8ec;
+    --tag-text: #48515a;
+    --tag-border: rgba(72, 81, 90, 0.22);
+  }
+
+  &.tag-family-type {
+    --tag-bg: #f2dfc4;
+    --tag-text: #6b451b;
+    --tag-border: rgba(107, 69, 27, 0.24);
+  }
+
+  &.tag-family-engineering {
+    --tag-bg: #dbe6f2;
+    --tag-text: #2f506f;
+    --tag-border: rgba(47, 80, 111, 0.24);
+  }
+
+  &.tag-family-astronomy {
+    --tag-bg: #e4def7;
+    --tag-text: #4f3f7b;
+    --tag-border: rgba(79, 63, 123, 0.24);
+  }
+
+  &.tag-family-earth {
+    --tag-bg: #ddebd2;
+    --tag-text: #4f642c;
+    --tag-border: rgba(79, 100, 44, 0.24);
+  }
+
+  &.tag-family-physics {
+    --tag-bg: #fff0bf;
+    --tag-text: #6c5911;
+    --tag-border: rgba(108, 89, 17, 0.24);
+  }
+
+  &.tag-family-quantum {
+    --tag-bg: #d8eef3;
+    --tag-text: #285e68;
+    --tag-border: rgba(40, 94, 104, 0.24);
+  }
+
+  &.tag-family-hardware {
+    --tag-bg: #e3e8ed;
+    --tag-text: #384955;
+    --tag-border: rgba(56, 73, 85, 0.24);
+  }
+
+  &.tag-family-ml {
+    --tag-bg: #e8dcf4;
+    --tag-text: #56387a;
+    --tag-border: rgba(86, 56, 122, 0.24);
+  }
+
+  &.tag-family-radiation {
+    --tag-bg: #ffe2ca;
+    --tag-text: #754016;
+    --tag-border: rgba(117, 64, 22, 0.24);
+  }
+
+  &.tag-family-sensors {
+    --tag-bg: #d9eedc;
+    --tag-text: #2e5c34;
+    --tag-border: rgba(46, 92, 52, 0.24);
+  }
+
+  &.tag-family-technology {
+    --tag-bg: #d8e1ea;
+    --tag-text: #2d4a61;
+    --tag-border: rgba(45, 74, 97, 0.25);
+  }
+
+  &.tag-family-foundry {
+    --tag-bg: #d6dce2;
+    --tag-text: #263947;
+    --tag-border: rgba(38, 57, 71, 0.26);
+  }
+
+  &.tag-family-process-node {
+    --tag-bg: #e1e7ee;
+    --tag-text: #365168;
+    --tag-border: rgba(54, 81, 104, 0.24);
+  }
+
+  &.tag-family-readout {
+    --tag-bg: #dbe6f1;
+    --tag-text: #2f506f;
+    --tag-border: rgba(47, 80, 111, 0.24);
+  }
+
+  &.tag-family-software {
+    --tag-bg: #d5ece7;
+    --tag-text: #285d52;
+    --tag-border: rgba(40, 93, 82, 0.24);
+  }
+
+  &.tag-family-venue,
+  &.tag-family-organization,
+  &.tag-family-neutral {
+    --tag-bg: #e7e8ea;
+    --tag-text: #4b5057;
+    --tag-border: rgba(75, 80, 87, 0.22);
+  }
+
+  &.tag-family-contribution {
+    --tag-bg: #f1d6dc;
+    --tag-text: #723442;
+    --tag-border: rgba(114, 52, 66, 0.24);
+  }
+
+  &.tag-family-status {
+    --tag-bg: #e4ead9;
+    --tag-text: #4d6129;
+    --tag-border: rgba(77, 97, 41, 0.24);
+  }
+}
+
+html[data-theme="dark"] {
+  .publication-controls {
+    --filter-card-bg: #252925;
+    --filter-card-body-bg: #2c302c;
+    --filter-card-border: #4a5149;
+    --filter-card-soft-border: #454c44;
+    --filter-card-text: #f4f1e8;
+    --filter-card-muted: #c5cabf;
+    --filter-card-chip-bg: #373c35;
+  }
+
+  .tag-badge {
+    filter: saturate(0.95) brightness(0.92);
+  }
+}
+
+@include breakpoint(max-width $small) {
+  .publication-controls__header {
+    display: grid;
+  }
+
+  .publication-controls__reset {
+    justify-self: start;
+  }
+}

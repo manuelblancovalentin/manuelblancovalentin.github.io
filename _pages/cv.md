@@ -34,86 +34,199 @@ Passionate about designing efficient, fault-tolerant ML hardware systems and neu
 
 
 
-Education
-======
-* <img class="cv-logo" src="{{ base_path }}/images/logos/nu.png" alt="Northwestern" /> **Ph.D. in Computer Engineering**, Northwestern University, Evanston, IL (2020–Present)
-  * GPA: 3.9/4.0
-  * Focus: Hardware-software co-designed ML systems, neuromorphic learning, radiation-hardened ASICs
-  * Thesis: In progress
+{% include cv-section-heading.html title="Education" accent="#4e2a84" %}
+{% capture phd_education_description %}
+Hardware-software co-designed ML systems, neuromorphic learning, and radiation-hardened ASICs.
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/nu.png" alt="Northwestern" /> **M.S. in Computer Engineering**, Northwestern University, Evanston, IL (2020–2022)
-  * GPA: 3.9/4.0
-  * Completed graduate coursework in ASIC design, ML accelerators, and digital systems
+Thesis: In progress.
+{% endcapture %}
+{% assign nu_logo = base_path | append: "/images/logos/nu.png" %}
+{% include cv-education-card.html
+  logo=nu_logo
+  logo_alt="Northwestern University"
+  institution="Northwestern University"
+  department="Computer Engineering"
+  accent="#4e2a84"
+  title="Ph.D. in Computer Engineering"
+  location="Evanston, IL"
+  location_url="https://www.google.com/maps/search/?api=1&query=Evanston%2C%20IL"
+  timeline="2020 - Present"
+  gpa="3.9/4.0"
+  description=phd_education_description
+%}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/cbpf.png" alt="CBPF" /> **M.S. in Physics & Scientific Instrumentation**, CBPF (Brazilian Center for Physics Research), Rio de Janeiro, Brazil (2015–2018)
-  * GPA: 3.8/4.0
-  * Thesis: [Deep learning methods on geological reservoir borehole log images and applications](https://www.researchgate.net/publication/336587891_Deep_learning_methods_on_geological_reservoir_borehole_log_images_and_applications)
+{% capture ms_nu_education_description %}
+Completed graduate coursework in ASIC design, ML accelerators, and digital systems.
+{% endcapture %}
+{% include cv-education-card.html
+  logo=nu_logo
+  logo_alt="Northwestern University"
+  institution="Northwestern University"
+  department="Computer Engineering"
+  accent="#4e2a84"
+  title="M.S. in Computer Engineering"
+  location="Evanston, IL"
+  location_url="https://www.google.com/maps/search/?api=1&query=Evanston%2C%20IL"
+  timeline="2020 - 2022"
+  gpa="3.9/4.0"
+  description=ms_nu_education_description
+%}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/UPCtech.png" alt="UPC" /> **B.S. in Robotics & Electronics Engineering**, UPC BarcelonaTech (Polytechnical University of Barcelona), Barcelona, Spain (2010–2014)
-  * GPA: 3.3/4.0
-  * Thesis: [Design and implementation of the autonomous navigation control system of a model tugboat](https://hdl.handle.net/2099.1/24115) -in Spanish
+{% capture cbpf_education_description %}
+Thesis: [Deep learning methods on geological reservoir borehole log images and applications](https://www.researchgate.net/publication/336587891_Deep_learning_methods_on_geological_reservoir_borehole_log_images_and_applications).
+{% endcapture %}
+{% assign cbpf_logo = base_path | append: "/images/logos/cbpf.png" %}
+{% include cv-education-card.html
+  logo=cbpf_logo
+  logo_alt="CBPF"
+  institution="CBPF"
+  department="Brazilian Center for Physics Research"
+  accent="#2e8b57"
+  title="M.S. in Physics & Scientific Instrumentation"
+  location="Rio de Janeiro, Brazil"
+  location_url="https://www.google.com/maps/search/?api=1&query=Rio%20de%20Janeiro%2C%20Brazil"
+  timeline="2015 - 2018"
+  gpa="3.8/4.0"
+  description=cbpf_education_description
+%}
 
-Work experience
-======
+{% assign spain_flag = base_path | append: "/images/flags/spain.svg" %}
+{% capture upc_education_description %}
+Thesis: [Design and implementation of the autonomous navigation control system of a model tugboat](https://hdl.handle.net/2099.1/24115) <img class="cv-flag" src="{{ spain_flag }}" alt="Spanish language" title="Spanish">
+{% endcapture %}
+{% assign upc_logo = base_path | append: "/images/logos/UPCtech.png" %}
+{% include cv-education-card.html
+  logo=upc_logo
+  logo_alt="UPC BarcelonaTech"
+  institution="UPC BarcelonaTech"
+  department="Polytechnical University of Barcelona"
+  accent="#0072bc"
+  title="B.S. in Robotics & Electronics Engineering"
+  location="Barcelona, Spain"
+  location_url="https://www.google.com/maps/search/?api=1&query=Barcelona%2C%20Spain"
+  timeline="2010 - 2014"
+  gpa="3.3/4.0"
+  description=upc_education_description
+%}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/amd.jpeg" alt="AMD" /> **Systems Engineer Junior – RAS** (June 2026–Sep 2026)
-  * AMD, Austin, TX / USA
-  * Developing techniques to evaluate resilience of high-performance processors under delay/fault scenarios
-  * Building ML/data-analysis pipelines to extract trends from reliability datasets
-  * Collaborating with system and hardware architects on mitigation strategies
+{% include cv-section-heading.html title="Work experience" accent="#8a5a44" %}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/nu.png" alt="Northwestern" /> <img class="cv-logo" src="{{ base_path }}/images/logos/fermilab.jpg" alt="Fermilab" /> **ASIC + ML Accelerator Researcher** (2020–Present)
-  * Northwestern University / Fermilab / CERN, Evanston, IL
-  * Developing NRCST K: a neuromorphic learning system with local learning rules and metabolic optimization
-  * Led multiple ASIC efforts across GF 22nm FD-SOI, TSMC 28nm, and TSMC 65nm processes (RTL/HLS→P&R→signoff)
-  * Built reusable automation for synthesis, P&R, extraction, and signoff (Cadence Virtuoso/Innovus/Genus/Tempus/Voltus)
-  * Implemented radiation-hardened logic with TMR; developed RTL tools for redundancy injection
-  * Extended ENABOL: training-aware HLS templates and backward-pass wrappers for training-capable hardware
+{% assign amd_logo = base_path | append: "/images/logos/amd.jpeg" %}
+{% capture amd_work_description %}
+* Developing techniques to evaluate resilience of high-performance processors under delay/fault scenarios.
+* Building ML/data-analysis pipelines to extract trends from reliability datasets.
+* Collaborating with system and hardware architects on mitigation strategies.
+{% endcapture %}
+{% include cv-work-card.html
+  logo=amd_logo
+  logo_alt="AMD"
+  company="AMD"
+  group="Reliability, Availability, and Serviceability"
+  accent="#ed1c24"
+  title="Systems Engineer Junior - RAS"
+  location="Austin, TX, USA"
+  location_url="https://www.google.com/maps/search/?api=1&query=Austin%2C%20TX%2C%20USA"
+  timeline="June 2026 - Sep 2026"
+  description=amd_work_description
+%}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/Cadence.jpg" alt="Cadence" /> **Tempus SSV Graduate Intern – Timing/EDA** (Mar 2023–Sep 2023)
-  * Cadence Design Systems, San Jose, CA / USA
-  * Researched silicon aging/drift impacts in 5nm CMOS and their effects on timing closure
-  * Developed and integrated drift estimation modules into Tempus SSV
-  * Created tooling for drift-aware library characterization and algorithm improvements
-  * Explored ML-assisted prediction techniques for drift-aware analysis
+{% assign fnal_logo = base_path | append: "/images/logos/fermilab.jpg" %}
+{% assign cern_logo = base_path | append: "/images/logos/cern.png" %}
+{% assign research_logos = nu_logo | append: "|" | append: fnal_logo | append: "|" | append: cern_logo %}
+{% capture research_work_description %}
+* Developing NRCST K: a neuromorphic learning system with local learning rules and metabolic optimization.
+* Led multiple ASIC efforts across GF 22nm FD-SOI, TSMC 28nm, and TSMC 65nm processes (RTL/HLS to P&R to signoff).
+* Built reusable automation for synthesis, P&R, extraction, and signoff (Cadence Virtuoso/Innovus/Genus/Tempus/Voltus).
+* Implemented radiation-hardened logic with TMR; developed RTL tools for redundancy injection.
+* Extended ENABOL: training-aware HLS templates and backward-pass wrappers for training-capable hardware.
+{% endcapture %}
+{% include cv-work-card.html
+  logos=research_logos
+  logo_alts="Northwestern University|Fermilab|CERN"
+  company="Northwestern University / Fermilab / CERN"
+  group="ASIC + ML Accelerator Research"
+  accent="#4e2a84"
+  title="ASIC + ML Accelerator Researcher"
+  location="Evanston, IL, USA"
+  location_url="https://www.google.com/maps/search/?api=1&query=Evanston%2C%20IL%2C%20USA"
+  timeline="2020 - Present"
+  description=research_work_description
+%}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/petrobras.png" alt="Petrobras" /> **Deep Learning Specialist** (Sep 2015–Jun 2020)
-  * Petrobras, Rio de Janeiro, Brazil
-  * Built and deployed CNN/autoencoder/Bayesian deep learning models for industrial imaging and reservoir characterization
-  * Delivered end-to-end pipelines: data ingestion, training/evaluation, uncertainty quantification, production reporting
-  * Developed AI systems for oil & gas reservoir characterization using seismic and borehole image data
-  * Applied Bayesian deep learning for uncertainty quantification and model robustness
+{% assign cadence_logo = base_path | append: "/images/logos/Cadence.jpg" %}
+{% capture cadence_work_description %}
+* Researched silicon aging/drift impacts in 5nm CMOS and their effects on timing closure.
+* Developed and integrated drift estimation modules into Tempus SSV.
+* Created tooling for drift-aware library characterization and algorithm improvements.
+* Explored ML-assisted prediction techniques for drift-aware analysis.
+{% endcapture %}
+{% include cv-work-card.html
+  logo=cadence_logo
+  logo_alt="Cadence"
+  company="Cadence Design Systems"
+  group="Timing / EDA"
+  accent="#a6202d"
+  title="Tempus SSV Graduate Intern"
+  location="San Jose, CA, USA"
+  location_url="https://www.google.com/maps/search/?api=1&query=San%20Jose%2C%20CA%2C%20USA"
+  timeline="Mar 2023 - Sep 2023"
+  description=cadence_work_description
+%}
 
-* <img class="cv-logo" src="{{ base_path }}/images/logos/cern.png" alt="CERN" /> **ASIC Design & Verification Lecturer (Invited Instructor)** (Aug 2021–Sep 2021)
-  * CERN INFIERI School, Universidad Autónoma de Madrid, Madrid, Spain
-  * Delivered 5-day lecture/lab series on ASIC design & verification (synthesis, P&R, DRC/LVS, signoff) to international cohort of ~20+ students
-  * Developed academic labs and automated flows covering full design methodology
-  
-Skills
-======
+{% assign petrobras_logo = base_path | append: "/images/logos/petrobras.png" %}
+{% capture petrobras_work_description %}
+* Built and deployed CNN/autoencoder/Bayesian deep learning models for industrial imaging and reservoir characterization.
+* Delivered end-to-end pipelines: data ingestion, training/evaluation, uncertainty quantification, production reporting.
+* Developed AI systems for oil & gas reservoir characterization using seismic and borehole image data.
+* Applied Bayesian deep learning for uncertainty quantification and model robustness.
+{% endcapture %}
+{% include cv-work-card.html
+  logo=petrobras_logo
+  logo_alt="Petrobras"
+  company="Petrobras"
+  group="Deep Learning and Reservoir Characterization"
+  accent="#008542"
+  title="Deep Learning Specialist"
+  location="Rio de Janeiro, Brazil"
+  location_url="https://www.google.com/maps/search/?api=1&query=Rio%20de%20Janeiro%2C%20Brazil"
+  timeline="Sep 2015 - Jun 2020"
+  description=petrobras_work_description
+%}
 
-**Programming**
-* Python, C/C++, Verilog/VHDL, Tcl/Tk, Bash, Cadence SKILL, SPICE
+{% capture cern_work_description %}
+* Delivered 5-day lecture/lab series on ASIC design & verification (synthesis, P&R, DRC/LVS, signoff) to international cohort of ~20+ students.
+* Developed academic labs and automated flows covering full design methodology.
+{% endcapture %}
+{% include cv-work-card.html
+  logo=cern_logo
+  logo_alt="CERN"
+  company="CERN INFIERI School"
+  group="Universidad Autonoma de Madrid"
+  accent="#0053a1"
+  title="ASIC Design & Verification Lecturer (Invited Instructor)"
+  location="Madrid, Spain"
+  location_url="https://www.google.com/maps/search/?api=1&query=Madrid%2C%20Spain"
+  timeline="Aug 2021 - Sep 2021"
+  description=cern_work_description
+%}
 
-**ML & AI**
-* PyTorch, TensorFlow/Keras, NumPy/Pandas, quantization-aware workflows
+{% include cv-section-heading.html title="Skills" accent="#3776ab" %}
 
-**ASIC / EDA**
-* Cadence: Virtuoso, Innovus, Genus, Tempus, Voltus, Quantus, Calibre DRC/LVS
-* Mentor: Catapult HLS
-* Signoff automation and verification
+<div class="cv-skill-card-grid">
+  {% for category in site.data.cv_skills.skill_categories %}
+    {% include cv-skill-card.html category=category %}
+  {% endfor %}
+</div>
 
-**HLS / FPGA**
-* Catapult HLS, Vivado/Vitis, RTL/HLS verification & testbench generation
+{% include cv-section-heading.html title="Languages" accent="#2e8b57" %}
 
-**Operating Systems**
-* Linux (expert), macOS, Windows
+<div class="cv-skill-card-grid cv-skill-card-grid--languages">
+  {% for category in site.data.cv_skills.language_categories %}
+    {% include cv-skill-card.html category=category %}
+  {% endfor %}
+</div>
 
-**Languages**
-* Spanish (native), Catalan (native), Portuguese, English (fluent), French (basic)
-
-Publications
-======
+{% include cv-section-heading.html title="Publications" accent="#7b61ff" %}
 
 {% assign sorted_pubs = site.publications | sort: "sort_key" %}
 <ul class="cv-publications">
@@ -125,8 +238,7 @@ Publications
 {% endfor %}
 </ul>
 
-Patents
-======
+{% include cv-section-heading.html title="Patents" accent="#b8860b" %}
 
 {% assign sorted_patents = site.patents | sort: "date" | reverse %}
 <ul>
@@ -138,14 +250,12 @@ Patents
 {% endfor %}
 </ul>
 
-Talks
-======
+{% include cv-section-heading.html title="Talks" accent="#0072ce" %}
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
   {% endfor %}</ul>
   
-Teaching
-======
+{% include cv-section-heading.html title="Teaching" accent="#555" %}
 
 {% assign sorted_teaching = site.teaching | sort: "date" | reverse %}
 <ul>

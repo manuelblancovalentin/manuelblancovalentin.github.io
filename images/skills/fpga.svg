@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FPGA">
+  <rect width="64" height="64" rx="14" fill="#0072ce"/>
+  <g fill="#fff">
+    <rect x="17" y="17" width="10" height="10" rx="2"/>
+    <rect x="37" y="17" width="10" height="10" rx="2"/>
+    <rect x="17" y="37" width="10" height="10" rx="2"/>
+    <rect x="37" y="37" width="10" height="10" rx="2"/>
+  </g>
+  <path d="M27 22h10M22 27v10M42 27v10M27 42h10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -11,9 +11,215 @@ author_profile: true
 
 {% include base_path %}
 
-{% assign sorted_pubs = site.publications | sort: "sort_key" %}
-{% for post in sorted_pubs %}
-  {% include archive-single.html %}
+{% assign tag_catalog = site.data.tags.tags %}
+{% assign tag_groups = site.data.tags.groups %}
+{% assign present_publication_tags = '|' %}
+{% for post in site.publications %}
+  {% assign post_year = post.date | date: '%Y' %}
+  {% assign post_year_tag = post_year | prepend: 'year-' %}
+  {% if tag_catalog[post_year_tag] %}
+    {% assign present_publication_tags = present_publication_tags | append: post_year_tag | append: '|' %}
+  {% endif %}
+  {% if post.taxonomy %}
+    {% for tag_group in tag_groups %}
+      {% assign group_slug = tag_group.slug %}
+      {% assign group_tags = post.taxonomy[group_slug] %}
+      {% for tag in group_tags %}
+        {% assign clean_tag = tag | strip %}
+        {% if clean_tag != '' %}
+          {% assign tag_slug = clean_tag | slugify %}
+          {% assign present_publication_tags = present_publication_tags | append: tag_slug | append: '|' %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+  {% for tag in post.tags %}
+    {% assign clean_tag = tag | strip %}
+    {% if clean_tag != '' %}
+      {% assign tag_slug = clean_tag | slugify %}
+      {% if tag_catalog[tag_slug] %}
+        {% assign present_publication_tags = present_publication_tags | append: tag_slug | append: '|' %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% if post.venue %}
+    {% for tag_pair in tag_catalog %}
+      {% assign tag_slug = tag_pair[0] %}
+      {% assign tag_def = tag_pair[1] %}
+      {% if tag_def.group == 'venue' and tag_def.match %}
+        {% for venue_match in tag_def.match %}
+          {% if post.venue contains venue_match %}
+            {% assign present_publication_tags = present_publication_tags | append: tag_slug | append: '|' %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 {% endfor %}
 
+<section class="publication-controls" data-publication-controls aria-label="Publication filters and sorting">
+  <div class="publication-controls__sort">
+    <label for="publication-sort">Sort by</label>
+    <select id="publication-sort" data-publication-sort>
+      <option value="date-desc">Date &#8595;</option>
+      <option value="date-asc">Date &#8593;</option>
+      <option value="citations-desc">Citations &#8595;</option>
+      <option value="author-rank-asc">Author number &#8593;</option>
+    </select>
+    <span class="publication-controls__count" data-publication-count></span>
+  </div>
 
+  <details class="publication-controls__filters">
+    <summary class="publication-controls__filters-summary">
+      <span>Filter by tags</span>
+      <span class="publication-controls__filters-hint">expand</span>
+    </summary>
+
+    <div class="publication-controls__filter-body">
+      <div class="publication-controls__filter-header">
+        <p>Click a tag to show matching publications.</p>
+        <button type="button" class="publication-controls__reset" data-publication-reset>Show all</button>
+      </div>
+
+      <div class="publication-controls__tags" aria-label="Publication tags">
+        {% for tag_group in tag_groups %}
+          {% capture group_buttons %}
+            {% for tag_pair in tag_catalog %}
+              {% assign tag_slug = tag_pair[0] %}
+              {% assign tag_def = tag_pair[1] %}
+              {% assign tag_marker = tag_slug | prepend: '|' | append: '|' %}
+              {% if tag_def.group == tag_group.slug and present_publication_tags contains tag_marker %}
+                {% assign filter_label = tag_def.label | default: tag_slug %}
+                {% assign filter_short_label = tag_def.short_label %}
+                {% if tag_def.group == 'venue' and filter_short_label %}
+                  {% assign filter_label = filter_short_label %}
+                  {% assign filter_short_label = nil %}
+                {% endif %}
+                {% assign tag_family = tag_def.color_family | default: tag_def.group | default: 'other' %}
+                <button type="button" class="publication-filter-tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group.slug }} tag-{{ tag_slug }}" data-publication-filter="{{ tag_slug }}" data-tag-group="{{ tag_group.slug }}">
+                  {{ filter_label }}{% if filter_short_label and filter_short_label != filter_label %} ({{ filter_short_label }}){% endif %}
+                </button>
+              {% endif %}
+            {% endfor %}
+          {% endcapture %}
+          {% assign group_buttons_content = group_buttons | strip %}
+          {% if group_buttons_content != '' %}
+            <div class="publication-controls__group" data-tag-filter-group="{{ tag_group.slug }}">
+              <h3>{{ tag_group.label }}</h3>
+              <div class="publication-controls__group-tags">
+                {{ group_buttons }}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </details>
+</section>
+
+<div class="publication-card-list" data-publication-list data-filter-list>
+{% assign sorted_pubs = site.publications | sort: "sort_key" %}
+{% for post in sorted_pubs %}
+  {% include display-card.html item=post type="publications" label="Publication" %}
+{% endfor %}
+</div>
+
+<script>
+  (function () {
+    var list = document.querySelector('[data-publication-list]');
+    var controls = document.querySelector('[data-publication-controls]');
+
+    if (!list || !controls) {
+      return;
+    }
+
+    var cards = Array.prototype.slice.call(list.querySelectorAll('[data-filter-card]'));
+    var tagButtons = Array.prototype.slice.call(controls.querySelectorAll('[data-publication-filter]'));
+    var resetButton = controls.querySelector('[data-publication-reset]');
+    var sortSelect = controls.querySelector('[data-publication-sort]');
+    var countLabel = controls.querySelector('[data-publication-count]');
+    var activeTag = null;
+
+    function numberFrom(card, attribute, fallback) {
+      var value = Number(card.getAttribute(attribute));
+      return Number.isFinite(value) ? value : fallback;
+    }
+
+    function compareCards(a, b, sortMode) {
+      if (sortMode === 'date-asc') {
+        return numberFrom(a, 'data-date', 0) - numberFrom(b, 'data-date', 0);
+      }
+
+      if (sortMode === 'citations-desc') {
+        return numberFrom(b, 'data-citations', 0) - numberFrom(a, 'data-citations', 0);
+      }
+
+      if (sortMode === 'author-rank-asc') {
+        return numberFrom(a, 'data-author-rank', 999) - numberFrom(b, 'data-author-rank', 999);
+      }
+
+      return numberFrom(b, 'data-date', 0) - numberFrom(a, 'data-date', 0);
+    }
+
+    function updateCards() {
+      var visibleCount = 0;
+
+      cards.forEach(function (card) {
+        var tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+        var isVisible = !activeTag || tags.indexOf(activeTag) !== -1;
+        card.hidden = !isVisible;
+
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      tagButtons.forEach(function (button) {
+        var isActive = button.getAttribute('data-publication-filter') === activeTag;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      if (countLabel) {
+        countLabel.textContent = visibleCount + ' of ' + cards.length + ' shown';
+      }
+    }
+
+    function sortCards() {
+      var sortMode = sortSelect ? sortSelect.value : 'date-desc';
+      cards.sort(function (a, b) {
+        return compareCards(a, b, sortMode);
+      });
+      cards.forEach(function (card) {
+        list.appendChild(card);
+      });
+    }
+
+    tagButtons.forEach(function (button) {
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', function () {
+        var nextTag = button.getAttribute('data-publication-filter');
+        activeTag = activeTag === nextTag ? null : nextTag;
+        updateCards();
+      });
+    });
+
+    if (resetButton) {
+      resetButton.addEventListener('click', function () {
+        activeTag = null;
+        updateCards();
+      });
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function () {
+        sortCards();
+        updateCards();
+      });
+    }
+
+    sortCards();
+    updateCards();
+  }());
+</script>

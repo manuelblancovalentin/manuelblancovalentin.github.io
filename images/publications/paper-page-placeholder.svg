@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" role="img" aria-labelledby="title desc">
+  <title id="title">Paper page thumbnail placeholder</title>
+  <desc id="desc">A neutral first-page paper thumbnail placeholder.</desc>
+  <rect width="612" height="792" rx="20" fill="#fffdf8"/>
+  <rect x="32" y="32" width="548" height="728" rx="14" fill="#ffffff" stroke="#d9cebd" stroke-width="6"/>
+  <rect x="88" y="96" width="308" height="30" rx="8" fill="#8f654b"/>
+  <rect x="88" y="150" width="420" height="14" rx="7" fill="#cfc6b8"/>
+  <rect x="88" y="180" width="370" height="14" rx="7" fill="#ddd5c8"/>
+  <rect x="88" y="235" width="436" height="12" rx="6" fill="#d8d0c3"/>
+  <rect x="88" y="265" width="470" height="12" rx="6" fill="#e0d8cb"/>
+  <rect x="88" y="295" width="410" height="12" rx="6" fill="#d8d0c3"/>
+  <rect x="88" y="350" width="210" height="150" rx="12" fill="#e2edf3" stroke="#a8c7d8" stroke-width="4"/>
+  <path d="M124 458l45-54 40 42 35-32 28 44z" fill="#315b78" opacity=".75"/>
+  <rect x="326" y="352" width="176" height="14" rx="7" fill="#d8d0c3"/>
+  <rect x="326" y="382" width="132" height="14" rx="7" fill="#e0d8cb"/>
+  <rect x="326" y="412" width="168" height="14" rx="7" fill="#d8d0c3"/>
+  <rect x="88" y="552" width="436" height="12" rx="6" fill="#d8d0c3"/>
+  <rect x="88" y="582" width="470" height="12" rx="6" fill="#e0d8cb"/>
+  <rect x="88" y="612" width="395" height="12" rx="6" fill="#d8d0c3"/>
+  <rect x="88" y="654" width="260" height="12" rx="6" fill="#e0d8cb"/>
+</svg>

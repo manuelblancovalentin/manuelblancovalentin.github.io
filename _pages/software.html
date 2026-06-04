@@ -7,9 +7,224 @@ author_profile: true
 
 {% include base_path %}
 
-
-{% assign sorted_projects = site.software | sort: "date" | reverse %}
-{% for post in sorted_projects %}
-  {% include archive-single.html %}
+{% assign tag_catalog = site.data.tags.tags %}
+{% assign tag_groups = site.data.tags.groups %}
+{% assign software_filter_groups = '|discipline|domain|topic|technology|software|organization|contribution|status|year|' %}
+{% assign present_software_tags = '|' %}
+{% for post in site.software %}
+  {% assign post_year = post.year %}
+  {% if post_year == nil or post_year == '' %}
+    {% assign post_year = post.date | date: '%Y' %}
+  {% endif %}
+  {% assign post_year_tag = post_year | prepend: 'year-' %}
+  {% if tag_catalog[post_year_tag] %}
+    {% assign present_software_tags = present_software_tags | append: post_year_tag | append: '|' %}
+  {% endif %}
+  {% if post.taxonomy %}
+    {% for tag_group in tag_groups %}
+      {% assign group_slug = tag_group.slug %}
+      {% assign group_marker = group_slug | prepend: '|' | append: '|' %}
+      {% if software_filter_groups contains group_marker %}
+        {% assign group_tags = post.taxonomy[group_slug] %}
+        {% for tag in group_tags %}
+          {% assign clean_tag = tag | strip %}
+          {% if clean_tag != '' %}
+            {% assign tag_slug = clean_tag | slugify %}
+            {% if tag_catalog[tag_slug] %}
+              {% assign present_software_tags = present_software_tags | append: tag_slug | append: '|' %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 {% endfor %}
 
+<section class="publication-controls" data-software-controls aria-label="Software filters and sorting">
+  <div class="publication-controls__sort">
+    <label for="software-sort">Sort by</label>
+    <select id="software-sort" data-software-sort>
+      <option value="date-desc">Date &#8595;</option>
+      <option value="date-asc">Date &#8593;</option>
+      <option value="title-asc">Title A-Z</option>
+    </select>
+    <span class="publication-controls__count" data-software-count></span>
+  </div>
+
+  <details class="publication-controls__filters">
+    <summary class="publication-controls__filters-summary">
+      <span>Filter by tags</span>
+      <span class="publication-controls__filters-hint">expand</span>
+    </summary>
+
+    <div class="publication-controls__filter-body">
+      <div class="publication-controls__filter-header">
+        <p>Click a tag to show matching software projects.</p>
+        <button type="button" class="publication-controls__reset" data-software-reset>Show all</button>
+      </div>
+
+      <div class="publication-controls__tags" aria-label="Software tags">
+        {% for tag_group in tag_groups %}
+          {% assign group_marker = tag_group.slug | prepend: '|' | append: '|' %}
+          {% if software_filter_groups contains group_marker %}
+            {% capture group_buttons %}
+              {% for tag_pair in tag_catalog %}
+                {% assign tag_slug = tag_pair[0] %}
+                {% assign tag_def = tag_pair[1] %}
+                {% assign tag_marker = tag_slug | prepend: '|' | append: '|' %}
+                {% if tag_def.group == tag_group.slug and present_software_tags contains tag_marker %}
+                  {% assign filter_label = tag_def.short_label | default: tag_def.label | default: tag_slug %}
+                  {% assign tag_family = tag_def.color_family | default: tag_def.group | default: 'other' %}
+                  <button type="button" class="publication-filter-tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group.slug }} tag-{{ tag_slug }}" data-software-filter="{{ tag_slug }}" data-tag-group="{{ tag_group.slug }}" title="{{ tag_def.label | default: tag_slug }}">
+                    {% if tag_group.slug == 'technology' %}
+                      {% case tag_slug %}
+                        {% when 'python' %}
+                          <i class="fa-brands fa-python tag-badge__icon" aria-hidden="true"></i>
+                        {% when 'html' %}
+                          <i class="fa-brands fa-html5 tag-badge__icon" aria-hidden="true"></i>
+                        {% when 'c-plus-plus' %}
+                          <span class="tag-badge__mark" aria-hidden="true">C++</span>
+                      {% endcase %}
+                    {% elsif tag_group.slug == 'organization' %}
+                      {% case tag_slug %}
+                        {% when 'cern' %}
+                          <img class="tag-badge__logo" src="{{ base_path }}/images/logos/cern.png" alt="" aria-hidden="true">
+                        {% when 'fermilab' %}
+                          <img class="tag-badge__logo" src="{{ base_path }}/images/logos/fermilab.jpg" alt="" aria-hidden="true">
+                        {% when 'northwestern' %}
+                          <img class="tag-badge__logo" src="{{ base_path }}/images/logos/nu.png" alt="" aria-hidden="true">
+                        {% when 'columbia' %}
+                          <img class="tag-badge__logo" src="{{ base_path }}/images/logos/columbia.png" alt="" aria-hidden="true">
+                        {% when 'personal' %}
+                          <span class="tag-badge__emoji" aria-hidden="true">👤</span>
+                      {% endcase %}
+                    {% endif %}
+                    <span>{{ filter_label }}</span>
+                  </button>
+                {% endif %}
+              {% endfor %}
+            {% endcapture %}
+            {% assign group_buttons_content = group_buttons | strip %}
+            {% if group_buttons_content != '' %}
+              <div class="publication-controls__group" data-tag-filter-group="{{ tag_group.slug }}">
+                <h3>{{ tag_group.label }}</h3>
+                <div class="publication-controls__group-tags">
+                  {{ group_buttons }}
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </details>
+</section>
+
+<div class="software-card-list" data-software-list data-filter-list>
+  {% assign sorted_projects = site.software | sort: "date" | reverse %}
+  {% for post in sorted_projects %}
+    {% include display-card.html item=post type="software" label="Software project" %}
+  {% endfor %}
+</div>
+
+<script>
+  (function () {
+    var list = document.querySelector('[data-software-list]');
+    var controls = document.querySelector('[data-software-controls]');
+
+    if (!list || !controls) {
+      return;
+    }
+
+    var cards = Array.prototype.slice.call(list.querySelectorAll('[data-filter-card]'));
+    var tagButtons = Array.prototype.slice.call(controls.querySelectorAll('[data-software-filter]'));
+    var resetButton = controls.querySelector('[data-software-reset]');
+    var sortSelect = controls.querySelector('[data-software-sort]');
+    var countLabel = controls.querySelector('[data-software-count]');
+    var activeTag = null;
+
+    function numberFrom(card, attribute, fallback) {
+      var value = Number(card.getAttribute(attribute));
+      return Number.isFinite(value) ? value : fallback;
+    }
+
+    function compareCards(a, b, sortMode) {
+      var aIsPersonal = (a.getAttribute('data-tags') || '').split(/\s+/).indexOf('personal') !== -1;
+      var bIsPersonal = (b.getAttribute('data-tags') || '').split(/\s+/).indexOf('personal') !== -1;
+
+      if (aIsPersonal !== bIsPersonal) {
+        return aIsPersonal ? 1 : -1;
+      }
+
+      if (sortMode === 'date-asc') {
+        return numberFrom(a, 'data-date', 0) - numberFrom(b, 'data-date', 0);
+      }
+
+      if (sortMode === 'title-asc') {
+        return (a.getAttribute('data-title') || '').localeCompare(b.getAttribute('data-title') || '');
+      }
+
+      return numberFrom(b, 'data-date', 0) - numberFrom(a, 'data-date', 0);
+    }
+
+    function updateCards() {
+      var visibleCount = 0;
+
+      cards.forEach(function (card) {
+        var tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+        var isVisible = !activeTag || tags.indexOf(activeTag) !== -1;
+        card.hidden = !isVisible;
+
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      tagButtons.forEach(function (button) {
+        var isActive = button.getAttribute('data-software-filter') === activeTag;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      if (countLabel) {
+        countLabel.textContent = visibleCount + ' of ' + cards.length + ' shown';
+      }
+    }
+
+    function sortCards() {
+      var sortMode = sortSelect ? sortSelect.value : 'date-desc';
+      cards.sort(function (a, b) {
+        return compareCards(a, b, sortMode);
+      });
+      cards.forEach(function (card) {
+        list.appendChild(card);
+      });
+    }
+
+    tagButtons.forEach(function (button) {
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', function () {
+        var nextTag = button.getAttribute('data-software-filter');
+        activeTag = activeTag === nextTag ? null : nextTag;
+        updateCards();
+      });
+    });
+
+    if (resetButton) {
+      resetButton.addEventListener('click', function () {
+        activeTag = null;
+        updateCards();
+      });
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function () {
+        sortCards();
+        updateCards();
+      });
+    }
+
+    sortCards();
+    updateCards();
+  }());
+</script>

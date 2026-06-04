@@ -4,12 +4,23 @@ collection: hardware
 category: hardware
 permalink: /hardware/cryoai-v2-quantum-control
 excerpt: 'Low-power ML accelerator for quantum readout and control in cryogenic environment'
+subtitle: 'Low-power cryogenic accelerator for quantum readout and control'
 date: 2022-10-01
 year: 2022
 technology: 'GF 22nm FD-SOI'
 funding: 'Fermilab, Northwestern University, Columbia University'
 github_url: ''
 status: 'Completed'
+card_badges: [GF, 22nm, AI accelerator]
+taxonomy:
+  discipline: [quantum]
+  domain: [cryogenics, control]
+  topic: [hardware, asic, ai-accelerator, readout]
+  technology: [gf22, fdsoi]
+  foundry: [globalfoundries]
+  process-node: [22nm]
+  organization: [fermilab, northwestern, columbia]
+  contribution: [architecture, rtl, asic-design, verification, tapeout]
 ---
 
 ## CryoAI v2 - Quantum Control ML Accelerator

@@ -11,8 +11,15 @@ paperurl: 'https://doi.org/10.2172/1896647'
 author_rank: 2
 citation_count: 0
 sort_key: '0-999999-79781130-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors-poster'
-tags: [sensors, pixel, cryogenic, doi]
+tags: [sensors, pixel, cryogenic]
+taxonomy:
+  type: [poster]
+  discipline: [quantum]
+  domain: [cryogenics, imaging]
+  topic: [sensors, pixel, cryogenic, readout]
 citation: 'A Quinn, MB Valentin, T Zimmerman, D Braga, S Li, S Memik, F Fahim (2021). &quot;A Cryogenic Readout IC with 100 KSPS in-Pixel ADC for Skipper CCD-in-CMOS Sensors [Poster].&quot; <i>Fermi National Accelerator Laboratory (FNAL), Batavia, IL (United States)</i>.'
+card_image: '/images/publications/sprocket_poster.pdf'
+card_image_alt: 'A Cryogenic Readout IC with 100 KSPS in-Pixel ADC for Skipper CCD-in-CMOS Sensors [Poster].'
 ---
 
 | Field | Value |

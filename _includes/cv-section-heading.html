@@ -1,0 +1,6 @@
+{% assign accent = include.accent | default: '#555' %}
+
+<header class="cv-section-heading" style="--cv-section-accent: {{ accent }};">
+  <span class="cv-section-heading__marker" aria-hidden="true"></span>
+  <h2>{{ include.title }}</h2>
+</header>

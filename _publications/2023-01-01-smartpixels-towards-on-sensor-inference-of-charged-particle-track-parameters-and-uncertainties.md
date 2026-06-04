@@ -11,8 +11,10 @@ paperurl: 'https://doi.org/10.2172/2279048'
 author_rank: 8
 citation_count: 3
 sort_key: '1-999996-79761130-smartpixels-towards-on-sensor-inference-of-charged-particle-track-parameters-and-uncertainties'
-tags: [sensors, pixel, arxiv, doi]
+tags: [sensors, smart-pixels, arxiv, neural-networks, talk, slides]
 citation: 'Jennet Dickinson, Rachel Kovach-Fuentes, Lindsey Gray, Morris Swartz, Giuseppe Di Guglielmo, Alice Bean, Doug Berry, Manuel Blanco Valentin, Karri DiPetrillo, Farah Fahim, others (2023). &quot;Smartpixels: Towards on-sensor inference of charged particle track parameters and uncertainties.&quot; <i>arXiv preprint arXiv:2312.11676</i>.'
+card_image: '/images/publications/smart_pixels_towards.png'
+card_image_alt: 'Smartpixels: Towards on-sensor inference of charged particle track parameters and uncertainties.'
 ---
 
 | Field | Value |

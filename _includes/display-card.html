@@ -1,0 +1,464 @@
+{% include base_path %}
+
+{% assign card_image = include.item.card_image | default: include.item.paper_thumbnail | default: include.item.image %}
+{% assign card_image_alt = include.item.card_image_alt | default: include.item.title %}
+{% if card_image == nil or card_image == '' %}
+  {% assign card_image = include.item.header.teaser %}
+{% endif %}
+{% if card_image == nil or card_image == '' %}
+  {% if include.type == 'publications' %}
+    {% assign card_image = '/images/publications/paper-page-placeholder.svg' | prepend: base_path %}
+    {% assign card_image_alt = 'Paper page thumbnail placeholder' %}
+  {% elsif include.type == 'talks' %}
+    {% assign card_image = '/images/publications/paper-page-placeholder.svg' | prepend: base_path %}
+    {% assign card_image_alt = 'Talk or presentation thumbnail placeholder' %}
+  {% else %}
+    {% assign card_image = '/images/500x300.png' | prepend: base_path %}
+  {% endif %}
+{% elsif card_image contains '://' %}
+{% elsif card_image contains '/images/' %}
+  {% assign card_image = card_image | prepend: base_path %}
+{% else %}
+  {% assign card_image = card_image | prepend: '/images/' | prepend: base_path %}
+{% endif %}
+
+{% assign card_subtitle = include.item.subtitle %}
+{% if card_subtitle == nil or card_subtitle == '' %}
+  {% if include.type == 'publications' %}
+    {% assign card_subtitle = include.item.venue %}
+  {% elsif include.type == 'talks' %}
+    {% assign card_subtitle = include.item.venue %}
+  {% elsif include.type == 'patents' %}
+    {% assign card_subtitle = include.item.patent_number | default: include.item.venue | default: include.item.patent_office %}
+  {% endif %}
+{% endif %}
+
+{% assign card_date_label = nil %}
+{% if include.type == 'publications' and include.item.date %}
+  {% assign card_date_label = include.item.date | date: '%B %d, %Y' %}
+{% elsif include.type == 'talks' and include.item.date %}
+  {% assign card_date_label = include.item.date | date: '%B %d, %Y' %}
+{% elsif include.type == 'hardware' or include.type == 'software' or include.type == 'patents' %}
+  {% if include.item.year %}
+    {% assign card_date_label = include.item.year %}
+  {% elsif include.item.patent_year %}
+    {% assign card_date_label = include.item.patent_year %}
+  {% elsif include.item.date %}
+    {% assign card_date_label = include.item.date | date: '%Y' %}
+  {% endif %}
+  {% assign card_status_source = include.item.status | default: '' | downcase %}
+  {% assign taxonomy_status_source = '' %}
+  {% if include.item.taxonomy.status %}
+    {% assign taxonomy_status_source = include.item.taxonomy.status | join: ',' | downcase %}
+  {% endif %}
+  {% if card_status_source contains 'progress' or card_status_source contains 'ongoing' or taxonomy_status_source contains 'ongoing' %}
+    {% if card_date_label %}
+      {% assign card_date_label = card_date_label | append: ' - Ongoing' %}
+    {% else %}
+      {% assign card_date_label = 'Ongoing' %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% assign details_link_label = 'Project details' %}
+{% if include.type == 'publications' %}
+  {% assign details_link_label = 'Publication details' %}
+{% elsif include.type == 'talks' %}
+  {% assign details_link_label = 'Talk details' %}
+{% elsif include.type == 'patents' %}
+  {% assign details_link_label = 'Patent details' %}
+{% endif %}
+
+{% if include.item.organization_badges %}
+  {% assign organization_source = include.item.organization_badges | join: ',' | downcase %}
+{% else %}
+  {% assign organization_source = include.item.funding | default: '' | downcase %}
+{% endif %}
+{% if include.item.taxonomy.organization %}
+  {% assign taxonomy_organization_source = include.item.taxonomy.organization | join: ',' | downcase %}
+  {% assign organization_source = organization_source | append: ',' | append: taxonomy_organization_source %}
+{% endif %}
+
+{% assign tag_catalog = site.data.tags.tags %}
+{% assign tag_groups = site.data.tags.groups %}
+{% assign item_year = include.item.year %}
+{% if item_year == nil or item_year == '' %}
+  {% assign item_year = include.item.date | date: '%Y' %}
+{% endif %}
+{% assign item_year_tag = item_year | prepend: 'year-' %}
+{% assign card_tag_slugs = '' %}
+{% if tag_catalog[item_year_tag] %}
+  {% assign card_tag_slugs = card_tag_slugs | append: item_year_tag | append: ' ' %}
+{% endif %}
+{% if include.item.taxonomy %}
+  {% for tag_group in tag_groups %}
+    {% assign group_slug = tag_group.slug %}
+    {% assign group_tags = include.item.taxonomy[group_slug] %}
+    {% for tag in group_tags %}
+      {% assign clean_tag = tag | strip %}
+      {% if clean_tag != '' %}
+        {% assign tag_slug = clean_tag | slugify %}
+        {% assign card_tag_slugs = card_tag_slugs | append: tag_slug | append: ' ' %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endif %}
+{% if include.item.tags %}
+  {% for tag in include.item.tags %}
+    {% assign clean_tag = tag | strip %}
+    {% if clean_tag != '' %}
+      {% assign tag_slug = clean_tag | slugify %}
+      {% if tag_catalog[tag_slug] %}
+        {% assign card_tag_slugs = card_tag_slugs | append: tag_slug | append: ' ' %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if include.type == 'publications' and include.item.venue %}
+  {% for tag_pair in tag_catalog %}
+    {% assign tag_slug = tag_pair[0] %}
+    {% assign tag_def = tag_pair[1] %}
+    {% if tag_def.group == 'venue' and tag_def.match %}
+      {% for venue_match in tag_def.match %}
+        {% if include.item.venue contains venue_match %}
+          {% assign card_tag_slugs = card_tag_slugs | append: tag_slug | append: ' ' %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign card_kind_slug = include.type | default: 'default' %}
+{% assign card_kind_label = include.label | default: 'Project' %}
+{% assign publication_link_label = 'Paper' %}
+{% if include.type == 'publications' %}
+  {% assign card_kind_slug = 'paper' %}
+  {% assign card_kind_label = 'Paper' %}
+  {% if include.item.taxonomy.type %}
+    {% for type_tag in include.item.taxonomy.type %}
+      {% assign type_slug = type_tag | slugify %}
+      {% assign type_def = tag_catalog[type_slug] %}
+      {% assign card_kind_slug = type_slug %}
+      {% assign card_kind_label = type_def.short_label | default: type_def.label | default: type_tag %}
+      {% if type_def.link_label %}
+        {% assign publication_link_label = type_def.link_label %}
+      {% endif %}
+      {% break %}
+    {% endfor %}
+  {% elsif include.item.tags contains 'poster' %}
+    {% assign card_kind_slug = 'poster' %}
+    {% assign card_kind_label = 'Poster' %}
+    {% assign publication_link_label = 'Poster' %}
+  {% elsif include.item.tags contains 'talk' %}
+    {% assign card_kind_slug = 'talk' %}
+    {% assign card_kind_label = 'Talk' %}
+    {% assign publication_link_label = 'Talk' %}
+  {% elsif include.item.tags contains 'slides' %}
+    {% assign card_kind_slug = 'slides' %}
+    {% assign card_kind_label = 'Slides' %}
+    {% assign publication_link_label = 'Slides' %}
+  {% elsif include.item.tags contains 'thesis' %}
+    {% assign card_kind_slug = 'thesis' %}
+    {% assign card_kind_label = 'Thesis' %}
+    {% assign publication_link_label = 'Thesis' %}
+  {% elsif include.item.tags contains 'arxiv' %}
+    {% assign card_kind_slug = 'preprint' %}
+    {% assign card_kind_label = 'Preprint' %}
+    {% assign publication_link_label = 'Preprint' %}
+  {% endif %}
+{% elsif include.type == 'talks' %}
+  {% assign card_kind_slug = 'talk' %}
+  {% assign card_kind_label = 'Talk' %}
+  {% if include.item.taxonomy.type %}
+    {% for type_tag in include.item.taxonomy.type %}
+      {% assign type_slug = type_tag | slugify %}
+      {% assign type_def = tag_catalog[type_slug] %}
+      {% assign card_kind_slug = type_slug %}
+      {% assign card_kind_label = type_def.short_label | default: type_def.label | default: type_tag %}
+      {% break %}
+    {% endfor %}
+  {% elsif include.item.type contains 'Poster' or include.item.type contains 'poster' %}
+    {% assign card_kind_slug = 'poster' %}
+    {% assign card_kind_label = 'Poster' %}
+  {% endif %}
+{% elsif include.type == 'patents' %}
+  {% assign card_kind_slug = 'patent' %}
+  {% assign card_kind_label = 'Patent' %}
+{% endif %}
+
+<div class="list__item"{% if include.type == 'publications' or include.type == 'hardware' or include.type == 'software' or include.type == 'talks' %} data-filter-card{% endif %}{% if include.type == 'publications' %} data-publication-card{% endif %}{% if include.type == 'hardware' %} data-hardware-card{% endif %}{% if include.type == 'software' %} data-software-card{% endif %}{% if include.type == 'talks' %} data-talk-card{% endif %}{% if include.type == 'publications' or include.type == 'hardware' or include.type == 'software' or include.type == 'talks' %} data-tags="{{ card_tag_slugs | strip }}" data-date="{{ include.item.date | date: '%s' }}" data-citations="{{ include.item.citation_count | default: 0 }}" data-author-rank="{{ include.item.author_rank | default: 999 }}" data-title="{{ include.item.title | escape }}"{% endif %}>
+  <details class="display-card display-card--{{ include.type | default: 'default' }} display-card--kind-{{ card_kind_slug }}">
+    <summary class="display-card__summary">
+      <span class="display-card__thumbnail-wrap">
+        <img class="display-card__thumbnail" src="{{ card_image }}" alt="{{ card_image_alt }}" loading="lazy">
+      </span>
+
+      <span class="display-card__intro">
+        <span class="display-card__eyebrow">{{ card_kind_label }}</span>
+        <span class="display-card__title">{{ include.item.title }}</span>
+        {% if card_subtitle %}
+          <span class="display-card__subtitle">{{ card_subtitle }}</span>
+        {% endif %}
+        {% if card_date_label %}
+          <span class="display-card__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ card_date_label }}</span>
+        {% endif %}
+        {% if include.item.excerpt %}
+          <span class="display-card__excerpt">{{ include.item.excerpt | strip_html }}</span>
+        {% endif %}
+
+        <span class="display-card__badges" aria-label="Project metadata">
+          {% if include.type == 'publications' or include.item.taxonomy %}
+            {% assign rendered_tag_slugs = '|' %}
+            {% if tag_catalog[item_year_tag] %}
+              {% assign rendered_tag_slugs = rendered_tag_slugs | append: item_year_tag | append: '|' %}
+            {% elsif include.item.year %}
+              <span class="display-card__badge">{{ include.item.year }}</span>
+            {% elsif include.item.date %}
+              <span class="display-card__badge">{{ include.item.date | date: "%Y" }}</span>
+            {% endif %}
+            {% if include.item.taxonomy %}
+              {% for tag_group in tag_groups %}
+                {% assign group_slug = tag_group.slug %}
+                {% assign group_tags = include.item.taxonomy[group_slug] %}
+                {% for tag in group_tags %}
+                  {% assign clean_tag = tag | strip %}
+                  {% assign tag_slug = clean_tag | slugify %}
+                  {% assign tag_marker = tag_slug | prepend: '|' | append: '|' %}
+                  {% if clean_tag != '' %}
+                    {% assign skip_visible_hardware_tag = false %}
+                    {% if include.type == 'hardware' %}
+                      {% if group_slug == 'organization' or group_slug == 'technology' or tag_slug == 'hardware' %}
+                        {% assign skip_visible_hardware_tag = true %}
+                      {% endif %}
+                    {% endif %}
+                    {% if group_slug == 'status' %}
+                      {% assign skip_visible_hardware_tag = true %}
+                    {% endif %}
+                    {% if include.type == 'publications' and group_slug == 'type' %}
+                      {% assign skip_visible_hardware_tag = true %}
+                    {% endif %}
+                    {% if include.type == 'talks' and group_slug == 'type' %}
+                      {% assign skip_visible_hardware_tag = true %}
+                    {% endif %}
+                    {% if include.type == 'software' and group_slug == 'organization' %}
+                      {% assign skip_visible_hardware_tag = true %}
+                    {% endif %}
+                    {% unless skip_visible_hardware_tag %}
+                    {% unless rendered_tag_slugs contains tag_marker %}
+                      {% assign rendered_tag_slugs = rendered_tag_slugs | append: tag_slug | append: '|' %}
+                      {% assign tag_def = tag_catalog[tag_slug] %}
+                      {% assign tag_label = tag_def.short_label | default: tag_def.label | default: clean_tag %}
+                      {% assign tag_title = tag_def.label | default: clean_tag %}
+                      {% assign tag_group_slug = tag_def.group | default: group_slug | default: 'other' %}
+                      {% assign tag_family = tag_def.color_family | default: tag_group_slug %}
+                      <span class="display-card__badge display-card__badge--technology display-card__badge--tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group_slug }} tag-{{ tag_slug }}" title="{{ tag_title }}">
+                        {% if include.type == 'software' and tag_group_slug == 'technology' %}
+                          {% case tag_slug %}
+                            {% when 'python' %}
+                              <i class="fa-brands fa-python tag-badge__icon" aria-hidden="true"></i>
+                            {% when 'html' %}
+                              <i class="fa-brands fa-html5 tag-badge__icon" aria-hidden="true"></i>
+                            {% when 'c-plus-plus' %}
+                              <span class="tag-badge__mark" aria-hidden="true">C++</span>
+                          {% endcase %}
+                        {% endif %}
+                        <span>{{ tag_label }}</span>
+                      </span>
+                    {% endunless %}
+                    {% endunless %}
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
+            {% if include.item.tags %}
+              {% for tag in include.item.tags %}
+                {% assign clean_tag = tag | strip %}
+                {% assign tag_slug = clean_tag | slugify %}
+                {% assign tag_marker = tag_slug | prepend: '|' | append: '|' %}
+                {% if clean_tag != '' %}
+                  {% if tag_catalog[tag_slug] %}
+                  {% unless rendered_tag_slugs contains tag_marker %}
+                    {% assign tag_def = tag_catalog[tag_slug] %}
+                    {% assign tag_group_slug = tag_def.group | default: 'other' %}
+                    {% assign skip_visible_flat_tag = false %}
+                    {% if include.type == 'publications' and tag_group_slug == 'type' %}
+                      {% assign skip_visible_flat_tag = true %}
+                    {% endif %}
+                    {% unless skip_visible_flat_tag %}
+                      {% assign rendered_tag_slugs = rendered_tag_slugs | append: tag_slug | append: '|' %}
+                      {% assign tag_label = tag_def.short_label | default: tag_def.label | default: clean_tag %}
+                      {% assign tag_title = tag_def.label | default: clean_tag %}
+                      {% assign tag_family = tag_def.color_family | default: tag_group_slug %}
+                      <span class="display-card__badge display-card__badge--technology display-card__badge--tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group_slug }} tag-{{ tag_slug }}" title="{{ tag_title }}">
+                        {% if include.type == 'software' and tag_group_slug == 'technology' %}
+                          {% case tag_slug %}
+                            {% when 'python' %}
+                              <i class="fa-brands fa-python tag-badge__icon" aria-hidden="true"></i>
+                            {% when 'html' %}
+                              <i class="fa-brands fa-html5 tag-badge__icon" aria-hidden="true"></i>
+                            {% when 'c-plus-plus' %}
+                              <span class="tag-badge__mark" aria-hidden="true">C++</span>
+                          {% endcase %}
+                        {% endif %}
+                        <span>{{ tag_label }}</span>
+                      </span>
+                    {% endunless %}
+                  {% endunless %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            {% if include.item.venue %}
+              {% for tag_pair in tag_catalog %}
+                {% assign tag_slug = tag_pair[0] %}
+                {% assign tag_def = tag_pair[1] %}
+                {% assign tag_marker = tag_slug | prepend: '|' | append: '|' %}
+                {% if tag_def.group == 'venue' and tag_def.match %}
+                  {% for venue_match in tag_def.match %}
+                    {% if include.item.venue contains venue_match %}
+                      {% unless rendered_tag_slugs contains tag_marker %}
+                        {% assign rendered_tag_slugs = rendered_tag_slugs | append: tag_slug | append: '|' %}
+                        {% assign tag_label = tag_def.short_label | default: tag_def.label | default: tag_slug %}
+                        {% assign tag_title = tag_def.label | default: tag_slug %}
+                        {% assign tag_family = tag_def.color_family | default: 'venue' %}
+                        <span class="display-card__badge display-card__badge--technology display-card__badge--tag tag-badge tag-family-{{ tag_family }} tag-group-venue tag-{{ tag_slug }}" title="{{ tag_title }}">{{ tag_label }}</span>
+                      {% endunless %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% elsif include.item.card_badges %}
+            {% for badge in include.item.card_badges %}
+              <span class="display-card__badge display-card__badge--technology">{{ badge }}</span>
+            {% endfor %}
+          {% elsif include.item.technologies %}
+            {% for technology in include.item.technologies %}
+              <span class="display-card__badge display-card__badge--technology">{{ technology }}</span>
+            {% endfor %}
+          {% elsif include.item.technology %}
+            <span class="display-card__badge display-card__badge--technology">{{ include.item.technology }}</span>
+          {% elsif include.item.tags %}
+            {% for tag in include.item.tags %}
+              <span class="display-card__badge display-card__badge--technology display-card__badge--tag tag-badge tag-{{ tag | slugify }}">{{ tag }}</span>
+            {% endfor %}
+          {% endif %}
+        </span>
+
+        <span class="display-card__links">
+          <a href="{{ base_path }}{{ include.item.url }}" onclick="event.stopPropagation()">{{ details_link_label }} <span aria-hidden="true">&#8599;</span></a>
+          {% if include.type == 'publications' and include.item.paperurl and include.item.paperurl != '' %}
+            <a href="{{ include.item.paperurl }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">{{ publication_link_label }} <span aria-hidden="true">&#8599;</span></a>
+          {% elsif include.type == 'patents' and include.item.patent_url and include.item.patent_url != '' %}
+            <a href="{{ include.item.patent_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Patent record <span aria-hidden="true">&#8599;</span></a>
+          {% elsif include.item.github_url and include.item.github_url != '' %}
+            <a href="{{ include.item.github_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">GitHub <span aria-hidden="true">&#8599;</span></a>
+          {% endif %}
+          {% if include.type == 'patents' and include.item.pdf_url and include.item.pdf_url != '' %}
+            <a href="{{ base_path }}{{ include.item.pdf_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF <span aria-hidden="true">&#8599;</span></a>
+          {% endif %}
+        </span>
+
+        {% if organization_source != '' or include.type == 'hardware' %}
+        <span class="display-card__organizations" aria-label="Project organizations">
+          {% assign has_organization_logo = false %}
+          {% if organization_source contains 'cern' %}
+            {% assign has_organization_logo = true %}
+            <span class="display-card__organization" title="CERN">
+              <img src="{{ base_path }}/images/logos/cern.png" alt="CERN">
+            </span>
+          {% endif %}
+          {% if organization_source contains 'fermilab' %}
+            {% assign has_organization_logo = true %}
+            <span class="display-card__organization" title="Fermilab">
+              <img src="{{ base_path }}/images/logos/fermilab.jpg" alt="Fermilab">
+            </span>
+          {% endif %}
+          {% if organization_source contains 'northwestern' %}
+            {% assign has_organization_logo = true %}
+            <span class="display-card__organization" title="Northwestern University">
+              <img src="{{ base_path }}/images/logos/nu.png" alt="Northwestern University">
+            </span>
+          {% endif %}
+          {% if organization_source contains 'columbia' %}
+            {% assign has_organization_logo = true %}
+            <span class="display-card__organization" title="Columbia University">
+              <img src="{{ base_path }}/images/logos/columbia.png" alt="Columbia University">
+            </span>
+          {% endif %}
+          {% if organization_source contains 'personal' %}
+            {% assign has_organization_logo = true %}
+            <span class="display-card__organization display-card__organization--emoji" title="Personal">
+              <span aria-hidden="true">👤</span>
+              <span class="sr-only">Personal</span>
+            </span>
+          {% endif %}
+          {% unless has_organization_logo %}
+          {% if include.type == 'hardware' %}
+            <span class="display-card__organization" title="Fermilab">
+              <img src="{{ base_path }}/images/logos/fermilab.jpg" alt="Fermilab">
+            </span>
+            <span class="display-card__organization" title="Northwestern University">
+              <img src="{{ base_path }}/images/logos/nu.png" alt="Northwestern University">
+            </span>
+          {% endif %}
+          {% endunless %}
+        </span>
+        {% endif %}
+      </span>
+
+      <span class="display-card__toggle" aria-hidden="true">
+        <span class="display-card__chevron"></span>
+      </span>
+    </summary>
+
+    <div class="display-card__body">
+      {% if include.item.gallery_images %}
+        <div class="display-card__carousel" aria-label="{{ include.item.title }} image gallery">
+          <div class="display-card__carousel-toolbar">
+            <strong>Project images</strong>
+            {% if include.item.gallery_images.size > 1 %}
+              <span class="display-card__carousel-controls">
+                <button type="button" aria-label="Show previous project image" onclick="var gallery = this.closest('.display-card__carousel').querySelector('.display-card__gallery'); var slides = gallery.children; var active = gallery.querySelector('.is-active'); var index = Array.prototype.indexOf.call(slides, active); active.classList.remove('is-active'); slides[(index - 1 + slides.length) % slides.length].classList.add('is-active')">&#8249;</button>
+                <button type="button" aria-label="Show next project image" onclick="var gallery = this.closest('.display-card__carousel').querySelector('.display-card__gallery'); var slides = gallery.children; var active = gallery.querySelector('.is-active'); var index = Array.prototype.indexOf.call(slides, active); active.classList.remove('is-active'); slides[(index + 1) % slides.length].classList.add('is-active')">&#8250;</button>
+              </span>
+            {% endif %}
+          </div>
+          <div class="display-card__gallery" tabindex="0">
+            {% for gallery_item in include.item.gallery_images %}
+              {% assign gallery_image = gallery_item.image %}
+              {% if gallery_image contains '://' %}
+              {% elsif gallery_image contains '/images/' %}
+                {% assign gallery_image = gallery_image | prepend: base_path %}
+              {% else %}
+                {% assign gallery_image = gallery_image | prepend: '/images/' | prepend: base_path %}
+              {% endif %}
+              <figure class="display-card__gallery-slide{% if forloop.first %} is-active{% endif %}">
+                <span class="display-card__image-wrap display-card__image-wrap--large">
+                  <img class="display-card__image" src="{{ gallery_image }}" alt="{{ gallery_item.alt | default: gallery_item.caption }}" loading="lazy">
+                </span>
+                {% if gallery_item.caption %}
+                  <figcaption>{{ gallery_item.caption }}</figcaption>
+                {% endif %}
+              </figure>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <span class="display-card__image-wrap display-card__image-wrap--large">
+          <img class="display-card__image" src="{{ card_image }}" alt="{{ card_image_alt }}" loading="lazy">
+        </span>
+      {% endif %}
+
+      {% assign card_description = include.item.description | default: include.item.excerpt %}
+      {% if card_description %}
+        <div class="display-card__description">
+          <strong>Description</strong>
+          {{ card_description | markdownify }}
+        </div>
+      {% endif %}
+    </div>
+  </details>
+</div>

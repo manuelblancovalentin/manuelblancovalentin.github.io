@@ -3,12 +3,24 @@ title: "🧶 Nodus: A lightweight and reusable job manager."
 collection: software
 category: software
 permalink: /software/nodus
-excerpt: "blabla<br/><img src='/images/nodus-logo.png' width='200px' height='auto'>"
+excerpt: "Lightweight and reusable job manager for complex workflows"
+subtitle: "Reusable workflow and job orchestration"
 date: 2023-01-01
 technologies: [Python, Machine Learning, Data Analysis]
+card_badges: [Python, Workflow Automation]
 github_url: 'https://github.com/manuelblancovalentin/nodus'
-description: 
-status: 'In-progress'
+card_image: '/images/nodus-logo.png'
+card_image_alt: 'Nodus logo'
+description: 'Nodus is a lightweight and reusable job manager designed to streamline the execution of complex workflows.'
+status: 'Completed'
+funding: 'Personal'
+taxonomy:
+  discipline: [computer-science]
+  topic: [workflow-automation]
+  technology: [python]
+  organization: [personal]
+  contribution: [lead-development]
+  status: [finalized]
 ---
 
 ## Nodus: 
@@ -31,6 +43,3 @@ Nodus is a lightweight and reusable job manager designed to streamline the execu
 ---
 
 *GitHub repository: [Nodus](https://github.com/manuelblancovalentin/nodus)*
-
-
-

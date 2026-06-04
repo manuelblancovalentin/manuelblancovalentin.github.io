@@ -11,8 +11,10 @@ paperurl: 'https://www.google.com/search?q=Smart+Pixels%3A+Algorithm+design+and+
 author_rank: 999
 citation_count: 0
 sort_key: '1-999999-79751130-smart-pixels-algorithm-design-and-hardware-testing-for-a-28m-roic-for-future-pixel-trackers'
-tags: [hardware, pixel]
+tags: [hardware, smart-pixels, radhard, slides]
 citation: 'Carissa Kumar, Emily Pan, Karri Dipetrillo, Anthony Badea, Jennet Dickinson, Jieun Yoo, Morris Swartz, Giuseppe Di Guglielmo, Alice Bean, Douglas Berry, others (2024). &quot;Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for future pixel trackers.&quot; <i>APS April Meeting Abstracts</i>. 2024, F14&#8211;005.'
+card_image: '/images/publications/smart_pixel_talk.png'
+card_image_alt: 'Smart Pixels: Algorithm design and hardware testing for a 28m ROIC for future pixel trackers.'
 ---
 
 | Field | Value |

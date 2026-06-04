@@ -1,0 +1,58 @@
+{% include base_path %}
+{% assign category = include.category %}
+{% assign accent = category.accent | default: '#555' %}
+
+<article class="cv-skill-card" style="--cv-skill-accent: {{ accent }};">
+  <div class="cv-skill-card__header">
+    {% if category.icon %}
+      <span class="cv-skill-card__icon" aria-hidden="true">
+        {% case category.icon %}
+          {% when 'code' %}&lt;/&gt;
+          {% when 'brain' %}ML
+          {% when 'microchip' %}IC
+          {% when 'fpga' %}FPGA
+          {% when 'terminal' %}&gt;_
+          {% when 'language' %}Aa
+          {% else %}•
+        {% endcase %}
+      </span>
+    {% endif %}
+    <h3>{{ category.title }}</h3>
+  </div>
+
+  <div class="cv-skill-card__chips">
+    {% for skill in category.skills %}
+      <span class="cv-skill-chip">
+        {% if skill.logo %}
+          {% assign skill_logo = skill.logo %}
+          {% if skill_logo contains '://' %}
+          {% elsif skill_logo contains '/images/' %}
+            {% assign skill_logo = skill_logo | prepend: base_path %}
+          {% endif %}
+          <img class="cv-skill-chip__logo" src="{{ skill_logo }}" alt="" aria-hidden="true">
+        {% elsif skill.flag %}
+          {% assign skill_flag = skill.flag %}
+          {% if skill_flag contains '://' %}
+          {% elsif skill_flag contains '/images/' %}
+            {% assign skill_flag = skill_flag | prepend: base_path %}
+          {% endif %}
+          <img class="cv-skill-chip__flag" src="{{ skill_flag }}" alt="" aria-hidden="true">
+        {% elsif skill.icon %}
+          <span class="cv-skill-chip__fallback-icon" aria-hidden="true">
+            {% case skill.icon %}
+              {% when 'waveform' %}∿
+              {% when 'check' %}✓
+              {% when 'desktop' %}▣
+              {% else %}•
+            {% endcase %}
+          </span>
+        {% endif %}
+
+        <span class="cv-skill-chip__label">{{ skill.label }}</span>
+        {% if skill.level %}
+          <span class="cv-skill-chip__level">{{ skill.level }}</span>
+        {% endif %}
+      </span>
+    {% endfor %}
+  </div>
+</article>

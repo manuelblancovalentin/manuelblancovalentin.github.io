@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Microchip">
+  <rect width="64" height="64" rx="14" fill="#8a5a44"/>
+  <rect x="19" y="19" width="26" height="26" rx="4" fill="#fff2df"/>
+  <path d="M12 24h7M12 32h7M12 40h7M45 24h7M45 32h7M45 40h7M24 12v7M32 12v7M40 12v7M24 45v7M32 45v7M40 45v7" stroke="#fff2df" stroke-width="3" stroke-linecap="round"/>
+  <path d="M26 33h12M26 27h12M26 39h8" stroke="#8a5a44" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -10,12 +10,16 @@ inventors: 'Valentin, Manuel; Braun, Alexander; Keller, Igor; Amin, Chirayu'
 patent_number: '23PA168US01'
 patent_office: 'Cadence Design Systems'
 patent_year: 2023
+status: 'Internal filing documentation; not publicly available'
+publicly_available: false
+card_badges: [Patent Filing, Non-public, Cadence]
 citation: 'Valentin, M., Braun, A., Keller, I., & Amin, C. (2023). Analysis based on sensitivity characteristic data and hardware measurement data. U.S. Patent Office, 23PA168US01.'
 ---
 
 U.S. Patent application for a novel method of analyzing sensitivity characteristic data and hardware measurement data for design optimization.
 
 **Patent Details**
+
 | Field | Value |
 | --- | --- |
 | Title | Analysis based on sensitivity characteristic data and hardware measurement data |
@@ -24,4 +28,6 @@ U.S. Patent application for a novel method of analyzing sensitivity characterist
 | Patent Office | U.S. Patent Office |
 | Filing Date | 2023 |
 | Organization | Cadence Design Systems |
-| Status | Patent Application |
+| Status | Internal filing documentation; not publicly available |
+
+This filing is not currently available through public patent search records. I keep the site entry at a high level and do not link the local filing/signature documents.
