@@ -61,15 +61,10 @@
   <aside class="cv-work-card__meta" aria-label="Work details">
     {% if include.location %}
       {% if include.location_url %}
-        <div class="cv-work-card__meta-item">
+        <a class="cv-work-card__meta-item cv-work-card__meta-link" href="{{ include.location_url }}" target="_blank" rel="noopener noreferrer">
           <span class="cv-work-card__meta-emoji" aria-hidden="true">📍</span>
-          <span class="cv-work-card__meta-text">
-            {{ include.location }}
-            <a class="cv-work-card__external-link" href="{{ include.location_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open {{ include.location }} in Google Maps">
-              <span class="cv-work-card__external-icon" aria-hidden="true">↗</span>
-            </a>
-          </span>
-        </div>
+          <span class="cv-work-card__meta-text">{{ include.location }} <span class="cv-work-card__external-icon" aria-hidden="true">↗</span></span>
+        </a>
       {% else %}
         <div class="cv-work-card__meta-item">
           <span class="cv-work-card__meta-emoji" aria-hidden="true">📍</span>

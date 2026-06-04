@@ -311,41 +311,21 @@ html[data-theme='dark'] .cv-section-heading::after {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
+.cv-education-card__meta-link,
+.page__content a.cv-education-card__meta-link,
+.page__content a.cv-education-card__meta-link:hover,
+.page__content a.cv-education-card__meta-link:focus,
+.page__content a.cv-education-card__meta-link span {
+  text-decoration: none !important;
+}
+
 .cv-education-card__meta-link {
   color: inherit;
-  text-decoration: none;
-}
-
-.page__content .cv-education-card__meta-link,
-.page__content .cv-education-card__meta-link:hover,
-.page__content .cv-education-card__meta-link:focus {
-  text-decoration: none;
-}
-
-.page__content .cv-education-card__external-link,
-.page__content .cv-education-card__external-link:hover,
-.page__content .cv-education-card__external-link:focus {
-  text-decoration: none;
 }
 
 .cv-education-card__meta-link:hover,
 .cv-education-card__meta-link:focus {
   color: var(--cv-education-accent);
-  text-decoration: none;
-}
-
-.cv-education-card__external-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--cv-education-accent);
-  text-decoration: none;
-}
-
-.cv-education-card__external-link:hover,
-.cv-education-card__external-link:focus {
-  color: var(--cv-education-accent);
-  text-decoration: none;
-  opacity: 0.78;
 }
 
 .cv-education-card__external-icon {
@@ -526,41 +506,21 @@ html[data-theme='dark'] .cv-education-card__meta {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
 }
 
+.cv-work-card__meta-link,
+.page__content a.cv-work-card__meta-link,
+.page__content a.cv-work-card__meta-link:hover,
+.page__content a.cv-work-card__meta-link:focus,
+.page__content a.cv-work-card__meta-link span {
+  text-decoration: none !important;
+}
+
 .cv-work-card__meta-link {
   color: inherit;
-  text-decoration: none;
-}
-
-.page__content .cv-work-card__meta-link,
-.page__content .cv-work-card__meta-link:hover,
-.page__content .cv-work-card__meta-link:focus {
-  text-decoration: none;
-}
-
-.page__content .cv-work-card__external-link,
-.page__content .cv-work-card__external-link:hover,
-.page__content .cv-work-card__external-link:focus {
-  text-decoration: none;
 }
 
 .cv-work-card__meta-link:hover,
 .cv-work-card__meta-link:focus {
   color: var(--cv-work-accent);
-  text-decoration: none;
-}
-
-.cv-work-card__external-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--cv-work-accent);
-  text-decoration: none;
-}
-
-.cv-work-card__external-link:hover,
-.cv-work-card__external-link:focus {
-  color: var(--cv-work-accent);
-  text-decoration: none;
-  opacity: 0.78;
 }
 
 .cv-work-card__external-icon {
