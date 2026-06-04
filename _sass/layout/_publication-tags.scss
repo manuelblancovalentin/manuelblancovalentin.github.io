@@ -246,6 +246,11 @@
     line-height: 1;
   }
 
+  svg.tag-badge__icon {
+    padding: 4px;
+    stroke-width: 2.4;
+  }
+
   .tag-badge__mark {
     font-size: 0.62rem;
     font-weight: 900;
@@ -407,6 +412,7 @@
     --tag-bg: #f2dfc4;
     --tag-text: #6b451b;
     --tag-border: rgba(107, 69, 27, 0.24);
+    text-transform: uppercase;
   }
 
   &.tag-family-engineering {

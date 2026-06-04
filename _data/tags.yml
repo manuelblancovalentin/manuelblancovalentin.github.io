@@ -107,40 +107,46 @@ tags:
 
   paper:
     label: Paper
-    short_label: Paper
+    short_label: PAPER
     group: type
     color_family: type
     link_label: Paper
+    icon: file-text
   preprint:
     label: Preprint
-    short_label: Preprint
+    short_label: PREPRINT
     group: type
     color_family: type
     link_label: Preprint
+    icon: file-text
   talk:
     label: Talk
-    short_label: Talk
+    short_label: TALK
     group: type
     color_family: type
     link_label: Talk
+    icon: mic
   slides:
     label: Slides
-    short_label: Slides
+    short_label: SLIDES
     group: type
     color_family: type
     link_label: Slides
+    icon: presentation
   poster:
     label: Poster
-    short_label: Poster
+    short_label: POSTER
     group: type
     color_family: type
     link_label: Poster
+    icon: presentation
   thesis:
     label: Thesis
-    short_label: Thesis
+    short_label: THESIS
     group: type
     color_family: type
     link_label: Thesis
+    icon: graduation-cap
 
   computer-engineering:
     label: Computer Engineering

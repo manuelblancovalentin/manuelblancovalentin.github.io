@@ -298,7 +298,9 @@
                       {% assign tag_group_slug = tag_def.group | default: group_slug | default: 'other' %}
                       {% assign tag_family = tag_def.color_family | default: tag_group_slug %}
                       <span class="display-card__badge display-card__badge--technology display-card__badge--tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group_slug }} tag-{{ tag_slug }}" title="{{ tag_title }}">
-                        {% if include.type == 'software' and tag_group_slug == 'technology' %}
+                        {% if tag_def.icon %}
+                          {% include lucide-icon.html name=tag_def.icon class="tag-badge__icon" size=15 %}
+                        {% elsif include.type == 'software' and tag_group_slug == 'technology' %}
                           {% case tag_slug %}
                             {% when 'python' %}
                               <i class="fa-brands fa-python tag-badge__icon" aria-hidden="true"></i>
@@ -336,7 +338,9 @@
                       {% assign tag_title = tag_def.label | default: clean_tag %}
                       {% assign tag_family = tag_def.color_family | default: tag_group_slug %}
                       <span class="display-card__badge display-card__badge--technology display-card__badge--tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group_slug }} tag-{{ tag_slug }}" title="{{ tag_title }}">
-                        {% if include.type == 'software' and tag_group_slug == 'technology' %}
+                        {% if tag_def.icon %}
+                          {% include lucide-icon.html name=tag_def.icon class="tag-badge__icon" size=15 %}
+                        {% elsif include.type == 'software' and tag_group_slug == 'technology' %}
                           {% case tag_slug %}
                             {% when 'python' %}
                               <i class="fa-brands fa-python tag-badge__icon" aria-hidden="true"></i>

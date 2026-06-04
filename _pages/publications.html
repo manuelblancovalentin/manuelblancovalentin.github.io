@@ -95,10 +95,16 @@ author_profile: true
                 {% if tag_def.group == 'venue' and filter_short_label %}
                   {% assign filter_label = filter_short_label %}
                   {% assign filter_short_label = nil %}
+                {% elsif tag_def.group == 'type' and filter_short_label %}
+                  {% assign filter_label = filter_short_label %}
+                  {% assign filter_short_label = nil %}
                 {% endif %}
                 {% assign tag_family = tag_def.color_family | default: tag_def.group | default: 'other' %}
                 <button type="button" class="publication-filter-tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group.slug }} tag-{{ tag_slug }}" data-publication-filter="{{ tag_slug }}" data-tag-group="{{ tag_group.slug }}">
-                  {{ filter_label }}{% if filter_short_label and filter_short_label != filter_label %} ({{ filter_short_label }}){% endif %}
+                  {% if tag_def.icon %}
+                    {% include lucide-icon.html name=tag_def.icon class="tag-badge__icon" size=15 %}
+                  {% endif %}
+                  <span>{{ filter_label }}{% if filter_short_label and filter_short_label != filter_label %} ({{ filter_short_label }}){% endif %}</span>
                 </button>
               {% endif %}
             {% endfor %}

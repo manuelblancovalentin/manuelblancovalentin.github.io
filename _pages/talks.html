@@ -82,7 +82,10 @@ author_profile: true
                   {% assign filter_label = tag_def.short_label | default: tag_def.label | default: tag_slug %}
                   {% assign tag_family = tag_def.color_family | default: tag_def.group | default: 'other' %}
                   <button type="button" class="publication-filter-tag tag-badge tag-family-{{ tag_family }} tag-group-{{ tag_group.slug }} tag-{{ tag_slug }}" data-talk-filter="{{ tag_slug }}" data-tag-group="{{ tag_group.slug }}" title="{{ tag_def.label | default: tag_slug }}">
-                    {{ filter_label }}
+                    {% if tag_def.icon %}
+                      {% include lucide-icon.html name=tag_def.icon class="tag-badge__icon" size=15 %}
+                    {% endif %}
+                    <span>{{ filter_label }}</span>
                   </button>
                 {% endif %}
               {% endfor %}
