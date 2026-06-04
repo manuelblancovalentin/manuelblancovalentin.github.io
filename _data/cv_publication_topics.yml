@@ -1,6 +1,7 @@
 topics:
   - title: ML Accelerators
     slug: ml-accelerators
+    icon: microchip
     accent: "#3776ab"
     tags:
       - hls
@@ -12,6 +13,7 @@ topics:
 
   - title: HEP Detectors
     slug: hep-detectors
+    icon: atom
     accent: "#4e2a84"
     tags:
       - detectors
@@ -23,6 +25,7 @@ topics:
 
   - title: Quantum & Cryogenic Systems
     slug: quantum
+    icon: snowflake
     accent: "#0072ce"
     tags:
       - quantum
@@ -30,6 +33,7 @@ topics:
 
   - title: Neuromorphic Systems
     slug: neuromorphic
+    icon: brain
     accent: "#7b61ff"
     tags:
       - neuromorphic
@@ -37,6 +41,7 @@ topics:
 
   - title: Petrophysics & Imaging
     slug: petrophysics
+    icon: droplet
     accent: "#2e8b57"
     tags:
       - petrophysics
@@ -48,12 +53,14 @@ topics:
 
   - title: Astrophysics
     slug: astrophysics
+    icon: telescope
     accent: "#6c8ebf"
     tags:
       - astrophysics
 
   - title: Theses & Technical Notes
     slug: theses-notes
+    icon: graduation-cap
     accent: "#8a5a44"
     tags:
       - thesis

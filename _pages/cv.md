@@ -264,7 +264,12 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   {% if topic_count > 0 %}
     <article class="cv-publication-topic-card" style="--cv-publication-topic-accent: {{ topic.accent | default: '#7b61ff' }};">
       <div class="cv-publication-topic-card__header">
-        <h3>{{ topic.title }}</h3>
+        <h3>
+          {% if topic.icon %}
+            {% include lucide-icon.html name=topic.icon class="cv-publication-topic-card__icon" size=19 %}
+          {% endif %}
+          <span>{{ topic.title }}</span>
+        </h3>
         <span>{{ topic_count }}</span>
       </div>
       <ul class="cv-publication-topic-card__list">

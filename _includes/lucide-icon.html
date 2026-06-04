@@ -1,0 +1,80 @@
+{% assign icon = include.name | default: 'circle' %}
+{% assign icon_class = include.class | default: 'lucide-icon' %}
+{% assign icon_size = include.size | default: 18 %}
+
+<svg class="{{ icon_class }}" xmlns="http://www.w3.org/2000/svg" width="{{ icon_size }}" height="{{ icon_size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {% case icon %}
+    {% when 'arrow-up-right' %}
+      <path d="M7 7h10v10"></path>
+      <path d="M7 17 17 7"></path>
+    {% when 'map-pin' %}
+      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    {% when 'calendar-days' %}
+      <path d="M8 2v4"></path>
+      <path d="M16 2v4"></path>
+      <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+      <path d="M3 10h18"></path>
+      <path d="M8 14h.01"></path>
+      <path d="M12 14h.01"></path>
+      <path d="M16 14h.01"></path>
+      <path d="M8 18h.01"></path>
+      <path d="M12 18h.01"></path>
+      <path d="M16 18h.01"></path>
+    {% when 'brain' %}
+      <path d="M12 18V5"></path>
+      <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"></path>
+      <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"></path>
+      <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"></path>
+      <path d="M18 18a4 4 0 0 0 2-7.464"></path>
+      <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"></path>
+      <path d="M6 18a4 4 0 0 1-2-7.464"></path>
+      <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"></path>
+    {% when 'microchip' %}
+      <path d="M18 12h2"></path>
+      <path d="M18 16h2"></path>
+      <path d="M18 8h2"></path>
+      <path d="M4 12h2"></path>
+      <path d="M4 16h2"></path>
+      <path d="M4 8h2"></path>
+      <path d="M12 18v2"></path>
+      <path d="M8 18v2"></path>
+      <path d="M16 18v2"></path>
+      <path d="M12 4v2"></path>
+      <path d="M8 4v2"></path>
+      <path d="M16 4v2"></path>
+      <rect width="12" height="12" x="6" y="6" rx="2"></rect>
+      <rect width="4" height="4" x="10" y="10" rx="1"></rect>
+    {% when 'atom' %}
+      <circle cx="12" cy="12" r="1"></circle>
+      <path d="M20.2 20.2c2.04-2.03.02-7.35-4.5-11.88-4.54-4.52-9.85-6.54-11.9-4.5-2.03 2.04-.01 7.35 4.52 11.9 4.53 4.52 9.85 6.54 11.88 4.48Z"></path>
+      <path d="M15.7 15.7c4.53-4.54 6.55-9.86 4.5-11.9-2.03-2.03-7.35-.01-11.88 4.52-4.53 4.53-6.55 9.85-4.5 11.88 2.04 2.04 7.35.02 11.88-4.5Z"></path>
+    {% when 'snowflake' %}
+      <path d="m10 20 1.25-2.5L14 20"></path>
+      <path d="M10 4h4"></path>
+      <path d="M12 2v20"></path>
+      <path d="m4.93 4.93 14.14 14.14"></path>
+      <path d="M4.93 19.07 19.07 4.93"></path>
+      <path d="M2 12h20"></path>
+      <path d="m20 10-2.5 1.25L20 14"></path>
+      <path d="m4 10 2.5 1.25L4 14"></path>
+      <path d="m14 4-1.25 2.5L10 4"></path>
+    {% when 'droplet' %}
+      <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5S12 2 12 2 10 7.9 8 9.5 5 13 5 15a7 7 0 0 0 7 7Z"></path>
+    {% when 'telescope' %}
+      <path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a.934.934 0 0 1 .691-1.126l6.147-1.576"></path>
+      <path d="m13.56 11.747 4.332-.924"></path>
+      <path d="m16 21-3.105-6.21"></path>
+      <path d="M16.485 5.94 18.52 4.5a1.5 1.5 0 0 1 2.1.355l1.4 1.96a1.5 1.5 0 0 1-.356 2.1l-2.035 1.44"></path>
+      <path d="m9.5 6.5 7 7"></path>
+      <path d="m11 21 3.105-6.21"></path>
+      <path d="m7 21 4.5-9"></path>
+      <path d="m15.5 5.5 3 3"></path>
+    {% when 'graduation-cap' %}
+      <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
+      <path d="M22 10v6"></path>
+      <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+    {% else %}
+      <circle cx="12" cy="12" r="10"></circle>
+  {% endcase %}
+</svg>

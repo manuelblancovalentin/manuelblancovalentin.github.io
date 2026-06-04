@@ -47,19 +47,19 @@
     {% if include.location %}
       {% if include.location_url %}
         <a class="cv-education-card__meta-item cv-education-card__meta-link" href="{{ include.location_url }}" target="_blank" rel="noopener noreferrer">
-          <span class="cv-education-card__meta-emoji" aria-hidden="true">📍</span>
-          <span class="cv-education-card__meta-text">{{ include.location }} <span class="cv-education-card__external-icon" aria-hidden="true">↗</span></span>
+          {% include lucide-icon.html name="map-pin" class="cv-education-card__meta-icon" size=17 %}
+          <span class="cv-education-card__meta-text">{{ include.location }} {% include lucide-icon.html name="arrow-up-right" class="cv-education-card__external-icon" size=14 %}</span>
         </a>
       {% else %}
         <div class="cv-education-card__meta-item">
-          <span class="cv-education-card__meta-emoji" aria-hidden="true">📍</span>
+          {% include lucide-icon.html name="map-pin" class="cv-education-card__meta-icon" size=17 %}
           <span>{{ include.location }}</span>
         </div>
       {% endif %}
     {% endif %}
     {% if include.timeline %}
       <div class="cv-education-card__meta-item">
-        <i class="fa fa-calendar-alt" aria-hidden="true"></i>
+        {% include lucide-icon.html name="calendar-days" class="cv-education-card__meta-icon" size=17 %}
         <span>{{ include.timeline }}</span>
       </div>
     {% endif %}
