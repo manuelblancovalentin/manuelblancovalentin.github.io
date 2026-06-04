@@ -235,19 +235,15 @@
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
-    margin: -0.15rem 0.2rem -0.15rem -0.4rem;
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.25rem 0 0;
     color: var(--tag-text);
-    background: rgba(255, 255, 255, 0.46);
-    border: 1px solid var(--tag-border);
-    border-radius: 4px;
     font-size: 0.95rem;
     line-height: 1;
   }
 
   svg.tag-badge__icon {
-    padding: 4px;
     stroke-width: 2.4;
   }
 
