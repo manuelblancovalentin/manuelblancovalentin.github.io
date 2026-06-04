@@ -63,7 +63,7 @@
       {% if include.location_url %}
         <a class="cv-work-card__meta-item cv-work-card__meta-link" href="{{ include.location_url }}" target="_blank" rel="noopener">
           <span class="cv-work-card__meta-emoji" aria-hidden="true">📍</span>
-          <span>{{ include.location }}</span>
+          <span class="cv-work-card__meta-text">{{ include.location }} <span class="cv-work-card__external-icon" aria-hidden="true">↗</span></span>
         </a>
       {% else %}
         <div class="cv-work-card__meta-item">
