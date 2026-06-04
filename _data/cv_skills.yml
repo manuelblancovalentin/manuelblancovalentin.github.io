@@ -11,7 +11,7 @@ skill_categories:
         url: https://isocpp.org
       - label: Verilog/VHDL
         logo: /images/skills/verilog.svg
-        url: https://www.accellera.org/activities/working-groups/verilog-ams
+        url: https://en.wikipedia.org/wiki/Verilog
       - label: Tcl/Tk
         logo: /images/skills/terminal.svg
         url: https://www.tcl-lang.org
@@ -20,7 +20,7 @@ skill_categories:
         url: https://www.gnu.org/software/bash/
       - label: Cadence SKILL
         logo: /images/logos/cadence.svg
-        url: https://www.cadence.com
+        url: https://en.wikipedia.org/wiki/Cadence_SKILL
       - label: SPICE
         icon: waveform
         url: https://bwrcs.eecs.berkeley.edu/Classes/IcBook/SPICE/
@@ -48,7 +48,7 @@ skill_categories:
     skills:
       - label: Virtuoso
         logo: /images/logos/cadence.svg
-        url: https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design/virtuoso-studio.html
+        url: https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/virtuoso-studio.html
       - label: Innovus
         logo: /images/logos/cadence.svg
         url: https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-floorplanning/innovus-implementation-system.html
@@ -71,7 +71,7 @@ skill_categories:
         icon: check
       - label: Verification
         logo: /images/skills/verilog.svg
-        url: https://www.accellera.org/activities/working-groups/systemverilog
+        url: https://www.cadence.com/en_US/home/tools/system-design-and-verification/simulation-and-testbench-verification/xcelium-simulator.html
 
   - title: HLS / FPGA
     icon: fpga
