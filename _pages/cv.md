@@ -239,14 +239,41 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 {% include cv-section-heading.html title="Publications" accent="#7b61ff" %}
 
 {% assign sorted_pubs = site.publications | sort: "sort_key" %}
-<ul class="cv-publications">
-{% for post in sorted_pubs %}
-  <li>
-    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-    — <i>{{ post.venue }}</i> ({{ post.date | default: "1900-01-01" | date: "%Y" }})
-  </li>
+<div class="cv-publication-topic-grid">
+{% for topic in site.data.cv_publication_topics.topics %}
+  {% assign topic_count = 0 %}
+  {% capture topic_items %}
+    {% for post in sorted_pubs %}
+      {% assign show_publication = false %}
+      {% for topic_tag in topic.tags %}
+        {% if post.tags contains topic_tag %}
+          {% assign show_publication = true %}
+        {% endif %}
+      {% endfor %}
+      {% if show_publication %}
+        {% assign topic_count = topic_count | plus: 1 %}
+        <li class="cv-publication-topic-card__item">
+          <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+          <span class="cv-publication-topic-card__meta">
+            {{ post.venue }} · {{ post.date | default: "1900-01-01" | date: "%Y" }}
+          </span>
+        </li>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+  {% if topic_count > 0 %}
+    <article class="cv-publication-topic-card" style="--cv-publication-topic-accent: {{ topic.accent | default: '#7b61ff' }};">
+      <div class="cv-publication-topic-card__header">
+        <h3>{{ topic.title }}</h3>
+        <span>{{ topic_count }}</span>
+      </div>
+      <ul class="cv-publication-topic-card__list">
+        {{ topic_items }}
+      </ul>
+    </article>
+  {% endif %}
 {% endfor %}
-</ul>
+</div>
 
 {% include cv-section-heading.html title="Patents" accent="#b8860b" %}
 

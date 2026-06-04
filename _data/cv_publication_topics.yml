@@ -1,0 +1,60 @@
+topics:
+  - title: ML Accelerators
+    slug: ml-accelerators
+    accent: "#3776ab"
+    tags:
+      - hls
+      - reconfigurable
+      - hardware
+      - machine-learning
+      - neural-networks
+      - deep-learning
+
+  - title: HEP Detectors
+    slug: hep-detectors
+    accent: "#4e2a84"
+    tags:
+      - detectors
+      - sensors
+      - smart-pixels
+      - pixel
+      - radhard
+      - asic
+
+  - title: Quantum & Cryogenic Systems
+    slug: quantum
+    accent: "#0072ce"
+    tags:
+      - quantum
+      - cryogenic
+
+  - title: Neuromorphic Systems
+    slug: neuromorphic
+    accent: "#7b61ff"
+    tags:
+      - neuromorphic
+      - neural-networks
+
+  - title: Petrophysics & Imaging
+    slug: petrophysics
+    accent: "#2e8b57"
+    tags:
+      - petrophysics
+      - geoscience
+      - imaging
+      - computer-vision
+      - CBPF
+      - research
+
+  - title: Astrophysics
+    slug: astrophysics
+    accent: "#6c8ebf"
+    tags:
+      - astrophysics
+
+  - title: Theses & Technical Notes
+    slug: theses-notes
+    accent: "#8a5a44"
+    tags:
+      - thesis
+      - research

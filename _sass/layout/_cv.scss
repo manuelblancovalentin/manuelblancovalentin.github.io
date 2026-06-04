@@ -175,8 +175,8 @@ html[data-theme='dark'] .cv-section-heading::after {
   --cv-education-accent: #4e2a84;
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 0.95rem;
   margin: 1.2rem 0 1.4rem;
   padding: 1.2rem 1.35rem;
   background: #fff;
@@ -283,8 +283,9 @@ html[data-theme='dark'] .cv-section-heading::after {
 .cv-education-card__meta {
   display: flex;
   flex-direction: column;
+  justify-self: end;
   gap: 0.65rem;
-  min-width: 12rem;
+  min-width: 9.5rem;
   padding-top: 0.15rem;
   color: #555;
   font-size: 0.88rem;
@@ -373,8 +374,8 @@ html[data-theme='dark'] .cv-education-card__meta {
   --cv-work-accent: #555;
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  gap: 0.95rem;
   margin: 1.2rem 0 1.4rem;
   padding: 1.2rem 1.35rem;
   background: #fff;
@@ -478,8 +479,9 @@ html[data-theme='dark'] .cv-education-card__meta {
 .cv-work-card__meta {
   display: flex;
   flex-direction: column;
+  justify-self: end;
   gap: 0.65rem;
-  min-width: 12rem;
+  min-width: 9.5rem;
   padding-top: 0.15rem;
   color: #555;
   font-size: 0.88rem;
@@ -719,10 +721,121 @@ html[data-theme='dark'] .cv-skill-chip__level {
   border-left-color: rgba(255, 255, 255, 0.18);
 }
 
-.cv-publications {
-  margin-top: 0.5rem;
+.cv-publication-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1rem;
+  margin: 1.1rem 0 1.6rem;
 }
 
-.cv-publications li {
-  margin-bottom: 0.35rem;
+.cv-publication-topic-card {
+  --cv-publication-topic-accent: #7b61ff;
+
+  padding: 1rem 1.1rem;
+  background: #fff;
+  border: 1px solid rgba(60, 60, 60, 0.14);
+  border-top: 4px solid var(--cv-publication-topic-accent);
+  border-radius: 13px;
+  box-shadow: 0 8px 22px rgba(20, 20, 20, 0.05);
+}
+
+.cv-publication-topic-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+.cv-publication-topic-card__header h3 {
+  margin: 0;
+  color: #252525;
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.cv-publication-topic-card__header span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 0.45rem;
+  color: var(--cv-publication-topic-accent);
+  background: color-mix(in srgb, var(--cv-publication-topic-accent) 11%, #fff);
+  border: 1px solid color-mix(in srgb, var(--cv-publication-topic-accent) 32%, transparent);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.cv-publication-topic-card__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-publication-topic-card__item {
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(60, 60, 60, 0.1);
+}
+
+.cv-publication-topic-card__item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.cv-publication-topic-card__item:last-child {
+  padding-bottom: 0;
+}
+
+.cv-publication-topic-card__item a {
+  display: block;
+  color: #252525;
+  font-size: 0.9rem;
+  font-weight: 760;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.page__content .cv-publication-topic-card__item a,
+.page__content .cv-publication-topic-card__item a:hover,
+.page__content .cv-publication-topic-card__item a:focus {
+  text-decoration: none;
+}
+
+.cv-publication-topic-card__item a:hover,
+.cv-publication-topic-card__item a:focus {
+  color: var(--cv-publication-topic-accent);
+  text-decoration: none;
+}
+
+.cv-publication-topic-card__meta {
+  display: block;
+  margin-top: 0.2rem;
+  color: #686868;
+  font-size: 0.76rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+html[data-theme='dark'] .cv-publication-topic-card {
+  background: #202020;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-top-color: var(--cv-publication-topic-accent);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme='dark'] .cv-publication-topic-card__header h3,
+html[data-theme='dark'] .cv-publication-topic-card__item a {
+  color: #f1f1f1;
+}
+
+html[data-theme='dark'] .cv-publication-topic-card__item {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme='dark'] .cv-publication-topic-card__meta {
+  color: #c8c8c8;
 }
