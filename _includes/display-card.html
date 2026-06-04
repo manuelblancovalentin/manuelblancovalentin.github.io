@@ -131,16 +131,32 @@
 
 {% assign card_kind_slug = include.type | default: 'default' %}
 {% assign card_kind_label = include.label | default: 'Project' %}
+{% assign card_kind_icon = 'file-text' %}
 {% assign publication_link_label = 'Paper' %}
 {% if include.type == 'publications' %}
   {% assign card_kind_slug = 'paper' %}
   {% assign card_kind_label = 'Paper' %}
+  {% assign card_kind_icon = 'file-text' %}
   {% if include.item.taxonomy.type %}
     {% for type_tag in include.item.taxonomy.type %}
       {% assign type_slug = type_tag | slugify %}
       {% assign type_def = tag_catalog[type_slug] %}
       {% assign card_kind_slug = type_slug %}
       {% assign card_kind_label = type_def.short_label | default: type_def.label | default: type_tag %}
+      {% case type_slug %}
+        {% when 'poster' %}
+          {% assign card_kind_icon = 'presentation' %}
+        {% when 'talk' %}
+          {% assign card_kind_icon = 'mic' %}
+        {% when 'slides' %}
+          {% assign card_kind_icon = 'presentation' %}
+        {% when 'thesis' %}
+          {% assign card_kind_icon = 'graduation-cap' %}
+        {% when 'preprint' %}
+          {% assign card_kind_icon = 'file-text' %}
+        {% else %}
+          {% assign card_kind_icon = 'file-text' %}
+      {% endcase %}
       {% if type_def.link_label %}
         {% assign publication_link_label = type_def.link_label %}
       {% endif %}
@@ -149,42 +165,65 @@
   {% elsif include.item.tags contains 'poster' %}
     {% assign card_kind_slug = 'poster' %}
     {% assign card_kind_label = 'Poster' %}
+    {% assign card_kind_icon = 'presentation' %}
     {% assign publication_link_label = 'Poster' %}
   {% elsif include.item.tags contains 'talk' %}
     {% assign card_kind_slug = 'talk' %}
     {% assign card_kind_label = 'Talk' %}
+    {% assign card_kind_icon = 'mic' %}
     {% assign publication_link_label = 'Talk' %}
   {% elsif include.item.tags contains 'slides' %}
     {% assign card_kind_slug = 'slides' %}
     {% assign card_kind_label = 'Slides' %}
+    {% assign card_kind_icon = 'presentation' %}
     {% assign publication_link_label = 'Slides' %}
   {% elsif include.item.tags contains 'thesis' %}
     {% assign card_kind_slug = 'thesis' %}
     {% assign card_kind_label = 'Thesis' %}
+    {% assign card_kind_icon = 'graduation-cap' %}
     {% assign publication_link_label = 'Thesis' %}
   {% elsif include.item.tags contains 'arxiv' %}
     {% assign card_kind_slug = 'preprint' %}
     {% assign card_kind_label = 'Preprint' %}
+    {% assign card_kind_icon = 'file-text' %}
     {% assign publication_link_label = 'Preprint' %}
   {% endif %}
+{% elsif include.type == 'hardware' %}
+  {% assign card_kind_slug = 'asic' %}
+  {% assign card_kind_label = 'ASIC' %}
+  {% assign card_kind_icon = 'microchip' %}
+{% elsif include.type == 'software' %}
+  {% assign card_kind_slug = 'software' %}
+  {% assign card_kind_label = 'Software' %}
+  {% assign card_kind_icon = 'code-xml' %}
 {% elsif include.type == 'talks' %}
   {% assign card_kind_slug = 'talk' %}
   {% assign card_kind_label = 'Talk' %}
+  {% assign card_kind_icon = 'mic' %}
   {% if include.item.taxonomy.type %}
     {% for type_tag in include.item.taxonomy.type %}
       {% assign type_slug = type_tag | slugify %}
       {% assign type_def = tag_catalog[type_slug] %}
       {% assign card_kind_slug = type_slug %}
       {% assign card_kind_label = type_def.short_label | default: type_def.label | default: type_tag %}
+      {% if type_slug == 'poster' %}
+        {% assign card_kind_icon = 'presentation' %}
+      {% elsif type_slug == 'talk' %}
+        {% assign card_kind_icon = 'mic' %}
+      {% else %}
+        {% assign card_kind_icon = 'presentation' %}
+      {% endif %}
       {% break %}
     {% endfor %}
   {% elsif include.item.type contains 'Poster' or include.item.type contains 'poster' %}
     {% assign card_kind_slug = 'poster' %}
     {% assign card_kind_label = 'Poster' %}
+    {% assign card_kind_icon = 'presentation' %}
   {% endif %}
 {% elsif include.type == 'patents' %}
   {% assign card_kind_slug = 'patent' %}
   {% assign card_kind_label = 'Patent' %}
+  {% assign card_kind_icon = 'scroll-text' %}
 {% endif %}
 
 <div class="list__item"{% if include.type == 'publications' or include.type == 'hardware' or include.type == 'software' or include.type == 'talks' %} data-filter-card{% endif %}{% if include.type == 'publications' %} data-publication-card{% endif %}{% if include.type == 'hardware' %} data-hardware-card{% endif %}{% if include.type == 'software' %} data-software-card{% endif %}{% if include.type == 'talks' %} data-talk-card{% endif %}{% if include.type == 'publications' or include.type == 'hardware' or include.type == 'software' or include.type == 'talks' %} data-tags="{{ card_tag_slugs | strip }}" data-date="{{ include.item.date | date: '%s' }}" data-citations="{{ include.item.citation_count | default: 0 }}" data-author-rank="{{ include.item.author_rank | default: 999 }}" data-title="{{ include.item.title | escape }}"{% endif %}>
@@ -195,13 +234,19 @@
       </span>
 
       <span class="display-card__intro">
-        <span class="display-card__eyebrow">{{ card_kind_label }}</span>
+        <span class="display-card__eyebrow">
+          {% include lucide-icon.html name=card_kind_icon class="display-card__eyebrow-icon" size=15 %}
+          <span>{{ card_kind_label }}</span>
+        </span>
         <span class="display-card__title">{{ include.item.title }}</span>
         {% if card_subtitle %}
           <span class="display-card__subtitle">{{ card_subtitle }}</span>
         {% endif %}
         {% if card_date_label %}
-          <span class="display-card__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ card_date_label }}</span>
+          <span class="display-card__meta">
+            {% include lucide-icon.html name="calendar-days" class="display-card__meta-icon" size=15 %}
+            <span>{{ card_date_label }}</span>
+          </span>
         {% endif %}
         {% if include.item.excerpt %}
           <span class="display-card__excerpt">{{ include.item.excerpt | strip_html }}</span>
@@ -348,16 +393,16 @@
         </span>
 
         <span class="display-card__links">
-          <a href="{{ base_path }}{{ include.item.url }}" onclick="event.stopPropagation()">{{ details_link_label }} <span aria-hidden="true">&#8599;</span></a>
+          <a href="{{ base_path }}{{ include.item.url }}" onclick="event.stopPropagation()">{{ details_link_label }} {% include lucide-icon.html name="arrow-up-right" class="display-card__link-icon" size=14 %}</a>
           {% if include.type == 'publications' and include.item.paperurl and include.item.paperurl != '' %}
-            <a href="{{ include.item.paperurl }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">{{ publication_link_label }} <span aria-hidden="true">&#8599;</span></a>
+            <a href="{{ include.item.paperurl }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">{{ publication_link_label }} {% include lucide-icon.html name="arrow-up-right" class="display-card__link-icon" size=14 %}</a>
           {% elsif include.type == 'patents' and include.item.patent_url and include.item.patent_url != '' %}
-            <a href="{{ include.item.patent_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Patent record <span aria-hidden="true">&#8599;</span></a>
+            <a href="{{ include.item.patent_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Patent record {% include lucide-icon.html name="arrow-up-right" class="display-card__link-icon" size=14 %}</a>
           {% elsif include.item.github_url and include.item.github_url != '' %}
-            <a href="{{ include.item.github_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">GitHub <span aria-hidden="true">&#8599;</span></a>
+            <a href="{{ include.item.github_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">GitHub {% include lucide-icon.html name="arrow-up-right" class="display-card__link-icon" size=14 %}</a>
           {% endif %}
           {% if include.type == 'patents' and include.item.pdf_url and include.item.pdf_url != '' %}
-            <a href="{{ base_path }}{{ include.item.pdf_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF <span aria-hidden="true">&#8599;</span></a>
+            <a href="{{ base_path }}{{ include.item.pdf_url }}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">PDF {% include lucide-icon.html name="arrow-up-right" class="display-card__link-icon" size=14 %}</a>
           {% endif %}
         </span>
 

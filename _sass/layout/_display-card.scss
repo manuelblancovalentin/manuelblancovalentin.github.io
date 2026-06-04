@@ -92,6 +92,26 @@
   --display-card-tech-text: #773f2b;
 }
 
+.display-card--kind-asic {
+  --display-card-bg: #f7fafb;
+  --display-card-body-bg: #fcfefe;
+  --display-card-border: #cbdde3;
+  --display-card-soft-border: #d8e6eb;
+  --display-card-chip-bg: #e8f0f3;
+  --display-card-tech-bg: #dceaf0;
+  --display-card-tech-text: #31576b;
+}
+
+.display-card--kind-software {
+  --display-card-bg: #f7fbf8;
+  --display-card-body-bg: #fcfefc;
+  --display-card-border: #cbded1;
+  --display-card-soft-border: #d8e7dd;
+  --display-card-chip-bg: #e8f1eb;
+  --display-card-tech-bg: #dceee3;
+  --display-card-tech-text: #2f6046;
+}
+
 .display-card__summary {
   display: grid;
   grid-template-columns: 230px minmax(0, 1fr) 36px;
@@ -244,11 +264,21 @@
 }
 
 .display-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   color: #8f654b;
   font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.display-card__eyebrow-icon {
+  display: inline-block;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: currentColor;
 }
 
 .display-card__title {
@@ -274,9 +304,11 @@
   font-weight: 700;
   line-height: 1.3;
 
-  .fa {
+  .fa,
+  .display-card__meta-icon {
     color: #8f654b;
-    font-size: 0.86em;
+    width: 0.95rem;
+    height: 0.95rem;
   }
 }
 
@@ -366,6 +398,14 @@
       text-decoration: underline;
     }
   }
+}
+
+.display-card__link-icon {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-left: 0.12rem;
+  transform: translateY(0.12rem);
 }
 
 .display-card__description {
