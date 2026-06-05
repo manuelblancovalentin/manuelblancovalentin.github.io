@@ -154,10 +154,16 @@ function catmullRomPath(points) {
   return d.join(' ');
 }
 
-const routePaths = routeLegs.map((leg) => ({
-  ...leg,
-  d: catmullRomPath(routeSegment(leg.from, leg.to, 48)),
-}));
+const routePaths = routeLegs.map((leg) => {
+  const points = routeSegment(leg.from, leg.to, 48);
+  const midpoint = points[Math.floor(points.length / 2)];
+  return {
+    ...leg,
+    d: catmullRomPath(points),
+    labelX: midpoint[0],
+    labelY: midpoint[1],
+  };
+});
 
 const highlightedCountries = new Set(['Brazil', 'Spain', 'United States of America']);
 const countryPaths = countries.features.map((country) => {
@@ -221,9 +227,13 @@ const routeOverlay = `<svg class="landing-trajectory__routes" viewBox="${viewBox
   </defs>
   ${routePaths.map((leg) => `<g class="landing-trajectory__route-leg landing-trajectory__route-leg--${leg.id}">
     <path class="landing-trajectory__route-visible" d="${leg.d}"></path>
-    <path class="landing-trajectory__route-hit" tabindex="0" role="img" aria-label="${escapeXml(leg.label)}: ${escapeXml(leg.date)}" d="${leg.d}">
+    <path class="landing-trajectory__route-hit" tabindex="0" role="img" aria-label="${escapeXml(leg.label)}: ${escapeXml(leg.date)}" onmouseenter="this.parentNode.classList.add('is-active')" onmouseleave="this.parentNode.classList.remove('is-active')" onfocus="this.parentNode.classList.add('is-active')" onblur="this.parentNode.classList.remove('is-active')" onclick="this.parentNode.classList.add('is-active')" d="${leg.d}">
       <title>${escapeXml(leg.label)}: ${escapeXml(leg.date)}</title>
     </path>
+    <g class="landing-trajectory__route-label" transform="translate(${leg.labelX.toFixed(2)} ${leg.labelY.toFixed(2)})" aria-hidden="true">
+      <rect x="-43" y="-16" width="86" height="28" rx="9"></rect>
+      <text x="0" y="2">Moved ${escapeXml(leg.date)}</text>
+    </g>
   </g>`).join('\n  ')}
 </svg>`;
 writeFileSync('_includes/landing-trajectory-routes.svg', routeOverlay);

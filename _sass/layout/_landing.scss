@@ -235,12 +235,12 @@ html[data-theme='dark'] .landing-skill-graph {
 
 .landing-trajectory__route-visible {
   fill: none;
-  stroke: color-mix(in srgb, var(--landing-accent) 72%, #24323a);
+  stroke: color-mix(in srgb, var(--landing-accent) 68%, #2f3a3f);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 2.7;
+  stroke-width: 2.35;
   filter: url(#landing-route-glow);
-  opacity: 0.86;
+  opacity: 0.78;
   vector-effect: non-scaling-stroke;
 }
 
@@ -252,18 +252,60 @@ html[data-theme='dark'] .landing-skill-graph {
   stroke-width: 15;
   pointer-events: stroke;
   vector-effect: non-scaling-stroke;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .landing-trajectory__route-leg:hover .landing-trajectory__route-visible,
-.landing-trajectory__route-leg:focus-within .landing-trajectory__route-visible {
-  stroke: color-mix(in srgb, var(--landing-warm) 70%, var(--landing-accent));
-  stroke-width: 3.4;
+.landing-trajectory__route-leg:focus-within .landing-trajectory__route-visible,
+.landing-trajectory__route-leg.is-active .landing-trajectory__route-visible {
+  stroke: color-mix(in srgb, var(--landing-warm) 54%, var(--landing-accent));
+  stroke-width: 3;
   opacity: 1;
+}
+
+.landing-trajectory__route-label {
+  display: none;
+  pointer-events: none;
+
+  rect {
+    fill: var(--landing-panel);
+    stroke: var(--landing-border-strong);
+    stroke-width: 1.1;
+    filter: drop-shadow(0 0.14rem 0.22rem rgba(45, 38, 28, 0.16));
+    vector-effect: non-scaling-stroke;
+  }
+
+  text {
+    fill: var(--landing-warm);
+    font-family: "Source Sans 3", sans-serif;
+    font-size: 13px;
+    font-weight: 850;
+    letter-spacing: 0.02em;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    paint-order: stroke;
+    stroke: var(--landing-panel);
+    stroke-width: 2.4px;
+  }
+}
+
+.landing-trajectory__route-leg:hover .landing-trajectory__route-label,
+.landing-trajectory__route-leg:focus-within .landing-trajectory__route-label,
+.landing-trajectory__route-leg.is-active .landing-trajectory__route-label {
+  display: block;
 }
 
 html[data-theme='dark'] .landing-trajectory__route-visible {
   stroke: color-mix(in srgb, var(--landing-accent) 84%, #ffffff);
   opacity: 0.9;
+}
+
+html[data-theme='dark'] .landing-trajectory__route-label rect {
+  fill: var(--landing-panel);
+  stroke: var(--landing-border-strong);
 }
 
 .landing-trajectory__basemap {
