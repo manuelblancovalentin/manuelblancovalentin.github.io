@@ -51,9 +51,14 @@ const pins = [
 const topo = JSON.parse(
   readFileSync('node_modules/world-atlas/countries-110m.json', 'utf8'),
 );
+const usTopo = JSON.parse(
+  readFileSync('node_modules/us-atlas/states-10m.json', 'utf8'),
+);
 
 const countries = feature(topo, topo.objects.countries);
 const borders = mesh(topo, topo.objects.countries, (a, b) => a !== b);
+const states = feature(usTopo, usTopo.objects.states);
+const stateBorders = mesh(usTopo, usTopo.objects.states, (a, b) => a !== b);
 const projection = geoNaturalEarth1().fitExtent(
   [
     [mapPadding, mapPadding],
@@ -128,9 +133,17 @@ const routePath = catmullRomPath(routePoints);
 const highlightedCountries = new Set(['Brazil', 'Spain', 'United States of America']);
 const countryPaths = countries.features.map((country) => {
   const name = country.properties?.name || '';
-  const className = highlightedCountries.has(name) ? 'country country--highlight' : 'country';
+  const className = highlightedCountries.has(name) && name !== 'United States of America' ? 'country country--highlight' : 'country';
   return `<path class="${className}" data-country="${escapeXml(name)}" d="${path(country)}"/>`;
 }).join('\n    ');
+const highlightedStates = new Set(['06', '17', '48']);
+const statePaths = states.features
+  .filter((state) => highlightedStates.has(String(state.id)))
+  .map((state) => {
+    const name = state.properties?.name || '';
+    return `<path class="state state--highlight" data-state="${escapeXml(name)}" d="${path(state)}"/>`;
+  })
+  .join('\n    ');
 
 const pinGuide = projectedPins.map((pin) => {
   const left = ((pin.x - viewBox.x) / viewBox.width) * 100;
@@ -151,13 +164,17 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     .sphere { fill: #d9eef6; }
     .country { fill: #d8d8d2; stroke: #ffffff; stroke-width: 0.75; vector-effect: non-scaling-stroke; }
     .country--highlight { fill: #e3c59c; }
+    .state--highlight { fill: #e3c59c; stroke: #ffffff; stroke-width: 0.85; vector-effect: non-scaling-stroke; }
     .borders { fill: none; stroke: #ffffff; stroke-width: 0.55; opacity: 0.72; vector-effect: non-scaling-stroke; }
+    .state-borders { fill: none; stroke: #ffffff; stroke-width: 0.45; opacity: 0.64; vector-effect: non-scaling-stroke; }
     .route { fill: none; stroke: #4e7284; stroke-width: 4.3; stroke-linecap: round; stroke-linejoin: round; filter: url(#route-shadow); vector-effect: non-scaling-stroke; }
     @media (prefers-color-scheme: dark) {
       .sphere { fill: #203039; }
       .country { fill: #5a5d59; stroke: #32342f; }
       .country--highlight { fill: #82684b; }
+      .state--highlight { fill: #82684b; stroke: #32342f; }
       .borders { stroke: #343832; opacity: 0.72; }
+      .state-borders { stroke: #343832; opacity: 0.64; }
       .route { stroke: #91b7c7; }
     }
   </style>
@@ -165,7 +182,11 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   <g class="countries">
     ${countryPaths}
   </g>
+  <g class="states">
+    ${statePaths}
+  </g>
   <path class="borders" d="${path(borders)}"/>
+  <path class="state-borders" d="${path(stateBorders)}"/>
   <path class="route" d="${routePath}"/>
 </svg>
 `;

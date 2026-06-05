@@ -217,7 +217,7 @@ html[data-theme='dark'] .landing-skill-graph {
   position: relative;
   aspect-ratio: var(--landing-trajectory-aspect, 958.8 / 624);
   min-height: 320px;
-  overflow: hidden;
+  overflow: visible;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--landing-accent-soft) 45%, transparent), transparent),
     var(--landing-panel-soft);
@@ -233,6 +233,7 @@ html[data-theme='dark'] .landing-skill-graph {
   height: 100%;
   object-fit: fill;
   opacity: 1;
+  border-radius: inherit;
 }
 
 html[data-theme='dark'] .landing-trajectory__basemap {
@@ -251,7 +252,7 @@ html[data-theme='dark'] .landing-trajectory__basemap {
   cursor: help;
   font: inherit;
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25px);
 
   &:focus-visible {
     outline: 3px solid color-mix(in srgb, var(--landing-accent) 55%, transparent);
@@ -260,19 +261,28 @@ html[data-theme='dark'] .landing-trajectory__basemap {
   }
 }
 
+.landing-trajectory__pin.is-active,
+.landing-trajectory__pin:hover,
+.landing-trajectory__pin:focus,
+.landing-trajectory__pin:focus-visible {
+  z-index: 5;
+}
+
 .landing-trajectory__pin--barcelona { left: 76.011%; top: 24.423%; }
 .landing-trajectory__pin--rio { left: 56.181%; top: 75.960%; }
 .landing-trajectory__pin--chicago { left: 39.076%; top: 24.031%; }
 .landing-trajectory__pin--sanjose { left: 23.992%; top: 27.657%; }
 .landing-trajectory__pin--austin { left: 33.079%; top: 33.340%; }
 
-.landing-trajectory__pin-dot {
-  width: 1rem;
-  height: 1rem;
-  background: var(--landing-panel);
-  border: 4px solid var(--landing-warm);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--landing-warm) 13%, transparent);
+.landing-trajectory__pin-icon {
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--landing-warm);
+  fill: color-mix(in srgb, var(--landing-panel) 82%, var(--landing-warm));
+  filter:
+    drop-shadow(0 0 0.18rem color-mix(in srgb, var(--landing-panel) 82%, transparent))
+    drop-shadow(0 0.08rem 0.08rem rgba(45, 38, 28, 0.18));
+  stroke-width: 2.35;
 }
 
 .landing-trajectory__label {
@@ -339,9 +349,28 @@ html[data-theme='dark'] .landing-trajectory__basemap {
   }
 }
 
+.landing-trajectory__pin--sanjose .landing-tooltip {
+  left: 0;
+  transform: translateX(-0.35rem);
+}
+
+.landing-trajectory__pin--barcelona .landing-tooltip {
+  right: 0;
+  left: auto;
+  transform: translateX(0.35rem);
+}
+
+.landing-trajectory__pin--chicago .landing-tooltip,
+.landing-trajectory__pin--sanjose .landing-tooltip,
+.landing-trajectory__pin--barcelona .landing-tooltip {
+  bottom: auto;
+  top: calc(100% + 0.55rem);
+}
+
 .landing-trajectory__pin:hover .landing-tooltip,
 .landing-trajectory__pin:focus .landing-tooltip,
-.landing-trajectory__pin:focus-visible .landing-tooltip {
+.landing-trajectory__pin:focus-visible .landing-tooltip,
+.landing-trajectory__pin.is-active .landing-tooltip {
   display: block;
 }
 
@@ -507,7 +536,7 @@ button.landing-graph-node {
     text-align: left;
   }
 
-  .landing-trajectory__pin-dot {
+  .landing-trajectory__pin-icon {
     grid-row: span 2;
     margin-top: 0.1rem;
   }

@@ -2,8 +2,8 @@
   <div class="landing-trajectory__map" aria-hidden="false" style="--landing-trajectory-aspect: 958.8 / 624;">
     <img class="landing-trajectory__basemap" src="/images/maps/trajectory-map.svg" alt="Cropped world map showing the trajectory Barcelona to Rio de Janeiro to Chicago to San Jose to Chicago to Austin" loading="lazy">
 
-    <button class="landing-trajectory__pin landing-trajectory__pin--barcelona" type="button">
-      <span class="landing-trajectory__pin-dot" aria-hidden="true"></span>
+    <button class="landing-trajectory__pin landing-trajectory__pin--barcelona" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
+      {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
       <span class="landing-trajectory__label">Barcelona</span>
       <span class="landing-tooltip" role="tooltip">
         <strong>Robotics Engineering</strong>
@@ -12,8 +12,8 @@
       </span>
     </button>
 
-    <button class="landing-trajectory__pin landing-trajectory__pin--rio" type="button">
-      <span class="landing-trajectory__pin-dot" aria-hidden="true"></span>
+    <button class="landing-trajectory__pin landing-trajectory__pin--rio" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
+      {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
       <span class="landing-trajectory__label">Rio de Janeiro</span>
       <span class="landing-tooltip" role="tooltip">
         <strong>Applied Physics + Industrial AI</strong>
@@ -22,8 +22,8 @@
       </span>
     </button>
 
-    <button class="landing-trajectory__pin landing-trajectory__pin--chicago" type="button">
-      <span class="landing-trajectory__pin-dot" aria-hidden="true"></span>
+    <button class="landing-trajectory__pin landing-trajectory__pin--chicago" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
+      {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
       <span class="landing-trajectory__label">Chicago/Evanston</span>
       <span class="landing-tooltip" role="tooltip">
         <strong>Ph.D. at Northwestern</strong>
@@ -32,8 +32,8 @@
       </span>
     </button>
 
-    <button class="landing-trajectory__pin landing-trajectory__pin--sanjose" type="button">
-      <span class="landing-trajectory__pin-dot" aria-hidden="true"></span>
+    <button class="landing-trajectory__pin landing-trajectory__pin--sanjose" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
+      {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
       <span class="landing-trajectory__label">San José</span>
       <span class="landing-tooltip" role="tooltip">
         <strong>Cadence internship / EDA + Timing Signoff</strong>
@@ -42,8 +42,8 @@
       </span>
     </button>
 
-    <button class="landing-trajectory__pin landing-trajectory__pin--austin" type="button">
-      <span class="landing-trajectory__pin-dot" aria-hidden="true"></span>
+    <button class="landing-trajectory__pin landing-trajectory__pin--austin" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
+      {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
       <span class="landing-trajectory__label">Austin</span>
       <span class="landing-tooltip" role="tooltip">
         <strong>AMD internship / CPU RAS Reliability Architecture</strong>
