@@ -244,6 +244,20 @@ html[data-theme='dark'] .landing-skill-graph {
   vector-effect: non-scaling-stroke;
 }
 
+.landing-trajectory__route-arrows {
+  pointer-events: none;
+}
+
+.landing-trajectory__route-arrow {
+  fill: color-mix(in srgb, var(--landing-accent) 68%, #2f3a3f);
+  opacity: 0.86;
+  filter: url(#landing-route-glow);
+  stroke: color-mix(in srgb, var(--landing-panel-soft) 75%, transparent);
+  stroke-linejoin: round;
+  stroke-width: 0.9;
+  vector-effect: non-scaling-stroke;
+}
+
 .landing-trajectory__route-hit {
   fill: none;
   stroke: transparent;
@@ -263,6 +277,13 @@ html[data-theme='dark'] .landing-skill-graph {
 .landing-trajectory__route-leg.is-active .landing-trajectory__route-visible {
   stroke: color-mix(in srgb, var(--landing-warm) 54%, var(--landing-accent));
   stroke-width: 3;
+  opacity: 1;
+}
+
+.landing-trajectory__route-leg:hover .landing-trajectory__route-arrow,
+.landing-trajectory__route-leg:focus-within .landing-trajectory__route-arrow,
+.landing-trajectory__route-leg.is-active .landing-trajectory__route-arrow {
+  fill: color-mix(in srgb, var(--landing-warm) 54%, var(--landing-accent));
   opacity: 1;
 }
 
@@ -301,6 +322,11 @@ html[data-theme='dark'] .landing-skill-graph {
 html[data-theme='dark'] .landing-trajectory__route-visible {
   stroke: color-mix(in srgb, var(--landing-accent) 84%, #ffffff);
   opacity: 0.9;
+}
+
+html[data-theme='dark'] .landing-trajectory__route-arrow {
+  fill: color-mix(in srgb, var(--landing-accent) 84%, #ffffff);
+  stroke: color-mix(in srgb, var(--landing-panel-soft) 82%, transparent);
 }
 
 html[data-theme='dark'] .landing-trajectory__route-label rect {

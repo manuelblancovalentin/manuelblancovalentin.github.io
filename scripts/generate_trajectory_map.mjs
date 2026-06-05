@@ -62,6 +62,7 @@ const routeLegs = [
     to: trajectory[1],
     label: 'Barcelona to Rio de Janeiro',
     date: '2014',
+    direction: 'forward',
   },
   {
     id: 'rio-chicago',
@@ -69,6 +70,7 @@ const routeLegs = [
     to: trajectory[2],
     label: 'Rio de Janeiro to Chicago',
     date: '2020',
+    direction: 'forward',
   },
   {
     id: 'chicago-sanjose',
@@ -76,6 +78,7 @@ const routeLegs = [
     to: trajectory[3],
     label: 'Chicago to San Jose, CA',
     date: '2023',
+    direction: 'bidirectional',
   },
   {
     id: 'chicago-austin',
@@ -83,6 +86,7 @@ const routeLegs = [
     to: trajectory[5],
     label: 'Chicago to Austin, TX',
     date: '2026',
+    direction: 'bidirectional',
   },
 ];
 
@@ -161,12 +165,40 @@ function catmullRomPath(points) {
   return d.join(' ');
 }
 
+function routeArrow(points, t, reverse = false) {
+  const index = Math.max(1, Math.min(points.length - 2, Math.round((points.length - 1) * t)));
+  const before = points[index - 1];
+  const point = points[index];
+  const after = points[index + 1];
+  const angle = Math.atan2(after[1] - before[1], after[0] - before[0]) * 180 / Math.PI;
+
+  return {
+    x: point[0],
+    y: point[1],
+    angle: reverse ? angle + 180 : angle,
+  };
+}
+
+function routeArrows(points, direction) {
+  if (direction === 'bidirectional') {
+    return [
+      { ...routeArrow(points, 0.43, true), direction: 'back' },
+      { ...routeArrow(points, 0.57, false), direction: 'forward' },
+    ];
+  }
+
+  return [
+    { ...routeArrow(points, 0.52, false), direction: 'forward' },
+  ];
+}
+
 const routePaths = routeLegs.map((leg) => {
   const points = routeSegment(leg.from, leg.to, 48);
   const midpoint = points[Math.floor(points.length / 2)];
   return {
     ...leg,
     d: catmullRomPath(points),
+    arrows: routeArrows(points, leg.direction),
     labelX: midpoint[0],
     labelY: midpoint[1],
   };
@@ -234,6 +266,9 @@ const routeOverlay = `<svg class="landing-trajectory__routes" viewBox="${viewBox
   </defs>
   ${routePaths.map((leg) => `<g class="landing-trajectory__route-leg landing-trajectory__route-leg--${leg.id}">
     <path class="landing-trajectory__route-visible" d="${leg.d}"></path>
+    <g class="landing-trajectory__route-arrows" aria-hidden="true">
+      ${leg.arrows.map((arrow) => `<polygon class="landing-trajectory__route-arrow landing-trajectory__route-arrow--${arrow.direction}" points="-5,-4.8 6.5,0 -5,4.8" transform="translate(${arrow.x.toFixed(2)} ${arrow.y.toFixed(2)}) rotate(${arrow.angle.toFixed(1)})"></polygon>`).join('\n      ')}
+    </g>
     <path class="landing-trajectory__route-hit" tabindex="0" role="img" aria-label="${escapeXml(leg.label)}: ${escapeXml(leg.date)}" onmouseenter="this.parentNode.classList.add('is-active')" onmouseleave="this.parentNode.classList.remove('is-active')" onfocus="this.parentNode.classList.add('is-active')" onblur="this.parentNode.classList.remove('is-active')" onclick="this.parentNode.classList.add('is-active')" d="${leg.d}">
       <title>${escapeXml(leg.label)}: ${escapeXml(leg.date)}</title>
     </path>
