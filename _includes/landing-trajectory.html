@@ -1,33 +1,8 @@
 <div class="landing-trajectory" aria-label="Professional and academic trajectory">
   <div class="landing-trajectory__map" aria-hidden="false">
-    <svg class="landing-trajectory__path" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet" aria-label="Simplified world map showing trajectory locations" role="img" focusable="false">
-      <defs>
-        <linearGradient id="landing-map-ocean" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stop-color="currentColor" stop-opacity="0.08"></stop>
-          <stop offset="100%" stop-color="currentColor" stop-opacity="0.015"></stop>
-        </linearGradient>
-      </defs>
-      <rect class="landing-trajectory__ocean" width="1000" height="500" rx="18"></rect>
-
-      <g class="landing-trajectory__graticule" aria-hidden="true">
-        <path d="M80 167H920"></path>
-        <path d="M80 250H920"></path>
-        <path d="M80 333H920"></path>
-        <path d="M250 60V440"></path>
-        <path d="M500 60V440"></path>
-        <path d="M750 60V440"></path>
-      </g>
-
-      <g class="landing-trajectory__land" aria-hidden="true">
-        <path d="M146 88 C105 108 91 155 113 198 C83 228 100 276 140 285 C143 333 177 384 220 416 C257 393 270 347 251 309 C283 270 264 231 226 217 C237 181 220 128 186 103 C174 93 160 87 146 88 Z"></path>
-        <path d="M235 146 C259 117 308 111 344 134 C385 160 383 204 342 224 C310 240 272 230 247 202 C227 180 220 163 235 146 Z"></path>
-        <path d="M500 120 C468 104 428 114 407 143 C386 172 401 207 439 210 C463 212 478 197 500 205 C526 215 561 206 579 181 C593 159 582 131 555 121 C537 114 517 116 500 120 Z"></path>
-        <path d="M520 214 C492 238 482 284 499 329 C517 376 552 409 590 417 C618 382 620 327 596 284 C579 252 555 224 520 214 Z"></path>
-        <path d="M598 121 C647 88 728 95 780 130 C824 160 833 204 792 229 C752 253 697 237 676 201 C645 207 608 191 593 163 C584 147 587 132 598 121 Z"></path>
-        <path d="M780 248 C826 239 880 266 903 309 C871 336 817 335 780 308 C754 289 752 261 780 248 Z"></path>
-      </g>
-
-      <path class="landing-trajectory__route" d="M506 163 C490 225 443 287 380 314 C339 276 291 212 257 162 C216 153 180 159 161 174 C173 187 199 195 229 194"></path>
+    <img class="landing-trajectory__basemap" src="/images/maps/worldmap-natural-earth.svg" alt="Equirectangular world map" loading="lazy">
+    <svg class="landing-trajectory__path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="landing-trajectory__route" d="M50.6 27.0 C50 42 44 56 38.0 62.7 M38.0 62.7 C35 46 31 32 25.7 26.6 M25.7 26.6 C21.5 24.5 18.5 26.4 16.1 29.3 M16.1 29.3 C18.4 31.8 20.5 33.0 22.9 33.2"></path>
     </svg>
 
     <button class="landing-trajectory__pin landing-trajectory__pin--barcelona" type="button">
