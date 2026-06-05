@@ -33,6 +33,16 @@
       </span>
     </button>
 
+    <button class="landing-trajectory__pin landing-trajectory__pin--fermilab" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
+      {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
+      <span class="landing-trajectory__label">Fermilab</span>
+      <span class="landing-tooltip" role="tooltip">
+        <strong>Fermilab / Scientific Instrumentation</strong>
+        <span>Batavia, Illinois, USA</span>
+        <em>particle detectors · ASIC workflows · radiation tolerance · HEP instrumentation</em>
+      </span>
+    </button>
+
     <button class="landing-trajectory__pin landing-trajectory__pin--sanjose" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
       {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
       <span class="landing-trajectory__label">San José</span>

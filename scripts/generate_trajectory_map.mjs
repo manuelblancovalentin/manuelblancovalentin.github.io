@@ -38,6 +38,12 @@ const trajectory = [
     label: 'Austin',
     coordinates: [-97.7431, 30.2672],
   },
+  {
+    id: 'fermilab',
+    label: 'Fermilab',
+    // Displayed west of Chicagoland to avoid overlap at this map scale.
+    coordinates: [-95.5, 39.7],
+  },
 ];
 
 const pins = [
@@ -46,6 +52,7 @@ const pins = [
   trajectory[2],
   trajectory[3],
   trajectory[5],
+  trajectory[6],
 ];
 
 const routeLegs = [

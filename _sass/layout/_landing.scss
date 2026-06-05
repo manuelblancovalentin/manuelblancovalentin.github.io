@@ -354,6 +354,7 @@ html[data-theme='dark'] .landing-trajectory__basemap {
 .landing-trajectory__pin--barcelona { left: 82.866%; top: 22.195%; }
 .landing-trajectory__pin--rio { left: 57.810%; top: 78.222%; }
 .landing-trajectory__pin--chicago { left: 36.196%; top: 21.768%; }
+.landing-trajectory__pin--fermilab { left: 31.618%; top: 23.656%; }
 .landing-trajectory__pin--sanjose { left: 17.137%; top: 25.710%; }
 .landing-trajectory__pin--austin { left: 28.619%; top: 31.889%; }
 
@@ -393,6 +394,10 @@ html[data-theme='dark'] .landing-trajectory__basemap {
 
 .landing-trajectory__pin--chicago .landing-trajectory__label {
   transform: translateX(1.7rem);
+}
+
+.landing-trajectory__pin--fermilab .landing-trajectory__label {
+  transform: translateX(-1.45rem);
 }
 
 .landing-tooltip {
@@ -450,6 +455,7 @@ html[data-theme='dark'] .landing-trajectory__basemap {
 }
 
 .landing-trajectory__pin--chicago .landing-tooltip,
+.landing-trajectory__pin--fermilab .landing-tooltip,
 .landing-trajectory__pin--sanjose .landing-tooltip,
 .landing-trajectory__pin--barcelona .landing-tooltip {
   bottom: auto;
