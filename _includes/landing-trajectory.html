@@ -1,6 +1,7 @@
 <div class="landing-trajectory" aria-label="Professional and academic trajectory">
-  <div class="landing-trajectory__map" aria-hidden="false" style="--landing-trajectory-aspect: 958.8 / 624;">
+  <div class="landing-trajectory__map" aria-hidden="false" style="--landing-trajectory-aspect: 758.8 / 574;">
     <img class="landing-trajectory__basemap" src="/images/maps/trajectory-map.svg" alt="Cropped world map showing the trajectory Barcelona to Rio de Janeiro to Chicago to San Jose to Chicago to Austin" loading="lazy">
+    {% include landing-trajectory-routes.svg %}
 
     <button class="landing-trajectory__pin landing-trajectory__pin--barcelona" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
       {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
@@ -24,10 +25,10 @@
 
     <button class="landing-trajectory__pin landing-trajectory__pin--chicago" type="button" onmouseenter="this.classList.add('is-active')" onmouseleave="this.classList.remove('is-active')" onfocus="this.classList.add('is-active')" onblur="this.classList.remove('is-active')" onclick="this.classList.add('is-active')">
       {% include lucide-icon.html name="map-pin" class="landing-trajectory__pin-icon" size=25 %}
-      <span class="landing-trajectory__label">Chicago/Evanston</span>
+      <span class="landing-trajectory__label">Chicago</span>
       <span class="landing-tooltip" role="tooltip">
         <strong>Ph.D. at Northwestern</strong>
-        <span>Chicago / Evanston, USA</span>
+        <span>Chicago, USA</span>
         <em>ASIC/FPGA design · ML accelerators · scientific instrumentation · hls4ml · neuromorphic learning</em>
       </span>
     </button>

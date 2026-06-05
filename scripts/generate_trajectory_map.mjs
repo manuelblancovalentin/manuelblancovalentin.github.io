@@ -5,7 +5,7 @@ import { feature, mesh } from 'topojson-client';
 const width = 1600;
 const height = 900;
 const mapPadding = 24;
-const cropPadding = { x: 230, y: 150 };
+const cropPadding = { x: 130, y: 125 };
 
 const trajectory = [
   {
@@ -20,7 +20,7 @@ const trajectory = [
   },
   {
     id: 'chicago',
-    label: 'Chicago/Evanston',
+    label: 'Chicago',
     coordinates: [-87.6298, 41.8781],
   },
   {
@@ -30,7 +30,7 @@ const trajectory = [
   },
   {
     id: 'chicago-return',
-    label: 'Chicago/Evanston',
+    label: 'Chicago',
     coordinates: [-87.6298, 41.8781],
   },
   {
@@ -46,6 +46,37 @@ const pins = [
   trajectory[2],
   trajectory[3],
   trajectory[5],
+];
+
+const routeLegs = [
+  {
+    id: 'barcelona-rio',
+    from: trajectory[0],
+    to: trajectory[1],
+    label: 'Barcelona to Rio de Janeiro',
+    date: '2014',
+  },
+  {
+    id: 'rio-chicago',
+    from: trajectory[1],
+    to: trajectory[2],
+    label: 'Rio de Janeiro to Chicago',
+    date: '2020',
+  },
+  {
+    id: 'chicago-sanjose',
+    from: trajectory[2],
+    to: trajectory[3],
+    label: 'Chicago to San Jose, CA',
+    date: '2023',
+  },
+  {
+    id: 'chicago-austin',
+    from: trajectory[4],
+    to: trajectory[5],
+    label: 'Chicago to Austin, TX',
+    date: '2026',
+  },
 ];
 
 const topo = JSON.parse(
@@ -123,12 +154,10 @@ function catmullRomPath(points) {
   return d.join(' ');
 }
 
-const routePoints = [];
-for (let i = 0; i < trajectory.length - 1; i += 1) {
-  const segment = routeSegment(trajectory[i], trajectory[i + 1]);
-  routePoints.push(...(i === 0 ? segment : segment.slice(1)));
-}
-const routePath = catmullRomPath(routePoints);
+const routePaths = routeLegs.map((leg) => ({
+  ...leg,
+  d: catmullRomPath(routeSegment(leg.from, leg.to, 48)),
+}));
 
 const highlightedCountries = new Set(['Brazil', 'Spain', 'United States of America']);
 const countryPaths = countries.features.map((country) => {
@@ -155,11 +184,6 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}" role="img" aria-labelledby="trajectory-map-title trajectory-map-desc">
   <title id="trajectory-map-title">Trajectory map</title>
   <desc id="trajectory-map-desc">A cropped world map showing a trajectory from Barcelona to Rio de Janeiro, Chicago, San Jose, Chicago, and Austin.</desc>
-  <defs>
-    <filter id="route-shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#1b2a31" flood-opacity="0.18"/>
-    </filter>
-  </defs>
   <style>
     .sphere { fill: #d9eef6; }
     .country { fill: #d8d8d2; stroke: #ffffff; stroke-width: 0.75; vector-effect: non-scaling-stroke; }
@@ -167,7 +191,6 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
     .state--highlight { fill: #e3c59c; stroke: #ffffff; stroke-width: 0.85; vector-effect: non-scaling-stroke; }
     .borders { fill: none; stroke: #ffffff; stroke-width: 0.55; opacity: 0.72; vector-effect: non-scaling-stroke; }
     .state-borders { fill: none; stroke: #ffffff; stroke-width: 0.45; opacity: 0.64; vector-effect: non-scaling-stroke; }
-    .route { fill: none; stroke: #4e7284; stroke-width: 4.3; stroke-linecap: round; stroke-linejoin: round; filter: url(#route-shadow); vector-effect: non-scaling-stroke; }
     @media (prefers-color-scheme: dark) {
       .sphere { fill: #203039; }
       .country { fill: #5a5d59; stroke: #32342f; }
@@ -175,7 +198,6 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
       .state--highlight { fill: #82684b; stroke: #32342f; }
       .borders { stroke: #343832; opacity: 0.72; }
       .state-borders { stroke: #343832; opacity: 0.64; }
-      .route { stroke: #91b7c7; }
     }
   </style>
   <path class="sphere" d="${path({ type: 'Sphere' })}"/>
@@ -187,12 +209,26 @@ const svg = `<?xml version="1.0" encoding="UTF-8"?>
   </g>
   <path class="borders" d="${path(borders)}"/>
   <path class="state-borders" d="${path(stateBorders)}"/>
-  <path class="route" d="${routePath}"/>
 </svg>
 `;
 
 writeFileSync('images/maps/trajectory-map.svg', svg);
+const routeOverlay = `<svg class="landing-trajectory__routes" viewBox="${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}" preserveAspectRatio="none" aria-hidden="false" focusable="false">
+  <defs>
+    <filter id="landing-route-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.7" flood-color="#1b2a31" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  ${routePaths.map((leg) => `<g class="landing-trajectory__route-leg landing-trajectory__route-leg--${leg.id}">
+    <path class="landing-trajectory__route-visible" d="${leg.d}"></path>
+    <path class="landing-trajectory__route-hit" tabindex="0" role="img" aria-label="${escapeXml(leg.label)}: ${escapeXml(leg.date)}" d="${leg.d}">
+      <title>${escapeXml(leg.label)}: ${escapeXml(leg.date)}</title>
+    </path>
+  </g>`).join('\n  ')}
+</svg>`;
+writeFileSync('_includes/landing-trajectory-routes.svg', routeOverlay);
 console.log(`wrote images/maps/trajectory-map.svg`);
+console.log(`wrote _includes/landing-trajectory-routes.svg`);
 console.log(`viewBox ${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`);
 console.log(`aspect ${viewBox.width} / ${viewBox.height}`);
 console.log(pinGuide);
