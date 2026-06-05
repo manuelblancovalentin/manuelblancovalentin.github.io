@@ -269,6 +269,7 @@ html[data-theme='dark'] .landing-trajectory__basemap {
   cursor: help;
   font: inherit;
   text-align: center;
+  transform: translate(-50%, -50%);
 
   &:focus-visible {
     outline: 3px solid color-mix(in srgb, var(--landing-accent) 55%, transparent);
@@ -513,6 +514,7 @@ button.landing-graph-node {
     position: relative;
     left: auto;
     top: auto;
+    transform: none;
     grid-template-columns: auto 1fr;
     justify-items: start;
     width: 100%;
