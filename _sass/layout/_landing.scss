@@ -393,12 +393,44 @@ html[data-theme='dark'] .landing-trajectory__basemap {
     drop-shadow(0 0 0.12rem color-mix(in srgb, var(--landing-panel) 90%, transparent))
     drop-shadow(0 0.08rem 0.12rem rgba(45, 38, 28, 0.22));
   stroke-width: 2.15;
+  transform-origin: center bottom;
+  transition:
+    color 160ms ease,
+    fill 160ms ease,
+    filter 160ms ease,
+    transform 160ms ease;
 }
 
 .landing-trajectory__pin-icon circle {
   fill: #8c5b39;
   stroke: color-mix(in srgb, #fff 84%, #e5c9a5);
   stroke-width: 1.8;
+  transition:
+    fill 160ms ease,
+    stroke 160ms ease,
+    stroke-width 160ms ease;
+}
+
+.landing-trajectory__pin.is-active .landing-trajectory__pin-icon,
+.landing-trajectory__pin:hover .landing-trajectory__pin-icon,
+.landing-trajectory__pin:focus .landing-trajectory__pin-icon,
+.landing-trajectory__pin:focus-visible .landing-trajectory__pin-icon {
+  color: color-mix(in srgb, var(--landing-warm) 78%, #2f3a3f);
+  fill: color-mix(in srgb, #fff 70%, var(--landing-warm));
+  filter:
+    drop-shadow(0 0 0.18rem color-mix(in srgb, var(--landing-panel) 92%, transparent))
+    drop-shadow(0 0.12rem 0.2rem rgba(45, 38, 28, 0.28))
+    drop-shadow(0 0 0.38rem color-mix(in srgb, var(--landing-warm) 42%, transparent));
+  transform: translateY(-0.14rem) scale(1.18);
+}
+
+.landing-trajectory__pin.is-active .landing-trajectory__pin-icon circle,
+.landing-trajectory__pin:hover .landing-trajectory__pin-icon circle,
+.landing-trajectory__pin:focus .landing-trajectory__pin-icon circle,
+.landing-trajectory__pin:focus-visible .landing-trajectory__pin-icon circle {
+  fill: var(--landing-warm);
+  stroke: color-mix(in srgb, #fff 90%, var(--landing-warm));
+  stroke-width: 2.15;
 }
 
 .landing-trajectory__label {
