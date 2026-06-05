@@ -42,7 +42,7 @@ const trajectory = [
     id: 'fermilab',
     label: 'Fermilab',
     // Displayed west of Chicagoland to avoid overlap at this map scale.
-    coordinates: [-95.5, 39.7],
+    coordinates: [-91.7, 41.1],
   },
 ];
 
