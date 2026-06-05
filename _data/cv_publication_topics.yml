@@ -1,67 +1,71 @@
+# CV publication groups are explicit and intended to be exclusive.
+# Move a publication by moving its permalink slug between `publications:` lists.
 topics:
   - title: ML Accelerators
     slug: ml-accelerators
     icon: microchip
     accent: "#3776ab"
-    tags:
-      - hls
-      - reconfigurable
-      - hardware
-      - machine-learning
-      - neural-networks
-      - deep-learning
+    publications:
+      - 2025-05-hls4ml-a-flexible-open-source-platform-for-deep-learning-acceleration-on-reconfigurable-hardware
+      - 2025-05-toward-reconfigurable-in-pixel-computing-a-fault-tolerant-design-flow-for-machine-learning-accelerators
+      - 2021-03-23-hls4ml-an-open-source-codesign-workflow-to-empower-scientific-low-power-machine-learning-devices
 
   - title: HEP Detectors
     slug: hep-detectors
     icon: atom
     accent: "#4e2a84"
-    tags:
-      - detectors
-      - sensors
-      - smart-pixels
-      - pixel
-      - radhard
-      - asic
+    publications:
+      - 2024-smart-pixels-in-pixel-ai-for-on-sensor-data-filtering
+      - 2024-01-radiation-hard-smart-pixel-detector-asic-readout-with-digital-ai-in-28nm
+      - 2024-01-01-smart-pixels-algorithm-design-and-hardware-testing-for-a-28m-roic-for-future-pixel-trackers
+      - 2023-12-in-pixel-ai-for-lossy-data-compression-at-source-for-x-ray-detectors
+      - 2023-01-01-smartpixels-towards-on-sensor-inference-of-charged-particle-track-parameters-and-uncertainties
+      - 2021-06-a-reconfigurable-neural-network-asic-for-detector-front-end-data-compression-at-the-hl-lhc
 
   - title: Quantum & Cryogenic Systems
     slug: quantum
     icon: snowflake
     accent: "#0072ce"
-    tags:
-      - quantum
-      - cryogenic
+    publications:
+      - 2025-01-01-an-ultra-low-voltage-16-channel-current-dac-asic-in-22nm-fdsoi-for-cryogenic-squid-biasing
+      - 2023-05-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors
+      - 2023-01-01-neural-network-accelerator-for-universal-quantum-control
+      - 2021-01-01-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors-poster
 
   - title: Neuromorphic Systems
     slug: neuromorphic
     icon: brain
     accent: "#7b61ff"
-    tags:
-      - neuromorphic
-      - neural-networks
+    publications: []
 
   - title: Petrophysics & Imaging
     slug: petrophysics
     icon: droplet
     accent: "#2e8b57"
-    tags:
-      - petrophysics
-      - geoscience
-      - imaging
-      - computer-vision
-      - CBPF
-      - research
+    publications:
+      - 2021-06-bayesian-deep-networks-for-absolute-permeability-and-porosity-uncertainty-prediction-from-image-borehole-logs-from-brazilian-carbonate-reservoirs
+      - 2020-08-automatic-detection-of-fractures-and-breakouts-patterns-in-acoustic-borehole-image-logs-using-fast-region-convolutional-neural-networks
+      - 2019-08-a-deep-residual-convolutional-neural-network-for-automatic-lithological-facies-identification-in-brazilian-pre-salt-oilfield-wellbore-image-logs
+      - 2018-11-estimation-of-permeability-and-effective-porosity-logs-using-deep-autoencoders-in-borehole-image-logs-from-the-brazilian-pre-salt-carbonate
+      - 2018-02-porous-medium-permeability-estimation-for-well-imagery-and-characterization-using-complex-resistivity-spectra
+      - 2017-04-10-on-a-method-for-rock-classification-using-textural-features-and-genetic-optimization
+      - 2016-01-rock-texture-classification-using-spectral-analysis-and-genetically-optimized-texture-features
 
   - title: Astrophysics
     slug: astrophysics
     icon: telescope
     accent: "#6c8ebf"
-    tags:
-      - astrophysics
+    publications:
+      - 2022-03-developing-a-victorious-strategy-to-the-second-strong-gravitational-lensing-data-challenge
+      - 2019-11-14-deep-learning-in-wide-field-surveys-fast-analysis-of-strong-lenses-in-ground-based-cosmic-experiments
+      - 2019-05-the-strong-gravitational-lens-finding-challenge
 
   - title: Theses & Technical Notes
     slug: theses-notes
     icon: graduation-cap
     accent: "#8a5a44"
-    tags:
-      - thesis
-      - research
+    publications:
+      - 2018-03-deep-learning-methods-on-geological-reservoir-borehole-log-images-and-applications
+      - 2018-01-ultrasound-image-acquisition-as-a-didactic-tool
+      - 2016-01-01-texture-classification-based-on-spectral-analysis-and-haralick-features
+      - 2014-06-desarrollo-del-sistema-electronico-de-control-de-navegacion-de-un-barco-remolcador-a-escala

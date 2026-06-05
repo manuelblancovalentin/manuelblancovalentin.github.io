@@ -243,22 +243,22 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 {% for topic in site.data.cv_publication_topics.topics %}
   {% assign topic_count = 0 %}
   {% capture topic_items %}
-    {% for post in sorted_pubs %}
-      {% assign show_publication = false %}
-      {% for topic_tag in topic.tags %}
-        {% if post.tags contains topic_tag %}
-          {% assign show_publication = true %}
+    {% for publication_id in topic.publications %}
+      {% assign publication_id_clean = publication_id | strip %}
+      {% for post in sorted_pubs %}
+        {% assign post_path = post.permalink | default: post.url %}
+        {% assign post_id = post_path | remove: "/publication/" | remove: ".html" | remove: "/" %}
+        {% if post_id == publication_id_clean %}
+          {% assign topic_count = topic_count | plus: 1 %}
+          <li class="cv-publication-topic-card__item">
+            <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+            <span class="cv-publication-topic-card__meta">
+              {{ post.venue }} · {{ post.date | default: "1900-01-01" | date: "%Y" }}
+            </span>
+          </li>
+          {% break %}
         {% endif %}
       {% endfor %}
-      {% if show_publication %}
-        {% assign topic_count = topic_count | plus: 1 %}
-        <li class="cv-publication-topic-card__item">
-          <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-          <span class="cv-publication-topic-card__meta">
-            {{ post.venue }} · {{ post.date | default: "1900-01-01" | date: "%Y" }}
-          </span>
-        </li>
-      {% endif %}
     {% endfor %}
   {% endcapture %}
   {% if topic_count > 0 %}
