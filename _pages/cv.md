@@ -239,6 +239,8 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 {% include cv-section-heading.html title="Publications" accent="#7b61ff" %}
 
 {% assign sorted_pubs = site.publications | sort: "sort_key" %}
+{% assign sorted_hardware = site.hardware | sort: "date" | reverse %}
+{% assign sorted_talks = site.talks | sort: "date" | reverse %}
 <div class="cv-publication-topic-grid">
 {% for topic in site.data.cv_publication_topics.topics %}
   {% assign topic_count = 0 %}
@@ -254,6 +256,40 @@ Thesis: [Design and implementation of the autonomous navigation control system o
             <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
             <span class="cv-publication-topic-card__meta">
               {{ post.venue }} · {{ post.date | default: "1900-01-01" | date: "%Y" }}
+            </span>
+          </li>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% for hardware_id in topic.hardware %}
+      {% assign hardware_id_clean = hardware_id | strip %}
+      {% for project in sorted_hardware %}
+        {% assign project_path = project.permalink | default: project.url %}
+        {% assign project_id = project_path | remove: "/hardware/" | remove: ".html" | remove: "/" %}
+        {% if project_id == hardware_id_clean %}
+          {% assign topic_count = topic_count | plus: 1 %}
+          <li class="cv-publication-topic-card__item">
+            <a href="{{ base_path }}{{ project.url }}">{{ project.title }}</a>
+            <span class="cv-publication-topic-card__meta">
+              ASIC · {{ project.date | default: "1900-01-01" | date: "%Y" }}
+            </span>
+          </li>
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% for talk_id in topic.talks %}
+      {% assign talk_id_clean = talk_id | strip %}
+      {% for talk in sorted_talks %}
+        {% assign talk_path = talk.permalink | default: talk.url %}
+        {% assign talk_id_current = talk_path | remove: "/talks/" | remove: "/publication/" | remove: ".html" | remove: "/" %}
+        {% if talk_id_current == talk_id_clean %}
+          {% assign topic_count = topic_count | plus: 1 %}
+          <li class="cv-publication-topic-card__item">
+            <a href="{{ base_path }}{{ talk.url }}">{{ talk.title }}</a>
+            <span class="cv-publication-topic-card__meta">
+              {{ talk.venue | default: "Talk" }} · {{ talk.date | default: "1900-01-01" | date: "%Y" }}
             </span>
           </li>
           {% break %}

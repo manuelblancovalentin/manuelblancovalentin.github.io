@@ -1,14 +1,22 @@
 # CV publication groups are explicit and intended to be exclusive.
-# Move a publication by moving its permalink slug between `publications:` lists.
+# Move entries by moving their permalink slugs between the source-specific lists:
+# `publications:`, `hardware:`, and `talks:`.
 topics:
   - title: ML Accelerators
     slug: ml-accelerators
     icon: microchip
     accent: "#3776ab"
     publications:
-      - 2025-05-hls4ml-a-flexible-open-source-platform-for-deep-learning-acceleration-on-reconfigurable-hardware
       - 2025-05-toward-reconfigurable-in-pixel-computing-a-fault-tolerant-design-flow-for-machine-learning-accelerators
+      - 2025-05-hls4ml-a-flexible-open-source-platform-for-deep-learning-acceleration-on-reconfigurable-hardware
       - 2021-03-23-hls4ml-an-open-source-codesign-workflow-to-empower-scientific-low-power-machine-learning-devices
+    hardware:
+      - econai-cms-v1-calorimeter
+      - cryoai-v1-cryogenic-accelerator
+      - cryoai-v2-quantum-control
+    talks:
+      - 2025-09-01-fastml
+      - 2022-10-04-fastml-cryoai
 
   - title: HEP Detectors
     slug: hep-detectors
@@ -21,6 +29,10 @@ topics:
       - 2023-12-in-pixel-ai-for-lossy-data-compression-at-source-for-x-ray-detectors
       - 2023-01-01-smartpixels-towards-on-sensor-inference-of-charged-particle-track-parameters-and-uncertainties
       - 2021-06-a-reconfigurable-neural-network-asic-for-detector-front-end-data-compression-at-the-hl-lhc
+    hardware:
+      - sprocket
+      - in-pixel-ai-v1-photon-science
+      - 2023-01-01-cms28v2-ai-in-pixel-readout-chip
 
   - title: Quantum & Cryogenic Systems
     slug: quantum
@@ -31,12 +43,18 @@ topics:
       - 2023-05-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors
       - 2023-01-01-neural-network-accelerator-for-universal-quantum-control
       - 2021-01-01-a-cryogenic-readout-ic-with-100-ksps-in-pixel-adc-for-skipper-ccd-in-cmos-sensors-poster
+    hardware:
+      - citc2-cryogenic-mixed-signal-readout-asic
+    talks:
+      - 2021-04-16-fermilab
 
   - title: Neuromorphic Systems
     slug: neuromorphic
     icon: brain
     accent: "#7b61ff"
     publications: []
+    talks:
+      - 2026-04-16-cosyne
 
   - title: Petrophysics & Imaging
     slug: petrophysics
