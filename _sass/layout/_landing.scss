@@ -387,17 +387,24 @@ html[data-theme='dark'] .landing-trajectory__basemap {
     -1px 0 0 color-mix(in srgb, var(--landing-panel-soft) 85%, transparent);
 }
 
-.landing-trajectory__pin--sanjose .landing-trajectory__label,
 .landing-trajectory__pin--austin .landing-trajectory__label {
   transform: translateX(-1.4rem);
 }
 
-.landing-trajectory__pin--chicago .landing-trajectory__label {
+.landing-trajectory__pin--barcelona .landing-trajectory__label {
   transform: translateY(-2.55rem);
 }
 
+.landing-trajectory__pin--sanjose .landing-trajectory__label {
+  transform: translateX(-1.55rem);
+}
+
+.landing-trajectory__pin--chicago .landing-trajectory__label {
+  transform: translate(1.35rem, -2.5rem);
+}
+
 .landing-trajectory__pin--fermilab .landing-trajectory__label {
-  transform: translateY(-2.55rem);
+  transform: translate(-1.65rem, -2.65rem);
 }
 
 .landing-tooltip {
