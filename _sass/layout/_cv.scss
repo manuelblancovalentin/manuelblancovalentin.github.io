@@ -87,6 +87,198 @@ html[data-theme='dark'] .cv-skill-tag {
   }
 }
 
+.cv-page-shell {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+}
+
+.cv-page-content {
+  min-width: 0;
+}
+
+.cv-scroll-section {
+  scroll-margin-top: 6.5rem;
+}
+
+.cv-section-nav {
+  position: sticky;
+  top: 6.4rem;
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  background: #fbfaf7;
+  border: 1px solid rgba(80, 70, 55, 0.18);
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(45, 38, 28, 0.07);
+}
+
+.cv-section-nav__eyebrow {
+  margin: 0;
+  color: #777165;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.cv-section-nav__list {
+  position: relative;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.cv-section-nav__list::before {
+  position: absolute;
+  top: 0.7rem;
+  bottom: 0.7rem;
+  left: 0.47rem;
+  width: 2px;
+  background: rgba(120, 112, 96, 0.18);
+  border-radius: 999px;
+  content: "";
+}
+
+.cv-section-nav__item {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 1.9rem;
+  padding: 0.24rem 0.45rem 0.24rem 0;
+  color: #777165;
+  border-radius: 9px;
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 1.1;
+  text-decoration: none !important;
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.cv-section-nav__item:hover,
+.cv-section-nav__item:focus,
+.cv-section-nav__item.is-active {
+  color: #24221d;
+  background: rgba(138, 90, 68, 0.11);
+  text-decoration: none !important;
+}
+
+.cv-section-nav__item:focus-visible {
+  outline: 3px solid rgba(138, 90, 68, 0.25);
+  outline-offset: 2px;
+}
+
+.cv-section-nav__dot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: 0.25rem;
+  background: #fbfaf7;
+  border: 2px solid rgba(120, 112, 96, 0.42);
+  border-radius: 999px;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.cv-section-nav__item:hover .cv-section-nav__dot,
+.cv-section-nav__item:focus .cv-section-nav__dot,
+.cv-section-nav__item.is-active .cv-section-nav__dot {
+  background: #8a5a44;
+  border-color: #8a5a44;
+  box-shadow: 0 0 0 4px rgba(138, 90, 68, 0.14);
+  transform: scale(1.08);
+}
+
+html[data-theme='dark'] .cv-section-nav {
+  background: #202020;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme='dark'] .cv-section-nav__eyebrow,
+html[data-theme='dark'] .cv-section-nav__item {
+  color: #bfb9ad;
+}
+
+html[data-theme='dark'] .cv-section-nav__item:hover,
+html[data-theme='dark'] .cv-section-nav__item:focus,
+html[data-theme='dark'] .cv-section-nav__item.is-active {
+  color: #f3f0e9;
+  background: rgba(190, 137, 92, 0.18);
+}
+
+html[data-theme='dark'] .cv-section-nav__list::before {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme='dark'] .cv-section-nav__dot {
+  background: #202020;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+html[data-theme='dark'] .cv-section-nav__item:hover .cv-section-nav__dot,
+html[data-theme='dark'] .cv-section-nav__item:focus .cv-section-nav__dot,
+html[data-theme='dark'] .cv-section-nav__item.is-active .cv-section-nav__dot {
+  background: #be895c;
+  border-color: #be895c;
+  box-shadow: 0 0 0 4px rgba(190, 137, 92, 0.18);
+}
+
+@media (max-width: 1080px) {
+  .cv-page-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-section-nav {
+    top: 4.6rem;
+    z-index: 4;
+  }
+
+  .cv-section-nav__list {
+    display: flex;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scroll-snap-type: x proximity;
+  }
+
+  .cv-section-nav__list::before {
+    display: none;
+  }
+
+  .cv-section-nav__item {
+    grid-template-columns: 0.75rem max-content;
+    flex: 0 0 auto;
+    padding: 0.45rem 0.7rem 0.45rem 0.5rem;
+    background: rgba(120, 112, 96, 0.08);
+    scroll-snap-align: start;
+  }
+
+  .cv-section-nav__dot {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .cv-section-nav {
+    margin-right: -0.4rem;
+    margin-left: -0.4rem;
+    border-radius: 10px;
+  }
+}
+
 .cv-logo {
   width: auto;
   height: 50px;

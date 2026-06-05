@@ -24,6 +24,12 @@ redirect_from:
 
 {% include cv-header.html name="Manuel" surname="Blanco Valentin" title="PhD Computer Engineering — AI specialist" %}
 
+<div class="cv-page-shell">
+{% include cv-section-nav.html %}
+<div class="cv-page-content">
+
+<section id="cv-profile" class="cv-scroll-section">
+
 {% capture profile_content %}
 Passionate about designing efficient, fault-tolerant ML hardware systems and neuromorphic computing architectures. Expertise in radiation-hardened ASICs, high-level synthesis, and training-aware hardware accelerators. Enthusiastic about bridging the gap between machine learning and physical implementation challenges.
 {% endcapture %}
@@ -32,8 +38,9 @@ Passionate about designing efficient, fault-tolerant ML hardware systems and neu
 
 {% include cv-skills.html skills=page.skills %}
 
+</section>
 
-
+<section id="cv-education" class="cv-scroll-section">
 {% include cv-section-heading.html title="Education" accent="#4e2a84" %}
 {% capture phd_education_description %}
 Hardware-software co-designed ML systems, neuromorphic learning, and radiation-hardened ASICs.
@@ -113,6 +120,9 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   description=upc_education_description
 %}
 
+</section>
+
+<section id="cv-work-experience" class="cv-scroll-section">
 {% include cv-section-heading.html title="Work experience" accent="#8a5a44" %}
 
 {% assign amd_logo = base_path | append: "/images/logos/amd.jpeg" %}
@@ -220,6 +230,9 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   description=cern_work_description
 %}
 
+</section>
+
+<section id="cv-skills" class="cv-scroll-section">
 {% include cv-section-heading.html title="Skills" accent="#3776ab" %}
 
 <div class="cv-skill-card-grid">
@@ -228,6 +241,9 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   {% endfor %}
 </div>
 
+</section>
+
+<section id="cv-languages" class="cv-scroll-section">
 {% include cv-section-heading.html title="Languages" accent="#2e8b57" %}
 
 <div class="cv-skill-card-grid cv-skill-card-grid--languages">
@@ -236,6 +252,9 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   {% endfor %}
 </div>
 
+</section>
+
+<section id="cv-publications" class="cv-scroll-section">
 {% include cv-section-heading.html title="Publications" accent="#7b61ff" %}
 
 {% assign sorted_pubs = site.publications | sort: "sort_key" %}
@@ -316,6 +335,9 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 {% endfor %}
 </div>
 
+</section>
+
+<section id="cv-patents" class="cv-scroll-section">
 {% include cv-section-heading.html title="Patents" accent="#b8860b" %}
 
 {% assign sorted_patents = site.patents | sort: "date" | reverse %}
@@ -328,11 +350,17 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 {% endfor %}
 </ul>
 
+</section>
+
+<section id="cv-talks" class="cv-scroll-section">
 {% include cv-section-heading.html title="Talks" accent="#0072ce" %}
   <ul>{% for post in site.talks reversed %}
     {% include archive-single-talk-cv.html  %}
   {% endfor %}</ul>
-  
+
+</section>
+
+<section id="cv-teaching" class="cv-scroll-section">
 {% include cv-section-heading.html title="Teaching" accent="#555" %}
 
 {% assign sorted_teaching = site.teaching | sort: "date" | reverse %}
@@ -344,4 +372,10 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   </li>
 {% endfor %}
 </ul>
+
+</section>
+</div>
+</div>
+
+<script src="{{ base_path }}/assets/js/cv-section-nav.js" defer></script>
   
