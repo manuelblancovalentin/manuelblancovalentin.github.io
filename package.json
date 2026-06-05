@@ -30,8 +30,11 @@
     "plotly.js-dist-min": "^3.3.0"
   },
   "devDependencies": {
+    "d3-geo": "^3.1.1",
     "onchange": "^7.1.0",
-    "uglify-js": "^3.17.4"
+    "topojson-client": "^3.1.0",
+    "uglify-js": "^3.17.4",
+    "world-atlas": "^2.0.2"
   },
   "scripts": {
     "uglify": "uglifyjs node_modules/jquery/dist/jquery.min.js node_modules/fitvids/dist/fitvids.min.js node_modules/jquery-smooth-scroll/jquery.smooth-scroll.min.js node_modules/plotly.js-dist-min/plotly.min.js assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js -c -m -o assets/js/main.min.js",
