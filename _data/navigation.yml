@@ -19,18 +19,18 @@ main:
 
   - title: "Software"
     url: /software/
+  
+  - title: "Talks"
+    url: /talks/ 
 
   - title: "Patents"
     url: /patents/
 
-  - title: "Talks"
-    url: /talks/    
-
   - title: "Teaching"
     url: /teaching/    
     
-  - title: "Blog Posts"
-    url: /year-archive/
+  # - title: "Blog Posts"
+  #   url: /year-archive/
     
   # - title: "CV"
   #   url: /cv-json/
