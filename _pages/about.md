@@ -154,7 +154,6 @@ redirect_from:
   <section class="landing-section" aria-labelledby="trajectory-title">
     <div class="landing-section__header">
       <p class="landing-section__eyebrow">Trajectory</p>
-      <h2 id="trajectory-title">Where the stack came from</h2>
     </div>
     {% include landing-trajectory.html %}
   </section>
