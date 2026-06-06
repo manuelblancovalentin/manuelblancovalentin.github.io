@@ -56,25 +56,47 @@
     return navRect.bottom + 36;
   }
 
-  function scrollToSection(target) {
+  function getSectionScrollTop(target) {
     const visibleTarget = target.querySelector('.cv-section-heading') || target;
     const targetTop = visibleTarget.getBoundingClientRect().top + window.pageYOffset;
-    const top = Math.max(0, targetTop - getScrollOffset());
 
+    return Math.max(0, targetTop - getScrollOffset());
+  }
+
+  function scrollToSection(target) {
     window.scrollTo({
-      top,
-      behavior: 'smooth',
+      top: getSectionScrollTop(target),
+      behavior: 'auto',
     });
+
+    window.setTimeout(() => {
+      window.scrollTo({
+        top: getSectionScrollTop(target),
+        behavior: 'auto',
+      });
+    }, 80);
+
+    window.setTimeout(() => {
+      window.scrollTo({
+        top: getSectionScrollTop(target),
+        behavior: 'auto',
+      });
+    }, 220);
   }
 
   links.forEach((link) => {
     link.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') {
+        event.stopImmediatePropagation();
+      }
+
       const target = document.getElementById(link.dataset.cvSectionLink);
       if (!target) {
         return;
       }
 
-      event.preventDefault();
       setActiveSection(target.id);
       scrollToSection(target);
       if (window.history && window.history.replaceState) {
@@ -82,7 +104,7 @@
       }
       window.setTimeout(updateActiveSection, 280);
       window.setTimeout(updateActiveSection, 620);
-    });
+    }, true);
   });
 
   updateActiveSection();
