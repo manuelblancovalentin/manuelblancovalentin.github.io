@@ -57,7 +57,8 @@
   }
 
   function scrollToSection(target) {
-    const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+    const visibleTarget = target.querySelector('.cv-section-heading') || target;
+    const targetTop = visibleTarget.getBoundingClientRect().top + window.pageYOffset;
     const top = Math.max(0, targetTop - getScrollOffset());
 
     window.scrollTo({
