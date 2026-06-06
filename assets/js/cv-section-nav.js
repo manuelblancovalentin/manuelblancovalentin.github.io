@@ -53,7 +53,7 @@
       return mastheadBottom + 16;
     }
 
-    return mastheadBottom + navRect.height + 24;
+    return navRect.bottom + 36;
   }
 
   function scrollToSection(target) {
