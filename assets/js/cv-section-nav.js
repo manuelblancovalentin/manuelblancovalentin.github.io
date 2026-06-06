@@ -15,6 +15,10 @@
   }
 
   function updateActiveSection() {
+    const nav = document.querySelector('.cv-section-nav');
+    const activationOffset = nav
+      ? nav.getBoundingClientRect().bottom + 48
+      : 150;
     const candidates = sections
       .map((section) => ({
         section,
@@ -22,7 +26,7 @@
       }));
 
     const passed = candidates
-      .filter((candidate) => candidate.top <= 150)
+      .filter((candidate) => candidate.top <= activationOffset)
       .sort((first, second) => second.top - first.top);
     const nearest = passed[0] || candidates.sort((first, second) => first.top - second.top)[0];
 
