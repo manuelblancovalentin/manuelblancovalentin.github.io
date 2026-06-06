@@ -35,6 +35,37 @@
     }
   }
 
+  function getScrollOffset() {
+    const masthead = document.querySelector('.masthead');
+    const nav = document.querySelector('.cv-section-nav');
+    const mastheadBottom = masthead
+      ? masthead.getBoundingClientRect().bottom
+      : 0;
+
+    if (!nav) {
+      return mastheadBottom + 16;
+    }
+
+    const navStyle = window.getComputedStyle(nav);
+    const navRect = nav.getBoundingClientRect();
+
+    if (navStyle.position === 'fixed') {
+      return mastheadBottom + 16;
+    }
+
+    return mastheadBottom + navRect.height + 24;
+  }
+
+  function scrollToSection(target) {
+    const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+    const top = Math.max(0, targetTop - getScrollOffset());
+
+    window.scrollTo({
+      top,
+      behavior: 'smooth',
+    });
+  }
+
   links.forEach((link) => {
     link.addEventListener('click', (event) => {
       const target = document.getElementById(link.dataset.cvSectionLink);
@@ -44,8 +75,12 @@
 
       event.preventDefault();
       setActiveSection(target.id);
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToSection(target);
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', `#${target.id}`);
+      }
       window.setTimeout(updateActiveSection, 280);
+      window.setTimeout(updateActiveSection, 620);
     });
   });
 
