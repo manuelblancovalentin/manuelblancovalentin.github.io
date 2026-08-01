@@ -10,31 +10,29 @@ redirect_from:
 
 <div class="landing-page">
   <section class="landing-hero" aria-labelledby="landing-hero-title">
-    <p class="landing-eyebrow">Computer engineering · ML hardware · scientific instrumentation</p>
+    <p class="landing-eyebrow">Computer engineering · ASIC/FPGA · Edge AI · RAS</p>
     <h1 id="landing-hero-title">
-      Computer engineer working across
-      <span class="landing-highlight">machine-learning hardware</span>,
-      <span class="landing-highlight">ASIC/FPGA design</span>,
-      scientific instrumentation, and adaptive on-chip learning.
+      Computer engineer working at the intersection of
+      <span class="landing-highlight">artificial intelligence</span>, and
+      <span class="landing-highlight">hardware mixed-signal design</span>,
+      for the next-generation adaptive on-chip learning ASIC/FPGA.
     </h1>
     <p class="landing-hero__summary">
-      I build hardware/software systems for machine learning under physical constraints:
-      <span class="landing-inline-keyword">latency</span>,
-      <span class="landing-inline-keyword">power</span>,
-      <span class="landing-inline-keyword">numerical precision</span>,
-      <span class="landing-inline-keyword">memory movement</span>,
-      <span class="landing-inline-keyword">timing closure</span>,
-      <span class="landing-inline-keyword">radiation</span>,
-      and deployment on real devices. My work spans algorithms, software tooling, HLS/RTL
-      implementation, verification, FPGA/ASIC workflows, and documentation for reproducible
-      scientific use.
+      I build hardware-aware ML systems for 
+      <span class="landing-inline-keyword">constrained</span> and 
+      <span class="landing-inline-keyword">reliable computing</span>, spanning 
+      <span class="landing-inline-keyword">ASIC/FPGA accelerators</span>, scientific instrumentation, 
+      <span class="landing-inline-keyword">edge AI</span>, 
+      <span class="landing-inline-keyword">adaptive on-chip learning</span>, and 
+      <span class="landing-inline-keyword">reliability-aware architecture</span>, 
+      and deployment on real devices. My work connects algorithms to implementation constraints such as latency, power, numerical precision, memory movement, timing closure, radiation, and fault behavior.
     </p>
   </section>
 
   <section class="landing-section" aria-labelledby="technical-focus-title">
     <div class="landing-section__header">
       <p class="landing-section__eyebrow">Technical focus</p>
-      <h2 id="technical-focus-title">Areas I work across</h2>
+      <!-- <h2 id="technical-focus-title">Areas I work across</h2> -->
     </div>
     <div class="landing-chip-cloud" aria-label="Technical focus areas">
       <span class="landing-chip">ML accelerators</span>
@@ -57,7 +55,7 @@ redirect_from:
     </div>
   </section>
 
-  <section class="landing-section" aria-labelledby="what-i-build-title">
+  <!-- <section class="landing-section" aria-labelledby="what-i-build-title">
     <div class="landing-section__header">
       <p class="landing-section__eyebrow">What I build</p>
       <h2 id="what-i-build-title">Projects at the algorithm/hardware boundary</h2>
@@ -125,29 +123,46 @@ redirect_from:
         </ul>
       </article>
     </div>
-  </section>
+  </section> -->
 
   <section class="landing-section landing-narrative" aria-labelledby="trajectory-summary-title">
     <div class="landing-section__header">
-      <p class="landing-section__eyebrow">TL;DR</p>
+      <p class="landing-section__eyebrow">Professional path</p>
       <h2 id="trajectory-summary-title">How I got here</h2>
     </div>
     <div class="landing-narrative__body">
-      <p>
-        My path started in robotics engineering in Barcelona, where I learned to think across
-        physical systems, electronics, control, and software. In Brazil, I moved into applied
-        physics and industrial AI, working on deep-learning methods for imaging and reservoir
-        characterization. During my Ph.D. at Northwestern, that background evolved into
-        hardware-oriented machine learning: low-latency inference, ASIC and FPGA implementation,
-        particle-detector instrumentation, and adaptive learning systems that can operate under
-        tight physical constraints.
-      </p>
-      <p>
-        Across these stages, the recurring theme has been the same: I like systems where algorithms
-        have to survive contact with physics. That means numerical precision, latency, power, timing
-        closure, radiation, memory movement, and the engineering details that decide whether an idea
-        can actually run.
-      </p>
+    <p class="landing-eyebrow">Electronics, automation, and physical systems</p>
+    <p>
+      My path started in <span class="landing-inline-keyword">Barcelona</span>, where I obtained my degree in <span class="landing-inline-keyword">Electronic and Automation Engineering</span>. That training gave me my first engineering foundation across circuits, control, physical systems, instrumentation, and software.
+    </p>
+    <p class="landing-eyebrow">Applied AI and scientific instrumentation</p>
+    <p>
+      In 2014, I moved to <span class="landing-inline-keyword">Rio de Janeiro, Brazil</span> and started working at <span class="landing-inline-keyword">Petrobras</span>, where I applied deep learning to petrophysics and geoscience problems. I developed methods for borehole image analysis, reservoir characterization, fracture and breakout detection, and uncertainty estimation. This was my first exposure to AI as an engineering tool for scientific and industrial environments.
+    </p>
+    <p class="landing-eyebrow">From AI models to silicon</p>
+    <p>
+      In 2020, I moved to <span class="landing-inline-keyword">Chicago, Illinois</span> to begin my Ph.D. in Computer Engineering at <span class="landing-inline-keyword">Northwestern University</span>, through hardware design work connected to <span class="landing-inline-keyword">Fermilab</span> and high-energy physics instrumentation. That period shifted my work from using AI models to understanding how they become real hardware: <span class="landing-inline-keyword">ASIC design</span>, <span class="landing-inline-keyword">FPGA development</span>, digital implementation, mixed-signal constraints, verification, and low-latency inference for detector systems.
+    </p>
+    <p class="landing-eyebrow">Reliability under extreme constraints</p>
+    <p>
+      Through collaborative projects with <span class="landing-inline-keyword">Fermilab</span> and <span class="landing-inline-keyword">CERN</span>, I worked on hardware intended for environments where reliability is not optional. High-energy physics systems must tolerate radiation, tight latency budgets, and strict implementation constraints, which pushed me toward <span class="landing-inline-keyword">radiation-aware design</span>, redundancy, fault tolerance, and reliability-aware architecture.
+    </p>
+    <p class="landing-eyebrow">Silicon aging, cryogenics, and signoff reality</p>
+    <p>
+      As my Ph.D. progressed, I became increasingly interested in how physical operating conditions shape hardware design. The <span class="landing-inline-keyword">cryoAI</span> chip explored machine-learning hardware for cryogenic quantum-control environments, where computation must operate close to the devices being controlled. In 2023, I also interned at <span class="landing-inline-keyword">Cadence</span>, working on silicon aging and reliability characterization, which strengthened my understanding of timing, signoff, PVT variation, and device degradation.
+    </p>
+    <p class="landing-eyebrow">On-device reprogrammability and trainability</p>
+    <p>
+      Many of the neural-network accelerators I worked with were inference-only, or supported only limited weight reprogrammability. That limitation became the motivation for my work on <span class="landing-inline-keyword">on-device training</span> and adaptation. Projects such as <span class="landing-inline-keyword">hls4ml-trainable</span> and <span class="landing-inline-keyword">ENABOL</span> grew from that question: how can we make neural-network accelerators not only fast and efficient, but also trainable, stable, and reliable on constrained hardware?
+    </p>
+    <p class="landing-eyebrow">\(\mathcal{NRCSTK}\): toward autonomous on-device learning</p>
+    <p>
+      My most recent work pushes that progression further, from conventional trainability toward <span class="landing-inline-keyword">local</span>, <span class="landing-inline-keyword">unsupervised</span>, and <span class="landing-inline-keyword">bio-inspired</span> learning for silicon systems. <span class="landing-inline-keyword">\(\mathcal{NRCSTK}\)</span>, the core direction of my thesis, explores whether local rules tied to physical and thermodynamic properties of the substrate can support autonomous adaptation on device, without relying on centralized backpropagation or offline retraining.
+    </p>
+    <p class="landing-eyebrow">Reliability at CPU scale</p>
+    <p>
+      In parallel with my Ph.D. research, I am currently interning at <span class="landing-inline-keyword">AMD</span>, working on <span class="landing-inline-keyword">reliability, availability, and serviceability</span> architecture for consumer CPUs. This connects naturally with the broader theme of my work: building computing systems that remain useful when algorithms meet real hardware constraints.
+    </p>
     </div>
   </section>
 
