@@ -27,6 +27,9 @@
       {% if author.location %}
         <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>{{ author.location }}</li>
       {% endif %}
+      {% if author.hometown %}
+        <li class="author__desktop"><i class="fas fa-fw fa-house icon-pad-right" aria-hidden="true"></i>{{ author.hometown }}</li>
+      {% endif %}
       {% if author.employer %}
         <li class="author__desktop"><i class="fas fa-fw fa-building-columns icon-pad-right" aria-hidden="true"></i>{{ author.employer }}</li>
       {% endif %}

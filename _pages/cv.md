@@ -337,26 +337,123 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 
 </section>
 
+<section id="cv-peer-review" class="cv-scroll-section">
+{% include cv-section-heading.html title="Peer review" accent="#0f766e" %}
+
+<article class="cv-peer-review-card" style="--cv-peer-review-accent: #0f766e;">
+  <div class="cv-peer-review-card__main">
+    <div class="cv-peer-review-card__header">
+      {% include lucide-icon.html name="clipboard-check" class="cv-peer-review-card__icon" size=22 %}
+      <div>
+        <p class="cv-peer-review-card__eyebrow">Verified peer reviews</p>
+        <h3>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</h3>
+      </div>
+    </div>
+    <a class="cv-peer-review-card__link" href="https://www.webofscience.com/wos/author/record/ODJ-9773-2025" target="_blank" rel="noopener noreferrer">
+      Verified through Web of Science / Clarivate
+      {% include lucide-icon.html name="arrow-up-right" class="cv-peer-review-card__external-icon" size=14 %}
+    </a>
+  </div>
+  <div class="cv-peer-review-card__count" aria-label="3 verified reviews">
+    <span>3</span>
+    <small>reviews</small>
+  </div>
+</article>
+
+</section>
+
 <section id="cv-patents" class="cv-scroll-section">
 {% include cv-section-heading.html title="Patents" accent="#b8860b" %}
 
 {% assign sorted_patents = site.patents | sort: "date" | reverse %}
-<ul>
+<div class="cv-compact-card-grid">
 {% for post in sorted_patents %}
-  <li>
-    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-    — <i>{{ post.venue }}</i> ({{ post.date | default: "1900-01-01" | date: "%Y" }})
-  </li>
+  <article class="cv-compact-card cv-compact-card--patent" style="--cv-compact-card-accent: #b8860b;">
+    <div class="cv-compact-card__header">
+      {% include lucide-icon.html name="scroll-text" class="cv-compact-card__icon" size=21 %}
+      <div class="cv-compact-card__title-block">
+        <p class="cv-compact-card__eyebrow">Patent</p>
+        <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+      </div>
+      {% if post.patent_number or post.publication_number %}
+        <span class="cv-compact-card__badge">{{ post.patent_number | default: post.publication_number }}</span>
+      {% endif %}
+    </div>
+    <p class="cv-compact-card__meta">
+      {{ post.venue | default: post.patent_office }}
+      {% if post.date %} · {{ post.date | date: "%Y" }}{% endif %}
+    </p>
+    {% if post.excerpt %}
+      <p class="cv-compact-card__description">{{ post.excerpt }}</p>
+    {% endif %}
+    <div class="cv-compact-card__footer">
+      {% if post.status %}
+        <span class="cv-compact-card__pill">{{ post.status }}</span>
+      {% endif %}
+      <a class="cv-compact-card__link" href="{{ base_path }}{{ post.url }}">
+        Patent details {% include lucide-icon.html name="arrow-up-right" class="cv-compact-card__external-icon" size=14 %}
+      </a>
+      {% if post.patent_url %}
+        <a class="cv-compact-card__link" href="{{ post.patent_url }}" target="_blank" rel="noopener noreferrer">
+          Patent record {% include lucide-icon.html name="arrow-up-right" class="cv-compact-card__external-icon" size=14 %}
+        </a>
+      {% endif %}
+    </div>
+  </article>
 {% endfor %}
-</ul>
+</div>
 
 </section>
 
 <section id="cv-talks" class="cv-scroll-section">
 {% include cv-section-heading.html title="Talks" accent="#0072ce" %}
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
+{% assign sorted_talk_cards = site.talks | sort: "date" | reverse %}
+<div class="cv-compact-card-grid">
+{% for post in sorted_talk_cards %}
+  {% assign talk_kind = "Talk" %}
+  {% assign talk_details_label = "Talk details" %}
+  {% assign talk_icon = "mic" %}
+  {% if post.taxonomy.type contains "poster" or post.type contains "Poster" or post.type contains "poster" %}
+    {% assign talk_kind = "Poster" %}
+    {% assign talk_details_label = "Poster details" %}
+    {% assign talk_icon = "presentation" %}
+  {% elsif post.type contains "slides" or post.type contains "Slides" or post.type contains "presentation" %}
+    {% assign talk_icon = "presentation" %}
+  {% endif %}
+  <article class="cv-compact-card cv-compact-card--talk" style="--cv-compact-card-accent: #0072ce;">
+    <div class="cv-compact-card__header">
+      {% include lucide-icon.html name=talk_icon class="cv-compact-card__icon" size=21 %}
+      <div class="cv-compact-card__title-block">
+        <p class="cv-compact-card__eyebrow">{{ talk_kind }}</p>
+        <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+      </div>
+      {% if post.date %}
+        <span class="cv-compact-card__badge">{{ post.date | date: "%Y" }}</span>
+      {% endif %}
+    </div>
+    <p class="cv-compact-card__meta">
+      {{ post.venue | default: post.location }}
+      {% if post.date %} · {{ post.date | date: "%B %-d, %Y" }}{% endif %}
+    </p>
+    {% if post.excerpt %}
+      <p class="cv-compact-card__description">{{ post.excerpt }}</p>
+    {% endif %}
+    <div class="cv-compact-card__footer">
+      {% if post.location %}
+        <span class="cv-compact-card__pill">{{ post.location }}</span>
+      {% endif %}
+      <a class="cv-compact-card__link" href="{{ base_path }}{{ post.url }}">
+        {{ talk_details_label }} {% include lucide-icon.html name="arrow-up-right" class="cv-compact-card__external-icon" size=14 %}
+      </a>
+      {% if post.paperurl %}
+        <a class="cv-compact-card__link" href="{{ post.paperurl }}" target="_blank" rel="noopener noreferrer">
+          Related record {% include lucide-icon.html name="arrow-up-right" class="cv-compact-card__external-icon" size=14 %}
+        </a>
+      {% endif %}
+    </div>
+  </article>
+{% endfor %}
+</div>
 
 </section>
 
@@ -364,14 +461,37 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 {% include cv-section-heading.html title="Teaching" accent="#555" %}
 
 {% assign sorted_teaching = site.teaching | sort: "date" | reverse %}
-<ul>
+<div class="cv-compact-card-grid">
 {% for post in sorted_teaching %}
-  <li>
-    <a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-    — <i>{{ post.venue }}</i> ({{ post.date | default: "1900-01-01" | date: "%Y" }})
-  </li>
+  <article class="cv-compact-card cv-compact-card--teaching" style="--cv-compact-card-accent: #555;">
+    <div class="cv-compact-card__header">
+      {% include lucide-icon.html name="graduation-cap" class="cv-compact-card__icon" size=21 %}
+      <div class="cv-compact-card__title-block">
+        <p class="cv-compact-card__eyebrow">{{ post.type | default: "Teaching" }}</p>
+        <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+      </div>
+      {% if post.date %}
+        <span class="cv-compact-card__badge">{{ post.date | date: "%Y" }}</span>
+      {% endif %}
+    </div>
+    <p class="cv-compact-card__meta">
+      {{ post.venue | default: post.location }}
+      {% if post.date %} · {{ post.date | date: "%B %-d, %Y" }}{% endif %}
+    </p>
+    {% if post.excerpt %}
+      <p class="cv-compact-card__description">{{ post.excerpt }}</p>
+    {% endif %}
+    <div class="cv-compact-card__footer">
+      {% if post.location %}
+        <span class="cv-compact-card__pill">{{ post.location }}</span>
+      {% endif %}
+      <a class="cv-compact-card__link" href="{{ base_path }}{{ post.url }}">
+        Teaching details {% include lucide-icon.html name="arrow-up-right" class="cv-compact-card__external-icon" size=14 %}
+      </a>
+    </div>
+  </article>
 {% endfor %}
-</ul>
+</div>
 
 </section>
 </div>
