@@ -31,7 +31,7 @@ redirect_from:
       <a class="landing-action landing-action--primary" href="{{ base_path }}/cv/">View CV</a>
       <a class="landing-action" href="{{ base_path }}/files/CV-2.pdf" target="_blank" rel="noopener noreferrer">
         <i class="fa fa-file-pdf" aria-hidden="true"></i>
-        Download résumé
+        Download CV
         <i class="fa fa-download" aria-hidden="true"></i>
       </a>
     </div>
