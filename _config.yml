@@ -26,7 +26,7 @@ author:
   avatar           : "Manu_bcn_wall_1.png"
   name             : "Manu Blanco Valentin"
   pronouns         : "he/him" # example: "she/her"  
-  bio              : "Computer engineer working across ASIC/FPGA design, hardware-aware machine learning, scientific instrumentation, and reliability-aware systems. My work connects ML algorithms to real hardware constraints: latency, power, timing closure, radiation, numerical precision, and deployment on silicon."
+  bio              : "AI hardware engineer."
   location         : "Chicago, IL - US"
   hometown         : "Barcelona, SP"
   employer         : "Northwestern University"
