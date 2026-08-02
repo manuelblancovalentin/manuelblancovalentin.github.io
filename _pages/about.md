@@ -27,6 +27,13 @@ redirect_from:
       <span class="landing-inline-keyword">reliability-aware architecture</span>, 
       and deployment on real devices. My work connects algorithms to implementation constraints such as latency, power, numerical precision, memory movement, timing closure, radiation, and fault behavior.
     </p>
+    <div class="landing-hero__actions" aria-label="Profile actions">
+      <a class="landing-action landing-action--primary" href="{{ base_path }}/cv/">View CV</a>
+      <a class="landing-action" href="{{ base_path }}/files/CV-2.pdf" target="_blank" rel="noopener noreferrer">
+        Download résumé
+        {% include lucide-icon.html name="arrow-up-right" class="landing-action__icon" size=14 %}
+      </a>
+    </div>
   </section>
 
   <section class="landing-section" aria-labelledby="technical-focus-title">
