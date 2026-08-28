@@ -400,3 +400,39 @@ b, i, strong, em, blockquote, p, q, span, figure, img, h1, h2, header, input, a,
   align-items: center;
   gap: 8px; /* Space between icon and text */
 }
+
+.resume-icon-btn {
+  color: #b42318;
+  background-color: #fff7f5;
+  padding: 8px 16px;
+  border: 1px solid rgba(180, 35, 24, 0.28);
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resume-icon-btn--sidebar {
+  justify-content: center;
+  width: 100%;
+  margin: 0.25rem 0 0.35rem;
+  padding: 7px 12px;
+  font-size: 14px;
+}
+
+.email-icon-btn:hover,
+.email-icon-btn:focus,
+.linkedin-icon-btn:hover,
+.linkedin-icon-btn:focus,
+.github-icon-btn:hover,
+.github-icon-btn:focus,
+.resume-icon-btn:hover,
+.resume-icon-btn:focus {
+  color: #8f1d14;
+  text-decoration: none;
+  background-color: #fff1ee;
+  border-color: rgba(180, 35, 24, 0.42);
+}

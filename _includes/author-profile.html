@@ -33,6 +33,13 @@
       {% if author.employer %}
         <li class="author__desktop"><i class="fas fa-fw fa-building-columns icon-pad-right" aria-hidden="true"></i>{{ author.employer }}</li>
       {% endif %}
+      <li class="author__resume">
+        <a href="{{ base_path }}/files/CV-2.pdf" class="resume-icon-btn resume-icon-btn--sidebar" target="_blank" rel="noopener noreferrer">
+          <i class="fa fa-file-pdf" aria-hidden="true"></i>
+          <span>Download CV</span>
+          <i class="fa fa-download" aria-hidden="true"></i>
+        </a>
+      </li>
       {% if author.uri %}
         <li><a href="{{ author.uri }}"><i class="fas fa-fw fa-link icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].website_label | default: "Website" }}</a></li>
       {% endif %}

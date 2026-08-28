@@ -78,6 +78,50 @@ html[data-theme='dark'] .landing-page {
   line-height: 1.62;
 }
 
+.landing-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.landing-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.15rem;
+  padding: 0.42rem 0.78rem;
+  color: var(--landing-accent-strong);
+  background: var(--landing-panel);
+  border: 1px solid color-mix(in srgb, var(--landing-accent) 34%, var(--landing-border));
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 850;
+  line-height: 1.15;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(45, 38, 28, 0.06);
+}
+
+.landing-action:hover,
+.landing-action:focus {
+  color: var(--landing-accent-strong);
+  border-color: color-mix(in srgb, var(--landing-accent) 58%, var(--landing-border));
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.landing-action--primary {
+  color: #fff;
+  background: var(--landing-accent-strong);
+  border-color: var(--landing-accent-strong);
+}
+
+.landing-action--primary:hover,
+.landing-action--primary:focus {
+  color: #fff;
+  background: color-mix(in srgb, var(--landing-accent-strong) 88%, #000);
+}
+
 .landing-highlight {
   color: var(--landing-accent-strong);
 }
