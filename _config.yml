@@ -23,7 +23,7 @@ repository               : "manuelblancovalentin/manuelblancovalentin.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "Manu_bcn_wall_1.png"
+  avatar           : "manu.png"
   name             : "Manu Blanco Valentin"
   pronouns         : "he/him" # example: "she/her"  
   bio              : "Short biography for the left-hand sidebar"
