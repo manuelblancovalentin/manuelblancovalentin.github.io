@@ -169,7 +169,7 @@ redirect_from:
     </p>
     <p class="landing-eyebrow">Reliability at CPU scale</p>
     <p>
-      In parallel with my Ph.D. research, I am currently interning at <span class="landing-inline-keyword">AMD</span>, working on <span class="landing-inline-keyword">reliability, availability, and serviceability</span> architecture for consumer CPUs. This connects naturally with the broader theme of my work: building computing systems that remain useful when algorithms meet real hardware constraints.
+      Alongside my Ph.D. research, I completed a June–September 2026 internship at <span class="landing-inline-keyword">AMD</span>, delivering <span class="landing-inline-keyword">reliability, availability, and serviceability</span> analysis infrastructure for marginal and small-delay defects in high-performance CPUs. My <span class="landing-inline-keyword">NetSuRF</span> research investigates quantized neural-network fault vulnerability and protection policies. Both connect with the broader theme of my work: building computing systems that remain useful when algorithms meet real hardware constraints.
     </p>
     </div>
   </section>

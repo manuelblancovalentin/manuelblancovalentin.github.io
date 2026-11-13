@@ -9,7 +9,7 @@ skill_categories:
       - label: C/C++
         logo: /images/skills/cpp.svg
         url: https://isocpp.org
-      - label: Verilog/VHDL
+      - label: Verilog/SystemVerilog/VHDL
         logo: /images/skills/verilog.svg
         url: https://en.wikipedia.org/wiki/Verilog
       - label: Tcl/Tk
@@ -72,11 +72,21 @@ skill_categories:
       - label: Verification
         logo: /images/skills/verilog.svg
         url: https://www.cadence.com/en_US/home/tools/system-design-and-verification/simulation-and-testbench-verification/xcelium-simulator.html
+      - label: Fault-vulnerability analysis
+        icon: check
+      - label: TMR / majority voting
+        icon: check
+      - label: CPU RAS / marginal-delay defects
+        icon: check
 
   - title: HLS / FPGA
     icon: fpga
     accent: "#0072ce"
     skills:
+      - label: RISC-V / ESP SoCs
+        logo: /images/skills/microchip.svg
+      - label: hls4ml / on-chip training
+        logo: /images/skills/ml.svg
       - label: Catapult HLS
         logo: /images/skills/fpga.svg
         url: https://eda.sw.siemens.com/en-US/ic/catapult-high-level-synthesis/

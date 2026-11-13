@@ -3,7 +3,7 @@ layout: cv
 title: "CV"
 permalink: /cv/
 author_profile: true
-last_modified: 2026-05-23
+last_modified: 2026-11-13
 skills:
   - ASIC
   - VLSI
@@ -22,7 +22,7 @@ redirect_from:
 
 {% include base_path %}
 
-{% include cv-header.html name="Manuel" surname="Blanco Valentin" title="PhD Computer Engineering — AI specialist" %}
+{% include cv-header.html name="Manuel" surname="Blanco Valentin" title="ASIC & AI Accelerator Engineering / SoC Co-Design / Hardware Reliability" %}
 
 <div class="cv-page-shell">
 {% include cv-section-nav.html %}
@@ -31,7 +31,7 @@ redirect_from:
 <section id="cv-profile" class="cv-scroll-section">
 
 {% capture profile_content %}
-Passionate about designing efficient, fault-tolerant ML hardware systems and neuromorphic computing architectures. Expertise in radiation-hardened ASICs, high-level synthesis, and training-aware hardware accelerators. Enthusiastic about bridging the gap between machine learning and physical implementation challenges.
+Computer Engineering PhD candidate, with graduation expected in March 2027, specializing in end-to-end AI-accelerator ASICs and RISC-V/ESP SoCs. Hands-on ownership of digital design from ML modeling and HLS to RTL, synthesis, place-and-route, DRC/LVS, verification, and mixed-signal integration across TSMC 28/65 nm and GF 22 nm FD-SOI. Experience in radiation-tolerant fault protection, cryogenic and quantum readout, CPU RAS infrastructure, and neuromorphic AI research.
 {% endcapture %}
 
 {% include tbox.html type="profile" title="Profile" content=profile_content %}
@@ -43,9 +43,9 @@ Passionate about designing efficient, fault-tolerant ML hardware systems and neu
 <section id="cv-education" class="cv-scroll-section">
 {% include cv-section-heading.html title="Education" accent="#4e2a84" %}
 {% capture phd_education_description %}
-Hardware-software co-designed ML systems, neuromorphic learning, and radiation-hardened ASICs.
+Research in AI accelerators, hardware reliability, and local, energy-constrained neuromorphic learning.
 
-Thesis: In progress.
+Expected graduation: March 2027.
 {% endcapture %}
 {% assign nu_logo = base_path | append: "/images/logos/nu.png" %}
 {% include cv-education-card.html
@@ -55,10 +55,10 @@ Thesis: In progress.
   institution="Northwestern University"
   department="Computer Engineering"
   accent="#4e2a84"
-  title="Ph.D. in Computer Engineering"
+  title="Ph.D. Candidate in Computer Engineering"
   location="Evanston, IL"
   location_url="https://maps.app.goo.gl/Je4fPbAb5Hf2CuBA7"
-  timeline="2020 - Present"
+  timeline="2020 - Expected Mar 2027"
   gpa="3.9/4.0"
   description=phd_education_description
 %}
@@ -127,9 +127,8 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 
 {% assign amd_logo = base_path | append: "/images/logos/amd.jpeg" %}
 {% capture amd_work_description %}
-* Developing techniques to evaluate resilience of high-performance processors under delay/fault scenarios.
-* Building ML/data-analysis pipelines to extract trends from reliability datasets.
-* Collaborating with system and hardware architects on mitigation strategies.
+* Architected and delivered RAS analysis infrastructure adopted by the team, integrating heterogeneous data and evidence sources for marginal and small-delay defects in high-performance CPUs.
+* Developed multi-feature, NDA-guided fault-injection sampling using chip-level features to target informative path-cycle evaluations and compare marginal-defect vulnerability across sources.
 {% endcapture %}
 {% include cv-work-card.html
   logo=amd_logo
@@ -138,7 +137,7 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   company="AMD"
   group="Reliability, Availability, and Serviceability"
   accent="#111111"
-  title="Systems Engineer Junior - RAS"
+  title="Systems Engineer Junior - RAS (Internship)"
   location="Austin, TX, USA"
   location_url="https://maps.app.goo.gl/e4dMd5eMxYj9XBJW7"
   timeline="June 2026 - Sep 2026"
@@ -147,23 +146,39 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 
 {% assign fnal_logo = base_path | append: "/images/logos/fermilab.jpg" %}
 {% assign cern_logo = base_path | append: "/images/logos/cern.png" %}
-{% assign research_logos = nu_logo | append: "|" | append: fnal_logo | append: "|" | append: cern_logo %}
-{% assign research_logo_urls = "https://www.northwestern.edu|https://www.fnal.gov|https://home.cern" %}
-{% capture research_work_description %}
-* Developing NRCST K: a neuromorphic learning system with local learning rules and metabolic optimization.
-* Led multiple ASIC efforts across GF 22nm FD-SOI, TSMC 28nm, and TSMC 65nm processes (RTL/HLS to P&R to signoff).
-* Built reusable automation for synthesis, P&R, extraction, and signoff (Cadence Virtuoso/Innovus/Genus/Tempus/Voltus).
-* Implemented radiation-hardened logic with TMR; developed RTL tools for redundancy injection.
-* Extended ENABOL: training-aware HLS templates and backward-pass wrappers for training-capable hardware.
+{% capture fermilab_work_description %}
+* Owned end-to-end digital ASIC flows for AI and readout chips: ML modeling, HLS/RTL, synthesis, place-and-route, DRC/LVS, verification, test, and mixed-signal integration across TSMC 28/65 nm and GF 22 nm FD-SOI.
+* Analyzed fault vulnerability and implemented radiation-tolerant hardening, including module triplication/TMR and majority-vote correction for ECON-T and ECON-D.
+* Designed cryogenic RISC-V/ESP AI silicon for quantum readout and control.
 {% endcapture %}
 {% include cv-work-card.html
-  logos=research_logos
-  logo_urls=research_logo_urls
-  logo_alts="Northwestern University|Fermilab|CERN"
-  company="Northwestern University / Fermilab / CERN"
-  group="ASIC + ML Accelerator Research"
+  logo=fnal_logo
+  logo_url="https://www.fnal.gov"
+  logo_alt="Fermilab"
+  company="Fermilab"
+  group="AI / Readout ASIC Design"
+  accent="#0072ce"
+  title="ASIC Design Research Intern; Subsequent Collaborator"
+  location="Batavia, IL, USA"
+  location_url="https://www.google.com/maps/search/?api=1&query=Fermilab%2C%20Batavia%2C%20IL"
+  timeline="2020 - 2023 (Intern); 2023 - 2024 (Collaborator)"
+  description=fermilab_work_description
+%}
+
+{% capture research_work_description %}
+* Investigate NetSuRF quantized neural-network fault vulnerability, bit-level susceptibility, and protection policies through reproducible experiments with explicit fault semantics.
+* Develop ENABOL for resource-constrained on-chip trainability, adaptive learning, and hardware-resource-aware updates.
+* Develop hls4ml-trainable as separate model-to-HLS code-generation work for training-capable networks, update logic, and constrained compute.
+* Investigate NRCSTK local, energy-constrained neuromorphic learning theory.
+{% endcapture %}
+{% include cv-work-card.html
+  logo=nu_logo
+  logo_url="https://www.northwestern.edu"
+  logo_alt="Northwestern University"
+  company="Northwestern University"
+  group="AI, RAS & Neuromorphic Computing"
   accent="#4e2a84"
-  title="ASIC + ML Accelerator Researcher"
+  title="PhD Researcher"
   location="Evanston, IL, USA"
   location_url="https://maps.app.goo.gl/Je4fPbAb5Hf2CuBA7"
   timeline="2020 - Present"
@@ -172,10 +187,8 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 
 {% assign cadence_logo = base_path | append: "/images/logos/Cadence.jpg" %}
 {% capture cadence_work_description %}
-* Researched silicon aging/drift impacts in 5nm CMOS and their effects on timing closure.
-* Developed and integrated drift estimation modules into Tempus SSV.
-* Created tooling for drift-aware library characterization and algorithm improvements.
-* Explored ML-assisted prediction techniques for drift-aware analysis.
+* Implemented silicon aging/drift estimation and characterization tooling for static timing analysis and signoff.
+* Investigated algorithmic improvements for timing EDA.
 {% endcapture %}
 {% include cv-work-card.html
   logo=cadence_logo
@@ -184,7 +197,7 @@ Thesis: [Design and implementation of the autonomous navigation control system o
   company="Cadence Design Systems"
   group="Timing / EDA"
   accent="#a6202d"
-  title="Tempus SSV Graduate Intern"
+  title="Graduate Intern - Tempus SSV / Timing EDA"
   location="San Jose, CA, USA"
   location_url="https://maps.app.goo.gl/HtuYfiJuLLPEGVyE8"
   timeline="Mar 2023 - Sep 2023"
@@ -193,10 +206,7 @@ Thesis: [Design and implementation of the autonomous navigation control system o
 
 {% assign petrobras_logo = base_path | append: "/images/logos/petrobras.png" %}
 {% capture petrobras_work_description %}
-* Built and deployed CNN/autoencoder/Bayesian deep learning models for industrial imaging and reservoir characterization.
-* Delivered end-to-end pipelines: data ingestion, training/evaluation, uncertainty quantification, production reporting.
-* Developed AI systems for oil & gas reservoir characterization using seismic and borehole image data.
-* Applied Bayesian deep learning for uncertainty quantification and model robustness.
+* Developed AI, generative modeling, and Bayesian learning for petrophysics, including uncertainty-aware reservoir and subsurface interpretation.
 {% endcapture %}
 {% include cv-work-card.html
   logo=petrobras_logo
